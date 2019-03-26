@@ -24,6 +24,10 @@
   "devDependencies": {
     "redux-logger": "^3.0.6"
   },
+  "engine": {
+    "node": "v10.13.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "webpack",
