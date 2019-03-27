@@ -548,6 +548,8 @@ function (_React$Component) {
     value: function render() {
       if (this.props.formType === 'Log in') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "login-main"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "login-form"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
           className: "login-header"
@@ -565,9 +567,11 @@ function (_React$Component) {
           value: this.state.password,
           onChange: this.handleUpdate('password'),
           placeholder: "Password"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, this.props.formType)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Not on Pinvalley yet? ", this.props.otherForm));
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, this.props.formType)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Not on Pinvalley yet? ", this.props.otherForm)));
       } else if (this.props.formType === 'Sign up') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "login-main"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "login-form"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           onSubmit: this.handleSubmit
@@ -597,7 +601,7 @@ function (_React$Component) {
           placeholder: "Last name"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: this.renderErrors
-        }, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Already a menber? ", this.props.otherForm)));
+        }, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Already a menber? ", this.props.otherForm))));
       }
     }
   }]);

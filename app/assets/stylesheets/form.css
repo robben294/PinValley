@@ -1,4 +1,4 @@
-.login-form {
+.login-main {
     border: 1px black solid;
     border-radius: 8px;
     background: rgb(255, 255, 255);
@@ -7,13 +7,18 @@
     margin: auto;
     box-shadow: rgba(0,0,0,0.45) 0px 2px 10px;
     padding: 22px 0px;
+    -webkit-font-smoothing: antialiased;
     font-family: "Segoe UI","Fira Sans","Droid Sans","Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","ＭＳ Ｐゴシック",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
+.login-form {
+    margin: 0 auto 25px;
+    width: 270px;
+}
+
 .login-header {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: bold;
-    -webkit-font-smoothing: antialiased;
     letter-spacing: -1.2px;
 }
 
@@ -21,4 +26,38 @@
     font-size: 16px;
     font-weight: normal;
     margin: -15px 0px 20px;
+}
+
+.login-form > form {
+    /* height: 157px; */
+}
+
+.login-form > form > input { 
+    height: 24px;
+    width: 242px;
+    border: 1px solid #8e8e8e;
+    border-radius: 4px;
+    padding: 8px 14px;
+    font-size: 16px;
+    letter-spacing: -.4px;
+    background: rgb(232, 240, 254);
+    margin-top: 10px;
+}
+
+.login-form > form > button {
+    border:0px;
+    height: 36px;
+    display: inline-block;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgb(230,0,35);
+    color: rgb(255,255,255);
+    width: 100%;
+    margin-top: 20px;
+}
+
+.login-form > form > button:hover {
+    background: rgb(187, 0, 29)
 }

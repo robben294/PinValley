@@ -42,39 +42,44 @@ class SessionForm extends React.Component{
     render() {
         if (this.props.formType === 'Log in') {
             return (
-                <div className="login-form">
-                    <h3 className="login-header">Log in to see more</h3>
-                    <p className="login-subtext">Access Pinterest's best ideas with a free account</p>
-                    {this.renderErrors()}
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email'/>
-                        <br/>
-                        <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Password'/>
-                        <br/>
-                        <button>{this.props.formType}</button>
-                    </form>
-                    <br/>
-                    <p>Not on Pinvalley yet? {this.props.otherForm}</p>
+                <div className="login-main">
+                    <div className="login-form">
+                        <h3 className="login-header">Log in to see more</h3>
+                        <p className="login-subtext">Access Pinterest's best ideas with a free account</p>
+                        {this.renderErrors()}
+                        <form onSubmit={this.handleSubmit}>
+                            <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email' />
+                            <br />
+                            <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Password' />
+                            <br />
+                            <button>{this.props.formType}</button>
+                        </form>
+                        <br />
+                        <a>Not on Pinvalley yet? {this.props.otherForm}</a>
+                    </div>
                 </div>
             )
         } else if (this.props.formType === 'Sign up') {
             return (
-                <div className="login-form">
-                    <form onSubmit={this.handleSubmit}>
-                        <h3 className="login-header">Sign up to see more</h3>
-                        <p className="login-subtext">Access Pinterest's best ideas with a free account</p>
-                        <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email'/>
-                        <br/>
-                        <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Create a password'/>
-                        <br/>
-                        <input type="text" value={this.state.firstname} onChange={this.handleUpdate('firstname')} placeholder='First name' />
-                        <br/>
-                        <input type="text" value={this.state.lastname} onChange={this.handleUpdate('lastname')} placeholder='Last name'/>
-                        <br/>
-                        <button onClick={this.renderErrors}>{this.props.formType}</button>
-                        <br />
-                        <p>Already a menber? {this.props.otherForm}</p>
-                    </form>
+                <div className="login-main">
+                    <div className="login-form">
+                        <form onSubmit={this.handleSubmit}>
+                            <h3 className="login-header">Sign up to see more</h3>
+                            <p className="login-subtext">Access Pinterest's best ideas with a free account</p>
+                            <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email' />
+                            <br />
+                            <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Create a password' />
+                            <br />
+                            <input type="text" value={this.state.firstname} onChange={this.handleUpdate('firstname')} placeholder='First name' />
+                            <br />
+                            <input type="text" value={this.state.lastname} onChange={this.handleUpdate('lastname')} placeholder='Last name' />
+                            <br />
+                            <button onClick={this.renderErrors}>{this.props.formType}</button>
+                            <br />
+                            <a>Already a menber? {this.props.otherForm}</a>
+                        </form>
+                    </div>
+                    
                 </div>
             )
         }
