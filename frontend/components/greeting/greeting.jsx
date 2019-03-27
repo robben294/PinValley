@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../../action/session_actions';
+import LoginFormContainer from '../session/login_form_container';
 
 class Greeting extends React.Component {
 
@@ -19,8 +20,7 @@ class Greeting extends React.Component {
          else {
             return (
                 <div>
-                    You are not login!
-                    {/* <LoginForm /> */}
+                    <LoginFormContainer />
                 </div>
             )
         }

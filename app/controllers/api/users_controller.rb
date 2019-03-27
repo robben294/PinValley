@@ -10,7 +10,7 @@ class Api::UsersController < ApplicationController
     end
 
     def update
-        @user = User.find_by(username: params[:username])
+        @user = User.find_by(email: params[:email])
         if @user && @user.update_attributes(user_params)
             render :show
         elsif !@user
@@ -23,6 +23,6 @@ class Api::UsersController < ApplicationController
 
     private
     def user_params
-        params.require(:user).permit(:username, :email, :password, :firstname, :lastname, :location, :about_me)
+        params.require(:user).permit(:email, :password, :firstname, :lastname, :location, :about_me)
     end
 end

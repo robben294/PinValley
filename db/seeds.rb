@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create([
-    {username: 'robben', email: 'bjluo@bu.edu', password: '123456', firstname: 'Binjie', lastname: 'Luo'},
-    {username: 'xi', email: 'xchen@gamil.com', password: '123456', firstname: 'Xi', lastname: 'Chen'},
-    {username: 'john', email: 'john@gamil.com', password: '123456', firstname: 'John', lastname: 'last'}
+    {email: 'bjluo@bu.edu', password: '123456', firstname: 'Binjie', lastname: 'Luo'},
+    {email: 'xchen@gamil.com', password: '123456', firstname: 'Xi', lastname: 'Chen'},
+    {email: 'john@gamil.com', password: '123456', firstname: 'John', lastname: 'last'}
 ])
