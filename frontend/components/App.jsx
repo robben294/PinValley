@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import GreetingContainer from './greeting/greeting';
 
 const App = () => (
