@@ -1,0 +1,24 @@
+.login-form {
+    border: 1px black solid;
+    border-radius: 8px;
+    background: rgb(255, 255, 255);
+    text-align: center;
+    width: 400px;
+    margin: auto;
+    box-shadow: rgba(0,0,0,0.45) 0px 2px 10px;
+    padding: 22px 0px;
+    font-family: "Segoe UI","Fira Sans","Droid Sans","Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","ＭＳ Ｐゴシック",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+.login-header {
+    font-size: 32px;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -1.2px;
+}
+
+.login-subtext {
+    font-size: 16px;
+    font-weight: normal;
+    margin: -15px 0px 20px;
+}

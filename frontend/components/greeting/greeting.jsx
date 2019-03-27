@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../../action/session_actions';
 import LoginFormContainer from '../session/login_form_container';
+import { openModal, closeModal } from '../../action/modal_actions';
 
 class Greeting extends React.Component {
 
@@ -18,10 +19,9 @@ class Greeting extends React.Component {
             )
         }
          else {
+             this.props.openModal('login');
             return (
-                <div>
-                    <LoginFormContainer />
-                </div>
+                null
             )
         }
     }
@@ -33,6 +33,7 @@ const msp = state => ({
 
 const mdp = dispatch => ({
     logout: () => dispatch(logout()),
+    openModal: (modal) => dispatch(openModal(modal)),
 });
 
 export default connect(msp, mdp)(Greeting);

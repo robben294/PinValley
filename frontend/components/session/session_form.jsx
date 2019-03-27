@@ -10,11 +10,27 @@ class SessionForm extends React.Component{
             lastname: '',
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
+    }
+
+    renderErrors() {
+        // if (this.props.errors.session !== []) {
+        //     this.setState({ 'password': "" });
+        // }
+        return (
+            <ul>
+                {this.props.errors.map((error, i) => (
+                    <li key={i}>
+                        {error}
+                    </li>
+                ))}
+            </ul>
+        );
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.processForm(this.state);
+        this.props.processForm(this.state).then(this.props.closeModal).catch(this.setState({'password': ''}));
     }
 
     handleUpdate(field) {
@@ -26,26 +42,38 @@ class SessionForm extends React.Component{
     render() {
         if (this.props.formType === 'Log in') {
             return (
-                <div>
-                    <h2>Log in to see more</h2>
-                    <p>Access Pinterest's best ideas with a free account</p>
+                <div className="login-form">
+                    <h3 className="login-header">Log in to see more</h3>
+                    <p className="login-subtext">Access Pinterest's best ideas with a free account</p>
+                    {this.renderErrors()}
                     <form onSubmit={this.handleSubmit}>
                         <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email'/>
+                        <br/>
                         <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Password'/>
-
+                        <br/>
                         <button>{this.props.formType}</button>
                     </form>
+                    <br/>
+                    <p>Not on Pinvalley yet? {this.props.otherForm}</p>
                 </div>
             )
         } else if (this.props.formType === 'Sign up') {
             return (
-                <div>
+                <div className="login-form">
                     <form onSubmit={this.handleSubmit}>
+                        <h3 className="login-header">Sign up to see more</h3>
+                        <p className="login-subtext">Access Pinterest's best ideas with a free account</p>
                         <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email'/>
+                        <br/>
                         <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Create a password'/>
+                        <br/>
                         <input type="text" value={this.state.firstname} onChange={this.handleUpdate('firstname')} placeholder='First name' />
+                        <br/>
                         <input type="text" value={this.state.lastname} onChange={this.handleUpdate('lastname')} placeholder='Last name'/>
-                        <button>{this.props.formType}</button>
+                        <br/>
+                        <button onClick={this.renderErrors}>{this.props.formType}</button>
+                        <br />
+                        <p>Already a menber? {this.props.otherForm}</p>
                     </form>
                 </div>
             )

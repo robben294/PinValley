@@ -3,17 +3,13 @@ import {
     RECEIVE_ERRORS
 } from '../action/session_actions';
 
-const _defaultState = {
-    session: []
-};
-
-const sessionErrorReducer = (state = _defaultState, action) => {
+const sessionErrorReducer = (state = [], action) => {
     switch(action.type) {
         case RECEIVE_ERRORS: {
-            return {session: action.errors};
+            return action.errors;
         }
         case RECEIVE_CURRENT_USER: {
-            return _defaultState;
+            return [];
         }
         default: {
             return state;
