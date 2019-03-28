@@ -149,7 +149,6 @@ var receiveCurrentUser = function receiveCurrentUser(user) {
   };
 };
 var logoutCurrentUser = function logoutCurrentUser() {
-  debugger;
   return {
     type: LOGOUT_CURRENT_USER
   };
@@ -228,16 +227,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_6__["ProtectedRoute"], {
-    path: "/feed",
-    component: _greeting_greeting_feed__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_6__["AuthRoute"], {
-    exact: true,
-    path: "/",
-    component: function component() {
-      return null;
-    }
-  }));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -747,10 +737,12 @@ function (_React$Component) {
           key: i
         }, error);
       }));
-    } // componentWillMount() {
-    //     this.props.clearSessionErrors();
-    // }
-
+    }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.props.clearSessionErrors();
+    }
   }, {
     key: "createDemo",
     value: function createDemo(e) {
@@ -774,7 +766,6 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       var _this3 = this;
 
-      debugger;
       e.preventDefault();
       var user = Object.assign({}, this.state);
       this.props.processForm(user).then(function () {
@@ -812,16 +803,22 @@ function (_React$Component) {
         }, "Access PinValley's best ideas with a free account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           onSubmit: this.handleSubmit
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
+          type: "email",
           value: this.state.email,
           onChange: this.handleUpdate('email'),
           placeholder: "Email"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        }), errs.includes('Email') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "auth-error"
+        }, "You missed a spot! Don't forget to add your email.") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          minLength: "6",
           type: "password",
           value: this.state.password,
           onChange: this.handleUpdate('password'),
-          placeholder: "Password"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          placeholder: "Password",
+          required: true
+        }), errs.includes('Invalid') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "auth-error"
+        }, "Password you entered is incorrect. Try again.") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           className: "login-OR"
         }, "OR"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "login-demo",
@@ -843,26 +840,38 @@ function (_React$Component) {
         }, "Sign up to see more"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "login-subtext"
         }, "Access PinValley's best ideas with a free account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
+          type: "email",
           value: this.state.email,
           onChange: this.handleUpdate('email'),
           placeholder: "Email"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        }), errs.includes('Email') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "auth-error"
+        }, "Email can't be blank") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          minLength: "6",
           type: "password",
           value: this.state.password,
           onChange: this.handleUpdate('password'),
-          placeholder: "Create a password"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          placeholder: "Create a password",
+          required: true
+        }), errs.includes('Password') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "auth-error"
+        }, "Password can't be blank") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
+          required: "required",
           value: this.state.firstname,
           onChange: this.handleUpdate('firstname'),
           placeholder: "First name"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        }), errs.includes('First') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "auth-error"
+        }, "First name can't be blank") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
+          required: "required",
           value: this.state.lastname,
           onChange: this.handleUpdate('lastname'),
           placeholder: "Last name"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        }), errs.includes('Last') ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "auth-error"
+        }, "Last name can't be blank") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "login-other-form"
         }, this.props.otherForm))));
       }
@@ -1215,7 +1224,6 @@ var usersReducer = function usersReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, oldState, _defineProperty({}, action.user.id, action.user));
 
     case _action_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
-      debugger;
       return {};
 
     default:
@@ -1282,7 +1290,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state) {
-  debugger;
   return {
     loggedIn: Boolean(state.session.id)
   };
@@ -1318,8 +1325,8 @@ var Protected = function Protected(_ref2) {
   });
 };
 
-var AuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp)(Auth));
-var ProtectedRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp)(Protected));
+var AuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, null)(Auth));
+var ProtectedRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, null)(Protected));
 
 /***/ }),
 

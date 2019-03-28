@@ -8,10 +8,10 @@ import { AuthRoute, ProtectedRoute } from '../util/route_utils';
 
 const App = () => (
     <div>
-        {/* <GreetingContainer /> */}
+        <GreetingContainer />
         <Modal />
-        <ProtectedRoute path='/feed' component={GreetingFeed} />
-        <AuthRoute exact path='/' component={() => null} />
+        {/* <ProtectedRoute path='/feed' component={GreetingFeed} />
+        <AuthRoute exact path='/' component={() => null} /> */}
     </div>
 );
 

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { logout } from '../../action/session_actions';
 import { openModal } from '../../action/modal_actions';
 
+
 class Greeting extends React.Component {
 
     constructor(props) {
@@ -15,7 +16,6 @@ class Greeting extends React.Component {
         e.preventDefault();
         this.props.logout().then(() => this.props.openModal('login'));
     }
-
     render() {
         const { currentUser } = this.props;
             return (

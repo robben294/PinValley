@@ -102,3 +102,13 @@
 form > .login-demo {
     margin-top: 10px;
 }
+
+.auth-error {
+    margin-top: 5px;
+    color: #e3780c;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -.4px;
+    cursor: pointer;
+    text-align: left;
+}

@@ -25,9 +25,9 @@ class SessionForm extends React.Component{
         );
     }
 
-    // componentWillMount() {
-    //     this.props.clearSessionErrors();
-    // }
+    componentWillMount() {
+        this.props.clearSessionErrors();
+    }
 
     createDemo(e) {
         e.preventDefault();
@@ -42,7 +42,6 @@ class SessionForm extends React.Component{
     }
 
     handleSubmit(e) {
-        debugger
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user).then(() => this.props.closeModal());
@@ -68,9 +67,12 @@ class SessionForm extends React.Component{
                         <p className="login-header">Log in to see more</p>
                         <p className="login-subtext">Access PinValley's best ideas with a free account</p>
                         <form onSubmit={this.handleSubmit}>
-                            <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email' />
-
-                            <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Password' />
+                            <input type="email" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email' />
+                            {errs.includes('Email') ? <div className="auth-error">
+                                You missed a spot! Don't forget to add your email.
+                                </div> : null}
+                            <input minLength="6" type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Password' required/>
+                            {errs.includes('Invalid') ? <div className="auth-error">Password you entered is incorrect. Try again.</div> : null}
                             <button>{this.props.formType}</button>
                             <a className="login-OR">OR</a>
                             <button className="login-demo" onClick={this.createDemo}>Continue as a guest</button>
@@ -87,10 +89,18 @@ class SessionForm extends React.Component{
                         <form onSubmit={this.handleSubmit}>
                             <p className="login-header">Sign up to see more</p>
                             <p className="login-subtext">Access PinValley's best ideas with a free account</p>
-                            <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email' />
-                            <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Create a password' />
-                            <input type="text" value={this.state.firstname} onChange={this.handleUpdate('firstname')} placeholder='First name' />
-                            <input type="text" value={this.state.lastname} onChange={this.handleUpdate('lastname')} placeholder='Last name' />
+                            <input type="email" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email' />
+                            {errs.includes('Email') ? <div className="auth-error">Email can't be blank</div> : null}
+
+                            <input minLength="6" type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Create a password' required/>
+                            {errs.includes('Password') ? <div className="auth-error">Password can't be blank</div> : null}
+
+                            <input type="text" required="required" value={this.state.firstname} onChange={this.handleUpdate('firstname')} placeholder='First name' />
+                            {errs.includes('First') ? <div className="auth-error">First name can't be blank</div> : null}
+
+                            <input type="text" required="required" value={this.state.lastname} onChange={this.handleUpdate('lastname')} placeholder='Last name' />
+                            {errs.includes('Last') ? <div className="auth-error">Last name can't be blank</div> : null}
+
                             <button>{this.props.formType}</button>
                             <span className="login-other-form">{this.props.otherForm}</span>
                         </form>
