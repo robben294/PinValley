@@ -5,6 +5,7 @@
     right: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.7);
+    /* background: black; */
     z-index: 10;
     /* background-image: url('session_background.JPG');
     background-repeat: no-repeat;

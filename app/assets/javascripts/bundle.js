@@ -202,8 +202,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.logo
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to PinValley"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+    src: window.background,
+    className: "login-background"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -446,11 +447,11 @@ var mdp = function mdp(dispatch) {
     processForm: function processForm(user) {
       return dispatch(Object(_action_session_actions__WEBPACK_IMPORTED_MODULE_3__["login"])(user));
     },
-    otherForm: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    otherForm: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       onClick: function onClick() {
         return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('signup'));
       }
-    }, "Sign up"),
+    }, "Not on Pinvalley yet? Sign up"),
     closeModal: function closeModal() {
       return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
     }
@@ -519,9 +520,6 @@ function (_React$Component) {
   _createClass(SessionForm, [{
     key: "renderErrors",
     value: function renderErrors() {
-      // if (this.props.errors.session !== []) {
-      //     this.setState({ 'password': "" });
-      // }
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: i
@@ -551,13 +549,15 @@ function (_React$Component) {
       if (this.props.formType === 'Log in') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "login-main"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.logo
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "login-form"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "login-header"
         }, "Log in to see more"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "login-subtext"
-        }, "Access Pinterest's best ideas with a free account"), this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        }, "Access PinValley's best ideas with a free account"), this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           onSubmit: this.handleSubmit
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
@@ -569,19 +569,27 @@ function (_React$Component) {
           value: this.state.password,
           onChange: this.handleUpdate('password'),
           placeholder: "Password"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, this.props.formType)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Not on Pinvalley yet? ", this.props.otherForm)));
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, this.props.formType)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "login-OR"
+        }, "OR"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "login-demo"
+        }, "DEMO LOGIN"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "login-other-form"
+        }, this.props.otherForm)));
       } else if (this.props.formType === 'Sign up') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "login-main"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.logo
+        }), this.renderErrors(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "login-form"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           onSubmit: this.handleSubmit
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "login-header"
         }, "Sign up to see more"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "login-subtext"
-        }, "Access Pinterest's best ideas with a free account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        }, "Access PinValley's best ideas with a free account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
           value: this.state.email,
           onChange: this.handleUpdate('email'),
@@ -603,7 +611,9 @@ function (_React$Component) {
           placeholder: "Last name"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: this.renderErrors
-        }, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Already a menber? ", this.props.otherForm))));
+        }, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "login-other-form"
+        }, this.props.otherForm))));
       }
     }
   }]);
@@ -649,11 +659,11 @@ var mdp = function mdp(dispatch) {
     processForm: function processForm(user) {
       return dispatch(Object(_action_session_actions__WEBPACK_IMPORTED_MODULE_3__["signup"])(user));
     },
-    otherForm: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    otherForm: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       onClick: function onClick() {
         return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('login'));
       }
-    }, "Log in"),
+    }, "Already a menber? Log in"),
     closeModal: function closeModal() {
       return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
     }

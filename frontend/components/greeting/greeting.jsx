@@ -19,7 +19,7 @@ class Greeting extends React.Component {
             )
         }
          else {
-             this.props.openModal('login');
+            this.props.openModal('login');
             return (
                 null
             )

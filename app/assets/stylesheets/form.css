@@ -11,6 +11,21 @@
     font-family: "Segoe UI","Fira Sans","Droid Sans","Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","ＭＳ Ｐゴシック",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
+.login-background {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+        
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.login-main > img {
+    height: 42.44px;
+    width: 42.44px;
+}
+
 .login-form {
     margin: 0 auto 25px;
     width: 270px;
@@ -20,6 +35,7 @@
     font-size: 30px;
     font-weight: bold;
     letter-spacing: -1.2px;
+    margin-top: 0px;
 }
 
 .login-subtext {
@@ -44,7 +60,7 @@
     margin-top: 10px;
 }
 
-.login-form > form > button {
+.login-form button {
     border:0px;
     height: 36px;
     display: inline-block;
@@ -56,8 +72,33 @@
     color: rgb(255,255,255);
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-.login-form > form > button:hover {
+.login-form button:hover {
     background: rgb(187, 0, 29)
+}
+
+.login-other-form {
+    color: #717171;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 12px;
+}
+
+.login-other-form:hover {
+    border-bottom: 0.5px solid rgb(138,138,138);
+    color: black;
+}
+
+.login-OR {
+    color: #333333;
+    font-size: 12px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: bold;
+}
+
+.login-form > .login-demo {
+    margin-top: 10px;
 }

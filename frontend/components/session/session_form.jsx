@@ -14,9 +14,6 @@ class SessionForm extends React.Component{
     }
 
     renderErrors() {
-        // if (this.props.errors.session !== []) {
-        //     this.setState({ 'password': "" });
-        // }
         return (
             <ul>
                 {this.props.errors.map((error, i) => (
@@ -43,9 +40,10 @@ class SessionForm extends React.Component{
         if (this.props.formType === 'Log in') {
             return (
                 <div className="login-main">
+                    <img src={window.logo} />
                     <div className="login-form">
-                        <h3 className="login-header">Log in to see more</h3>
-                        <p className="login-subtext">Access Pinterest's best ideas with a free account</p>
+                        <p className="login-header">Log in to see more</p>
+                        <p className="login-subtext">Access PinValley's best ideas with a free account</p>
                         {this.renderErrors()}
                         <form onSubmit={this.handleSubmit}>
                             <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email' />
@@ -54,18 +52,22 @@ class SessionForm extends React.Component{
                             <br />
                             <button>{this.props.formType}</button>
                         </form>
+                        <a className="login-OR">OR</a>
+                        <button className="login-demo">DEMO LOGIN</button>
                         <br />
-                        <a>Not on Pinvalley yet? {this.props.otherForm}</a>
+                        <span className="login-other-form">{this.props.otherForm}</span>
                     </div>
                 </div>
             )
         } else if (this.props.formType === 'Sign up') {
             return (
                 <div className="login-main">
+                    <img src={window.logo} />
+                    {this.renderErrors()}
                     <div className="login-form">
                         <form onSubmit={this.handleSubmit}>
-                            <h3 className="login-header">Sign up to see more</h3>
-                            <p className="login-subtext">Access Pinterest's best ideas with a free account</p>
+                            <p className="login-header">Sign up to see more</p>
+                            <p className="login-subtext">Access PinValley's best ideas with a free account</p>
                             <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email' />
                             <br />
                             <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Create a password' />
@@ -76,7 +78,7 @@ class SessionForm extends React.Component{
                             <br />
                             <button onClick={this.renderErrors}>{this.props.formType}</button>
                             <br />
-                            <a>Already a menber? {this.props.otherForm}</a>
+                            <span className="login-other-form">{this.props.otherForm}</span>
                         </form>
                     </div>
                     

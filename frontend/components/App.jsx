@@ -4,10 +4,9 @@ import Modal from './modal/modal';
 
 const App = () => (
     <div>
-        <img src={window.logo}/>
-        <h1>Welcome to PinValley</h1>
-        <Modal />
+        <img src={window.background} className='login-background' />
         <GreetingContainer />
+        <Modal />
     </div>
 );
 
