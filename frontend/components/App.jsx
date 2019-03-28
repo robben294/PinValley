@@ -4,7 +4,6 @@ import Modal from './modal/modal';
 
 const App = () => (
     <div>
-        <img src={window.background} className='login-background' />
         <GreetingContainer />
         <Modal />
     </div>

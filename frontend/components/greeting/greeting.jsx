@@ -2,24 +2,39 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../../action/session_actions';
-import LoginFormContainer from '../session/login_form_container';
-import { openModal, closeModal } from '../../action/modal_actions';
+import { openModal } from '../../action/modal_actions';
 
 class Greeting extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    componentDidMount() {
+        if (!this.props.currentUser) {
+            this.props.openModal('login');
+        } 
+    }
+
+    handleLogout(e) {
+        e.preventDefault();
+        this.props.logout().then(this.props.openModal('login'));
+    }
+
     render() {
-        const { currentUser, logout } = this.props;
+        const { currentUser } = this.props;
         if (currentUser){
             return (
                 <div>
-                    {currentUser.firstname} {currentUser.lastname}
+                    Hi {currentUser.firstname} {currentUser.lastname} !
                     <br />
-                    <button onClick={() => logout()}>Log out</button>
+                    <button onClick={this.handleLogout}>Log out</button>
                 </div>
             )
         }
          else {
-            this.props.openModal('login');
+            // this.props.openModal('login');
             return (
                 null
             )
@@ -27,9 +42,12 @@ class Greeting extends React.Component {
     }
 }
 
-const msp = state => ({
-    currentUser: state.entities.users[state.session.id],
-});
+const msp = state => {
+    return {
+        currentUserId: state.session.id,
+        currentUser: state.entities.users[state.session.id],
+    }
+};
 
 const mdp = dispatch => ({
     logout: () => dispatch(logout()),

@@ -10,7 +10,6 @@ class SessionForm extends React.Component{
             lastname: '',
         };
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.renderErrors = this.renderErrors.bind(this);
     }
 
     renderErrors() {
@@ -27,7 +26,8 @@ class SessionForm extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.processForm(this.state).then(this.props.closeModal).catch(this.setState({'password': ''}));
+        const user = Object.assign({}, this.state);
+        this.props.processForm(user).then(() => this.props.closeModal());
     }
 
     handleUpdate(field) {
@@ -76,7 +76,7 @@ class SessionForm extends React.Component{
                             <br />
                             <input type="text" value={this.state.lastname} onChange={this.handleUpdate('lastname')} placeholder='Last name' />
                             <br />
-                            <button onClick={this.renderErrors}>{this.props.formType}</button>
+                            <button>{this.props.formType}</button>
                             <br />
                             <span className="login-other-form">{this.props.otherForm}</span>
                         </form>

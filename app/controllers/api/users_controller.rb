@@ -9,6 +9,16 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def show
+    
+        @user = User.find_by(id: params[:id])
+        if @user
+            render :show
+        else
+            render json: ['Could not locate user'], status: 400
+        end
+    end
+
     def update
         @user = User.find_by(email: params[:email])
         if @user && @user.update_attributes(user_params)
