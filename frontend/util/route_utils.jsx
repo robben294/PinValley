@@ -6,7 +6,7 @@ const msp = state => ({
     loggedIn: Boolean(state.session.id),
 });
 
-const Auth = ({ loggedIn, path, Component: Component }) => (
+const Auth = ({ loggedIn, path, component: Component }) => (
     <Route
         path={path}
         render={props => (
@@ -15,4 +15,14 @@ const Auth = ({ loggedIn, path, Component: Component }) => (
     />
 );
 
+const Protected = ({ loggedIn, path, component: Component }) => (
+    <Route 
+        path={path}
+        render={props => (
+            loggedIn ? <Component {...props} /> : <Redirect to='/' />
+        )}
+    />
+)
+
 export const AuthRoute = withRouter(connect(msp)(Auth));
+export const ProtectedRoute = withRouter(connect(msp)(Protected));

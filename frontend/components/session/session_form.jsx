@@ -10,6 +10,7 @@ class SessionForm extends React.Component{
             lastname: '',
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.createDemo = this.createDemo.bind(this);
     }
 
     renderErrors() {
@@ -22,6 +23,13 @@ class SessionForm extends React.Component{
                 ))}
             </ul>
         );
+    }
+
+    createDemo() {
+        this.setState({
+            email: 'Hope you enjoy!',
+            password: '111111',
+        })
     }
 
     handleSubmit(e) {
@@ -49,12 +57,10 @@ class SessionForm extends React.Component{
                             <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} placeholder='Email' />
                             <br />
                             <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} placeholder='Password' />
-                            <br />
                             <button>{this.props.formType}</button>
+                            <a className="login-OR">OR</a>
+                            <button className="login-demo" onClick={this.createDemo}>Continue as a guest</button>
                         </form>
-                        <a className="login-OR">OR</a>
-                        <button className="login-demo">DEMO LOGIN</button>
-                        <br />
                         <span className="login-other-form">{this.props.otherForm}</span>
                     </div>
                 </div>
