@@ -5,15 +5,15 @@ const _defaultState = null;
 const modalReducer = (state = _defaultState, action) => {
     Object.freeze(state);
     switch(action.type) {
-        case OPEN_MODAL: {
+        case OPEN_MODAL:
             return action.modal;
-        }
-        case CLOSE_MODAL: {
+            
+        case CLOSE_MODAL:
             return _defaultState;
-        }
-        default: {
+            
+        default:
             return state;
-        }
+            
     }  
 };
 

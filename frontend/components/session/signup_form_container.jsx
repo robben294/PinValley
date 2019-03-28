@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
-import { signup } from '../../action/session_actions';
+import { signup, clearSessionErrors } from '../../action/session_actions';
 import { openModal, closeModal } from '../../action/modal_actions';
 
 
@@ -18,6 +18,7 @@ const mdp = dispatch => ({
         </a>
     ),
     closeModal: () => dispatch(closeModal()),
+    clearSessionErrors: () => dispatch(clearSessionErrors()),
 });
 
 export default connect(msp, mdp)(SessionForm);

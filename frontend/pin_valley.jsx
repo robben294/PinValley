@@ -15,6 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             session: {
                 id: window.currentUser.id
+            },
+            
+        };
+    } else {
+        preloadedState = {
+            ui: {
+                modal: 'login',
             }
         };
     }

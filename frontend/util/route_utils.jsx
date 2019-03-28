@@ -2,15 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
-const msp = state => ({
-    loggedIn: Boolean(state.session.id),
-});
+const msp = state => {
+    debugger
+    return {
+        loggedIn: Boolean(state.session.id),
+    };
+};
 
-const Auth = ({ loggedIn, path, component: Component }) => (
+const Auth = ({ loggedIn, path, component: Component, exact }) => (
     <Route
+        exact={exact}
         path={path}
         render={props => (
-            loggedIn ? <Redirect to='/' /> : <Component {...props} />
+            loggedIn ? <Redirect to='/feed' /> : <Component {...props} />
         )}
     />
 );

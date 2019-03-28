@@ -11,34 +11,22 @@ class Greeting extends React.Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-    componentDidMount() {
-        if (!this.props.currentUser) {
-            this.props.openModal('login');
-        } 
-    }
-
     handleLogout(e) {
         e.preventDefault();
-        this.props.logout().then(this.props.openModal('login'));
+        this.props.logout().then(() => this.props.openModal('login'));
     }
 
     render() {
         const { currentUser } = this.props;
-        if (currentUser){
             return (
                 <div>
                     Hi {currentUser.firstname} {currentUser.lastname} !
-                    <br />
-                    <button onClick={this.handleLogout}>Log out</button>
+                <br />
+                    <button onClick={this.props.logout}>Log out</button>
                 </div>
             )
-        }
-         else {
-            // this.props.openModal('login');
-            return (
-                null
-            )
-        }
+        
+        
     }
 }
 
