@@ -1,5 +1,6 @@
 import React from 'react';
 import Dropdown from './dropdown';
+import { Redirect } from 'react-router-dom';
 
 class Navbar extends React.Component {
 
@@ -7,9 +8,24 @@ class Navbar extends React.Component {
         super(props);
         this.state = {
             showDropdown: false,
+            redirectToProfile: false,
         };
         this.showDropdown = this.showDropdown.bind(this);
         this.closeDropdown = this.closeDropdown.bind(this);
+        this.setRedirect = this.setRedirect.bind(this);
+    }
+
+    setRedirect(e) {
+        e.preventDefault();
+        this.setState({
+            redirectToProfile: true,
+        });
+    }
+
+    renderRedirect() {
+        if (this.state.redirectToProfile) {
+            return <Redirect to='/profile' />
+        }
     }
 
     showDropdown(e) {
@@ -46,7 +62,8 @@ class Navbar extends React.Component {
 
                     <div className='navbar-right'>
                         <div className='navbar-user'>
-                            <span className="fas">{currentUser.firstname}</span>
+                            {this.renderRedirect()}
+                            <span className="fas" onClick={this.setRedirect}>{currentUser.firstname}</span>
                         </div>
 
                         <div id='navbar-option 'className='navbar-option' onClick={this.showDropdown}>
