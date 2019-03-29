@@ -1,12 +1,19 @@
 .navbar-main {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
+    padding: 4px 12px;
+    height: 56px;
+    align-items: center;
 }
 
-.navbar-main img {
+/* .navbar-main img {
     height: 28px;
     width: 28px;
+    cursor: pointer;
+} */
+
+.navbar-left {
+    display: flex;
 }
 
 .navbar-right {
@@ -16,34 +23,82 @@
 
 .navbar-right > div{
     padding: 0 10px;
+    cursor: pointer;
 }
 
-.navbar-option {
-  position: relative;
-  display: inline-block;
-  border: 1px hidden;
-  border-radius: 50%;
+.fas {
+    width: auto; /* Making auto-sizable width */
+    height: auto; /* Making auto-sizable height */
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    border: 1px hidden;
+    border-radius: 50%;
+    padding: 9px;
+    font-size: 24px;
+    color: grey;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto Oxygen-Sans, Ubuntu, Cantarell, “Fira Sans”, “Droid Sans”, "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-/* Dropdown Content (Hidden by Default) */
+.navbar-logo > .fas {
+    height: 28px;
+    width: 28px;
+}
+
+.navbar-user > .fas {
+    font-size: 20px;
+    border-radius: 20px;
+    width: auto; /* Making auto-sizable width */
+    height: auto; /* Making auto-sizable height */
+}
+
+.navbar-welcome {
+    height: auto; /* Making auto-sizable height */
+    display: inline-block;
+    width: 250px;
+    margin-left: 50px;
+    padding: 9px;
+    font-size: 24px;
+    color: grey;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto Oxygen-Sans, Ubuntu, Cantarell, “Fira Sans”, “Droid Sans”, "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.fas:hover {
+    background-color: #ddd;
+}
+
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    position: absolute;
+    right: 0;
+    box-sizing: border-box;
+    color:#efefef;
+    background: #fff;
+    width: 296px;
+    min-height: 40px;
+    border: 1px solid;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .18);
+    border-radius: 8px;
+    z-index: 1;
 }
 
-.navbar-option:hover {
-    background-color: #ddd;
+.dropdown-item {
+    align-items: flex-start;
+    padding: 10px 16px;
+    height: 18px;
+    width: 100%;
+    color: #333;
+    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto Oxygen-Sans, Ubuntu, Cantarell, “Fira Sans”, “Droid Sans”, "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
 }
 
-.dropdown-content a:hover {
+
+.dropdown-content:hover {
     background-color: #ddd;
+    cursor: pointer;
 }
 
 /* Show the dropdown menu on hover */
-.navbar-option:hover .dropdown-content { 
+/* .navbar-option:hover .dropdown-content { 
     display: inline-block;
-}
+} */
