@@ -17,16 +17,14 @@ class Greeting extends React.Component {
         this.props.logout().then(() => this.props.openModal('login'));
     }
     render() {
-        const { currentUser } = this.props;
-            return (
-                <div>
-                    Hi {currentUser.firstname} {currentUser.lastname} !
-                <br />
-                    <button onClick={this.props.logout}>Log out</button>
-                </div>
-            )
-        
-        
+        const currentUser = this.props.currentUser || {};
+        return (
+            <div>
+                Hi {currentUser.firstname} {currentUser.lastname} !
+            <br />
+                <button onClick={this.handleLogout}>Log out</button>
+            </div>
+        )
     }
 }
 

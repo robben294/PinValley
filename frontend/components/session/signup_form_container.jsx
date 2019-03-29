@@ -17,6 +17,9 @@ const mdp = dispatch => ({
             Already a menber? Log in
         </a>
     ),
+    otherFormTopLeft: (
+        <button onClick={() => dispatch(openModal('login'))}>Log in</button>
+    ),
     closeModal: () => dispatch(closeModal()),
     clearSessionErrors: () => dispatch(clearSessionErrors()),
 });

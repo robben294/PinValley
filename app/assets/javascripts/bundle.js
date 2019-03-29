@@ -227,7 +227,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_6__["ProtectedRoute"], {
+    path: "/feed",
+    component: _greeting_greeting_feed__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_6__["AuthRoute"], {
+    exact: true,
+    path: "/",
+    component: function component() {
+      return null;
+    }
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -410,9 +419,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var currentUser = this.props.currentUser;
+      var currentUser = this.props.currentUser || {};
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Hi ", currentUser.firstname, " ", currentUser.lastname, " !", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.props.logout
+        onClick: this.handleLogout
       }, "Log out"));
     }
   }]);
@@ -661,6 +670,11 @@ var mdp = function mdp(dispatch) {
         return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('signup'));
       }
     }, "Not on Pinvalley yet? Sign up"),
+    otherFormTopLeft: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: function onClick() {
+        return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('signup'));
+      }
+    }, "Sign up"),
     closeModal: function closeModal() {
       return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
     },
@@ -790,7 +804,11 @@ function (_React$Component) {
       });
 
       if (this.props.formType === 'Log in') {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "other-form-top-left"
+        }, this.props.otherFormTopLeft), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-main"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "login-main"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.logo
@@ -825,9 +843,13 @@ function (_React$Component) {
           onClick: this.createDemo
         }, "Continue as a guest")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "login-other-form"
-        }, this.props.otherForm)));
+        }, this.props.otherForm)))));
       } else if (this.props.formType === 'Sign up') {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "other-form-top-left"
+        }, this.props.otherFormTopLeft), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "modal-main"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "login-main"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.logo
@@ -873,7 +895,7 @@ function (_React$Component) {
           className: "auth-error"
         }, "Last name can't be blank") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "login-other-form"
-        }, this.props.otherForm))));
+        }, this.props.otherForm))))));
       }
     }
   }]);
@@ -924,6 +946,11 @@ var mdp = function mdp(dispatch) {
         return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('login'));
       }
     }, "Already a menber? Log in"),
+    otherFormTopLeft: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: function onClick() {
+        return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('login'));
+      }
+    }, "Log in"),
     closeModal: function closeModal() {
       return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
     },

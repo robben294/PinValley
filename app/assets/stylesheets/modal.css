@@ -4,7 +4,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     /* background: black; */
     z-index: 10;
     /* background-image: url('session_background.JPG');
@@ -12,9 +12,9 @@
     background-size: cover; */
 }
 
-.modal-child {
+/* .modal-child {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+} */

@@ -16,6 +16,9 @@ const mdp = dispatch => ({
             Not on Pinvalley yet? Sign up
         </a>
     ),
+    otherFormTopLeft: (
+        <button onClick={() => dispatch(openModal('signup'))}>Sign up</button>
+    ),
     closeModal: () => dispatch(closeModal()),
     clearSessionErrors: () => dispatch(clearSessionErrors()),
 });

@@ -1,3 +1,10 @@
+.modal-main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .login-main {
     border: 1px black solid;
     border-radius: 8px;
@@ -12,13 +19,14 @@
 }
 
 .login-background {
-    position: fixed; 
+    position: absolute; 
     top: 0; 
     left: 0; 
-        
-    /* Preserve aspet ratio */
-    min-width: 100%;
-    min-height: 100%;
+    right: 0; 
+    bottom: 0; 
+    margin: auto; 
+    min-width: 50%;
+    min-height: 50%;
 }
 
 .login-main > img {
@@ -111,4 +119,36 @@ form > .login-demo {
     letter-spacing: -.4px;
     cursor: pointer;
     text-align: left;
+}
+
+.help {
+    position: relative;
+}
+
+.other-form-top-left > button {
+    position: absolute;
+    top: 50px;
+    left: 24px;
+    display: block;
+    height: 40px;
+    width: 130px;
+    cursor: pointer;
+    background-color: #efefef;
+    border: 0px hidden;
+    border-radius: 12px;
+    z-index:11;
+    text-align: center;
+    font-weight: 700;
+    color: #333;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.other-form-top-left > button:hover {
+    background: rgb(226, 226, 225);
+}
+
+.other-form-top-left > button:active {
+    outline: none;
+    border: none;
 }
