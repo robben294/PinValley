@@ -20,7 +20,7 @@ class Greeting extends React.Component {
         const currentUser = this.props.currentUser || {}; 
         // If we don't have a current_user, why is it going to render this component?
         return (
-            <Navbar currentUser={currentUser} logout={this.props.logout} />
+            <Navbar />
         )
     }
 }
@@ -32,7 +32,6 @@ const msp = state => {
 };
 
 const mdp = dispatch => ({
-    logout: () => dispatch(logout()),
     openModal: (modal) => dispatch(openModal(modal)),
 });
 

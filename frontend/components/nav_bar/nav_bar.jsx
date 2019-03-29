@@ -1,6 +1,8 @@
 import React from 'react';
 import Dropdown from './dropdown';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 class Navbar extends React.Component {
 
@@ -82,5 +84,14 @@ class Navbar extends React.Component {
     }
 }
 
+const msp = state => {
+    return {
+        currentUser: state.entities.users[state.session.id],
+    };
+};
 
-export default Navbar;
+const mdp = dispatch => ({
+    logout: () => dispatch(logout()),
+});
+
+export default connect(msp, mdp)(Navbar);

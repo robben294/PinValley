@@ -1,11 +1,16 @@
 import React from 'react';
+import Navbar from '../nav_bar/nav_bar';
 
 class Profile extends React.Component {
 
 
     render() {
+        const { currentUser } = this.props;
         return (
-            <h3>hello from user profile</h3>
+            <div>
+                <Navbar />
+                <div>{currentUser.firstname} {currentUser.lastname}</div>
+            </div>
         );
     }
 }
