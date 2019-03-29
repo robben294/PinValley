@@ -1,0 +1,49 @@
+.navbar-main {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.navbar-main img {
+    height: 28px;
+    width: 28px;
+}
+
+.navbar-right {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar-right > div{
+    padding: 0 10px;
+}
+
+.navbar-option {
+  position: relative;
+  display: inline-block;
+  border: 1px hidden;
+  border-radius: 50%;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.navbar-option:hover {
+    background-color: #ddd;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.navbar-option:hover .dropdown-content { 
+    display: inline-block;
+}

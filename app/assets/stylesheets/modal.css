@@ -4,12 +4,8 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.6);
-    /* background: black; */
+    background: rgba(0, 0, 0, 0.47);
     z-index: 10;
-    /* background-image: url('session_background.JPG');
-    background-repeat: no-repeat;
-    background-size: cover; */
 }
 
 /* .modal-child {

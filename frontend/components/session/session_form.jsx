@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../footer/login_footer';
 
 class SessionForm extends React.Component{
     constructor(props) {
@@ -84,6 +85,7 @@ class SessionForm extends React.Component{
                             </div>
                         </div>
                     </div>
+                    <Footer />
                 </div>
             )
         } else if (this.props.formType === 'Sign up') {
@@ -115,6 +117,7 @@ class SessionForm extends React.Component{
                             </div>
                         </div>
                     </div>
+                    <Footer />
                 </div>        
             )
         }

@@ -6,7 +6,7 @@ class Greeting extends React.Component {
 
     componentDidMount() {
 
-        // this.props.openModal('login');
+        this.props.openModal('login');
 
     }
 
@@ -18,15 +18,14 @@ class Greeting extends React.Component {
 }
 
 
-// const msp = state => {
-//     return {
-//         currentUser: state.entities.users[state.session.id],
-//     };
-// };
+const msp = state => {
+    return {
+        currentUser: state.entities.users[state.session.id],
+    };
+};
 
-// const mdp = dispatch => ({
-//     openModal: (modal) => dispatch(openModal(modal)),
-// });
+const mdp = dispatch => ({
+    openModal: (modal) => dispatch(openModal(modal)),
+});
 
-// export default connect(msp, mdp)(Greeting);
-export default Greeting;
+export default connect(msp, mdp)(Greeting);

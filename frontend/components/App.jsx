@@ -11,7 +11,7 @@ const App = () => (
         <Modal />
         <Switch>
             <ProtectedRoute path='/feed' component={GreetingFeed} />
-            <AuthRoute exact path='/' component={() => null} />
+            <AuthRoute exact path='/' component={GreetingLogin} />
         </Switch>
     </div>
 );
