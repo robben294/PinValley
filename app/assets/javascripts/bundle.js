@@ -653,6 +653,10 @@ var Dropdown = function Dropdown(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "dropdown-content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "arrow-up"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "arrow-up-border"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "dropdown-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: logout
@@ -711,7 +715,8 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props));
     _this.state = {
       showDropdown: false,
-      redirectToProfile: false
+      redirectToProfile: false,
+      circle: _this.props.currentUser.firstname[0]
     };
     _this.showDropdown = _this.showDropdown.bind(_assertThisInitialized(_this));
     _this.closeDropdown = _this.closeDropdown.bind(_assertThisInitialized(_this));
@@ -777,18 +782,22 @@ function (_React$Component) {
         src: window.logo
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-welcome"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Welcome to PinValley"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-user"
-      }, this.renderRedirect(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, this.renderRedirect(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "fas",
         onClick: this.setRedirect
-      }, currentUser.firstname)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "navbar-option ",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "my-circle"
+      }, this.state.circle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "name"
+      }, currentUser.firstname))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-option",
         onClick: this.showDropdown
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        id: "navbar-option",
         className: "fas fa-ellipsis-h"
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
         logout: logout,
@@ -879,7 +888,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state) {
-  return {};
+  return {
+    currentUser: state.entities.users[state.session.id]
+  };
 };
 
 var mdp = function mdp(dispatch) {
@@ -1237,7 +1248,7 @@ var mdp = function mdp(dispatch) {
       onClick: function onClick() {
         return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('login'));
       }
-    }, "Already a menber? Log in"),
+    }, "Already a member? Log in"),
     otherFormTopLeft: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: function onClick() {
         return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('login'));

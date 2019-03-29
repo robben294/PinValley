@@ -9,6 +9,7 @@ class Navbar extends React.Component {
         this.state = {
             showDropdown: false,
             redirectToProfile: false,
+            circle: this.props.currentUser.firstname[0],
         };
         this.showDropdown = this.showDropdown.bind(this);
         this.closeDropdown = this.closeDropdown.bind(this);
@@ -48,6 +49,7 @@ class Navbar extends React.Component {
 
     render() {
         const { currentUser, logout } = this.props;
+        
         return (
             <div>
                 <div className='navbar-main'>
@@ -56,18 +58,21 @@ class Navbar extends React.Component {
                             <img className="fas" src={window.logo} />
                         </div>
                         <div className='navbar-welcome'>
-                            <span>Welcome to PinValley</span>
                         </div>
                     </div>
 
                     <div className='navbar-right'>
                         <div className='navbar-user'>
                             {this.renderRedirect()}
-                            <span className="fas" onClick={this.setRedirect}>{currentUser.firstname}</span>
+                            
+                            <div className="fas" onClick={this.setRedirect}>
+                                <span className='my-circle'>{this.state.circle}</span>
+                                <span className='name'>{currentUser.firstname}</span> 
+                            </div>
                         </div>
 
-                        <div id='navbar-option 'className='navbar-option' onClick={this.showDropdown}>
-                            <i className="fas fa-ellipsis-h"></i>
+                        <div className='navbar-option' onClick={this.showDropdown}>
+                            <i id='navbar-option' className="fas fa-ellipsis-h"></i>
                         </div>
                     </div>
                 </div>

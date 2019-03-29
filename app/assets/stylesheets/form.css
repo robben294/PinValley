@@ -6,7 +6,7 @@
 }
 
 .login-main {
-    border: 1px black solid;
+    border: 1px hidden solid;
     border-radius: 8px;
     background: rgb(255, 255, 255);
     text-align: center;
