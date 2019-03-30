@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../nav_bar/nav_bar';
+import ProfileCreateDropdown from '../dropdown/profile_create_dropdown';
 
 class Profile extends React.Component {
 
@@ -7,7 +8,28 @@ class Profile extends React.Component {
         super(props);
         this.state = {
             circle: this.props.currentUser.firstname[0],
+            showDropdown: false,
         };
+        this.showDropdown = this.showDropdown.bind(this);
+        this.closeDropdown = this.closeDropdown.bind(this);
+    }
+
+    showDropdown(e) {
+        e.preventDefault();
+        this.setState({
+            showDropdown: true,
+        }, () => {
+            document.addEventListener('click', this.closeDropdown);
+        });
+    }
+
+    closeDropdown(e) {
+        this.setState({
+            showDropdown: false,
+        }, () => {
+            document.removeEventListener('click', this.closeDropdown);
+        });
+        //when showing the drop down, you are not able to click on redirect components.     
     }
 
     render() {
@@ -17,7 +39,10 @@ class Profile extends React.Component {
                 <Navbar />
                 <div className='profile'>
                     <div className='profile-icon'>
-                        <div><i className="fas fa-plus"></i></div>
+                        <div id="profile-dropdown" onClick={this.showDropdown}>
+                            <i className="fas fa-plus"></i>
+                            <ProfileCreateDropdown showDropdown={this.state.showDropdown}/>  
+                        </div>
                         <div><i className="fas fa-pen"></i></div>
                     </div>
                     <div className='profile-info'>
@@ -30,7 +55,7 @@ class Profile extends React.Component {
                             <div className='profile-circle'>{this.state.circle}</div>
                         </div>
                     </div>
-                </div>   
+                </div>  
             </div>
         );
     }

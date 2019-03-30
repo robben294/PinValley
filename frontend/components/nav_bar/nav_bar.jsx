@@ -1,5 +1,5 @@
 import React from 'react';
-import Dropdown from './narbar_dropdown';
+import NavbarDropdown from '../dropdown/narbar_dropdown';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -101,7 +101,7 @@ class Navbar extends React.Component {
                 {/* <div ref={(element) => {
                     this.dropdownMenu = element;
                 }}> */}
-                    <Dropdown logout={logout} showDropdown={this.state.showDropdown}/>
+                <NavbarDropdown logout={logout} showDropdown={this.state.showDropdown}/>
                 {/* </div> */}
             </div>
         )

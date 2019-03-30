@@ -246,6 +246,71 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./frontend/components/dropdown/narbar_dropdown.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/dropdown/narbar_dropdown.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Dropdown = function Dropdown(_ref) {
+  var showDropdown = _ref.showDropdown,
+      logout = _ref.logout;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dropdown-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "arrow-up"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "arrow-up-border"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dropdown-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: logout
+  }, "Log out"))) : null);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Dropdown);
+
+/***/ }),
+
+/***/ "./frontend/components/dropdown/profile_create_dropdown.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/dropdown/profile_create_dropdown.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Dropdown = function Dropdown(_ref) {
+  var showDropdown = _ref.showDropdown;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-dropdown-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-arrow-up"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-arrow-up-border"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-dropdown-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create board")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-dropdown-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create Pin"))) : null);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Dropdown);
+
+/***/ }),
+
 /***/ "./frontend/components/footer/login_footer.jsx":
 /*!*****************************************************!*\
   !*** ./frontend/components/footer/login_footer.jsx ***!
@@ -628,39 +693,6 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/nav_bar/narbar_dropdown.jsx":
-/*!*********************************************************!*\
-  !*** ./frontend/components/nav_bar/narbar_dropdown.jsx ***!
-  \*********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var Dropdown = function Dropdown(_ref) {
-  var showDropdown = _ref.showDropdown,
-      logout = _ref.logout;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dropdown-content"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "arrow-up"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "arrow-up-border"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dropdown-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: logout
-  }, "Log out"))) : null);
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Dropdown);
-
-/***/ }),
-
 /***/ "./frontend/components/nav_bar/nav_bar.jsx":
 /*!*************************************************!*\
   !*** ./frontend/components/nav_bar/nav_bar.jsx ***!
@@ -672,7 +704,7 @@ var Dropdown = function Dropdown(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _narbar_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./narbar_dropdown */ "./frontend/components/nav_bar/narbar_dropdown.jsx");
+/* harmony import */ var _dropdown_narbar_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dropdown/narbar_dropdown */ "./frontend/components/dropdown/narbar_dropdown.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
@@ -818,7 +850,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         id: "navbar-option",
         className: "fas fa-ellipsis-h"
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_narbar_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_narbar_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
         logout: logout,
         showDropdown: this.state.showDropdown
       }));
@@ -868,6 +900,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/nav_bar */ "./frontend/components/nav_bar/nav_bar.jsx");
+/* harmony import */ var _dropdown_profile_create_dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dropdown/profile_create_dropdown */ "./frontend/components/dropdown/profile_create_dropdown.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -878,13 +911,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -901,12 +935,38 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Profile).call(this, props));
     _this.state = {
-      circle: _this.props.currentUser.firstname[0]
+      circle: _this.props.currentUser.firstname[0],
+      showDropdown: false
     };
+    _this.showDropdown = _this.showDropdown.bind(_assertThisInitialized(_this));
+    _this.closeDropdown = _this.closeDropdown.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Profile, [{
+    key: "showDropdown",
+    value: function showDropdown(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      this.setState({
+        showDropdown: true
+      }, function () {
+        document.addEventListener('click', _this2.closeDropdown);
+      });
+    }
+  }, {
+    key: "closeDropdown",
+    value: function closeDropdown(e) {
+      var _this3 = this;
+
+      this.setState({
+        showDropdown: false
+      }, function () {
+        document.removeEventListener('click', _this3.closeDropdown);
+      }); //when showing the drop down, you are not able to click on redirect components.     
+    }
+  }, {
     key: "render",
     value: function render() {
       var currentUser = this.props.currentUser;
@@ -914,8 +974,13 @@ function (_React$Component) {
         className: "profile"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-icon"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "profile-dropdown",
+        onClick: this.showDropdown
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-plus"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_profile_create_dropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        showDropdown: this.state.showDropdown
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pen"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
