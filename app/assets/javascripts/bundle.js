@@ -628,10 +628,10 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/nav_bar/dropdown.jsx":
-/*!**************************************************!*\
-  !*** ./frontend/components/nav_bar/dropdown.jsx ***!
-  \**************************************************/
+/***/ "./frontend/components/nav_bar/narbar_dropdown.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/nav_bar/narbar_dropdown.jsx ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -672,7 +672,7 @@ var Dropdown = function Dropdown(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dropdown */ "./frontend/components/nav_bar/dropdown.jsx");
+/* harmony import */ var _narbar_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./narbar_dropdown */ "./frontend/components/nav_bar/narbar_dropdown.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
@@ -714,7 +714,7 @@ function (_React$Component) {
       showDropdown: false,
       redirectToProfile: false,
       redirectToFeed: false,
-      circle: _this.props.currentUser.firstname[0]
+      currentUser: _this.props.currentUser
     };
     _this.showDropdown = _this.showDropdown.bind(_assertThisInitialized(_this));
     _this.closeDropdown = _this.closeDropdown.bind(_assertThisInitialized(_this));
@@ -781,9 +781,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          currentUser = _this$props.currentUser,
-          logout = _this$props.logout;
+      var logout = this.props.logout;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -800,20 +798,20 @@ function (_React$Component) {
         className: "navbar-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-user"
-      }, this.renderRedirect(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "fas",
         onClick: this.setRedirectToProfile
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, this.renderRedirect(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "my-circle"
-      }, this.state.circle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, this.state.currentUser.firstname[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "name"
-      }, currentUser.firstname))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.state.currentUser.firstname))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-option",
         onClick: this.showDropdown
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         id: "navbar-option",
         className: "fas fa-ellipsis-h"
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_narbar_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
         logout: logout,
         showDropdown: this.state.showDropdown
       }));

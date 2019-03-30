@@ -1,5 +1,5 @@
 import React from 'react';
-import Dropdown from './dropdown';
+import Dropdown from './narbar_dropdown';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -12,7 +12,7 @@ class Navbar extends React.Component {
             showDropdown: false,
             redirectToProfile: false,
             redirectToFeed: false,
-            circle: this.props.currentUser.firstname[0],
+            currentUser: this.props.currentUser,
         };
         this.showDropdown = this.showDropdown.bind(this);
         this.closeDropdown = this.closeDropdown.bind(this);
@@ -63,7 +63,7 @@ class Navbar extends React.Component {
     }
 
     render() {
-        const { currentUser, logout } = this.props;
+        const { logout } = this.props;
         
         return (
             <div>
@@ -78,11 +78,11 @@ class Navbar extends React.Component {
 
                     <div className='navbar-right'>
                         <div className='navbar-user'>
-                            {this.renderRedirect()}
                             
                             <div className="fas" onClick={this.setRedirectToProfile}>
-                                <span className='my-circle'>{this.state.circle}</span>
-                                <span className='name'>{currentUser.firstname}</span> 
+                            {this.renderRedirect()}
+                                <span className='my-circle'>{this.state.currentUser.firstname[0]}</span>
+                                <span className='name'>{this.state.currentUser.firstname}</span> 
                             </div>
                         </div>
 

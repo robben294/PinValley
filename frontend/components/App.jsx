@@ -7,7 +7,8 @@ import Modal from './modal/modal';
 import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_utils';
 
-const App = () => (
+const App = () => {
+    return (
     <div>
         <Modal />
         <Switch>
@@ -16,6 +17,6 @@ const App = () => (
             <ProtectedRoute path='/profile' component={Profile} />
         </Switch>
     </div>
-);
+)};
 
 export default App;
