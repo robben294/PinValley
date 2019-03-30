@@ -713,28 +713,44 @@ function (_React$Component) {
     _this.state = {
       showDropdown: false,
       redirectToProfile: false,
+      redirectToFeed: false,
       circle: _this.props.currentUser.firstname[0]
     };
     _this.showDropdown = _this.showDropdown.bind(_assertThisInitialized(_this));
     _this.closeDropdown = _this.closeDropdown.bind(_assertThisInitialized(_this));
-    _this.setRedirect = _this.setRedirect.bind(_assertThisInitialized(_this));
+    _this.setRedirectToProfile = _this.setRedirectToProfile.bind(_assertThisInitialized(_this));
+    _this.setRedirectToFeed = _this.setRedirectToFeed.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Navbar, [{
-    key: "setRedirect",
-    value: function setRedirect(e) {
+    key: "setRedirectToProfile",
+    value: function setRedirectToProfile(e) {
       e.preventDefault();
       this.setState({
         redirectToProfile: true
       });
     }
   }, {
+    key: "setRedirectToFeed",
+    value: function setRedirectToFeed(e) {
+      e.preventDefault();
+      this.setState({
+        redirectToFeed: true
+      });
+    }
+  }, {
     key: "renderRedirect",
     value: function renderRedirect() {
-      if (this.state.redirectToProfile) {
+      if (this.state.redirectToProfile && this.props.match.path !== '/profile') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
           to: "/profile"
+        });
+      }
+
+      if (this.state.redirectToFeed && this.props.match.path !== '/feed') {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+          to: "/feed"
         });
       }
     }
@@ -773,7 +789,8 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "navbar-logo"
+        className: "navbar-logo",
+        onClick: this.setRedirectToFeed
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "fas",
         src: window.logo
@@ -785,7 +802,7 @@ function (_React$Component) {
         className: "navbar-user"
       }, this.renderRedirect(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "fas",
-        onClick: this.setRedirect
+        onClick: this.setRedirectToProfile
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "my-circle"
       }, this.state.circle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -830,7 +847,7 @@ var mdp = function mdp(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(msp, mdp)(Navbar));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(msp, mdp)(Navbar)));
 
 /***/ }),
 

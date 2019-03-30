@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown from './dropdown';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -11,23 +11,36 @@ class Navbar extends React.Component {
         this.state = {
             showDropdown: false,
             redirectToProfile: false,
+            redirectToFeed: false,
             circle: this.props.currentUser.firstname[0],
         };
         this.showDropdown = this.showDropdown.bind(this);
         this.closeDropdown = this.closeDropdown.bind(this);
-        this.setRedirect = this.setRedirect.bind(this);
+        this.setRedirectToProfile = this.setRedirectToProfile.bind(this);
+        this.setRedirectToFeed = this.setRedirectToFeed.bind(this);
     }
 
-    setRedirect(e) {
+    setRedirectToProfile(e) {
         e.preventDefault();
         this.setState({
             redirectToProfile: true,
         });
     }
 
+    setRedirectToFeed(e) {
+        e.preventDefault();
+        this.setState({
+            redirectToFeed: true,
+        });
+    }
+
     renderRedirect() {
-        if (this.state.redirectToProfile) {
+        if (this.state.redirectToProfile && this.props.match.path !== '/profile') {
             return <Redirect to='/profile' />
+        }
+
+        if (this.state.redirectToFeed && this.props.match.path !== '/feed') {
+            return <Redirect to='/feed' />
         }
     }
 
@@ -56,7 +69,7 @@ class Navbar extends React.Component {
             <div>
                 <div className='navbar-main'>
                     <div className='navbar-left'>
-                        <div className="navbar-logo">
+                        <div className="navbar-logo" onClick={this.setRedirectToFeed}>
                             <img className="fas" src={window.logo} />
                         </div>
                         <div className='navbar-welcome'>
@@ -67,7 +80,7 @@ class Navbar extends React.Component {
                         <div className='navbar-user'>
                             {this.renderRedirect()}
                             
-                            <div className="fas" onClick={this.setRedirect}>
+                            <div className="fas" onClick={this.setRedirectToProfile}>
                                 <span className='my-circle'>{this.state.circle}</span>
                                 <span className='name'>{currentUser.firstname}</span> 
                             </div>
@@ -94,4 +107,4 @@ const mdp = dispatch => ({
     logout: () => dispatch(logout()),
 });
 
-export default connect(msp, mdp)(Navbar);
+export default withRouter(connect(msp, mdp)(Navbar));
