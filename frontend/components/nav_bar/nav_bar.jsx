@@ -22,19 +22,24 @@ class Navbar extends React.Component {
 
     setRedirectToProfile(e) {
         e.preventDefault();
-        this.setState({
-            redirectToProfile: true,
-        });
+        if (!this.state.showDropdown) {
+            this.setState({
+                redirectToProfile: true,
+            });
+        }
     }
 
     setRedirectToFeed(e) {
         e.preventDefault();
-        this.setState({
-            redirectToFeed: true,
-        });
+        if (!this.state.showDropdown) {
+            this.setState({
+                redirectToFeed: true,
+            });
+        }
     }
 
     renderRedirect() {
+
         if (this.state.redirectToProfile && this.props.match.path !== '/profile') {
             return <Redirect to='/profile' />
         }
@@ -54,12 +59,14 @@ class Navbar extends React.Component {
     } 
     
     closeDropdown(e) {
-        e.preventDefault();
-        this.setState({
-            showDropdown: false,
-        }, () => {
-            document.removeEventListener('click', this.closeDropdown);
-        });
+        // if (!this.dropdownMenu.contains(e.target)) {
+            this.setState({
+                showDropdown: false,
+            }, () => {
+                document.removeEventListener('click', this.closeDropdown);
+            });
+        // }
+        //when showing the drop down, you are not able to click on redirect components.     
     }
 
     render() {
@@ -91,7 +98,11 @@ class Navbar extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Dropdown logout={logout} showDropdown={this.state.showDropdown}/>
+                {/* <div ref={(element) => {
+                    this.dropdownMenu = element;
+                }}> */}
+                    <Dropdown logout={logout} showDropdown={this.state.showDropdown}/>
+                {/* </div> */}
             </div>
         )
     }

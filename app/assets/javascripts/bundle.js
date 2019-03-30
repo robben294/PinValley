@@ -727,17 +727,23 @@ function (_React$Component) {
     key: "setRedirectToProfile",
     value: function setRedirectToProfile(e) {
       e.preventDefault();
-      this.setState({
-        redirectToProfile: true
-      });
+
+      if (!this.state.showDropdown) {
+        this.setState({
+          redirectToProfile: true
+        });
+      }
     }
   }, {
     key: "setRedirectToFeed",
     value: function setRedirectToFeed(e) {
       e.preventDefault();
-      this.setState({
-        redirectToFeed: true
-      });
+
+      if (!this.state.showDropdown) {
+        this.setState({
+          redirectToFeed: true
+        });
+      }
     }
   }, {
     key: "renderRedirect",
@@ -771,12 +777,13 @@ function (_React$Component) {
     value: function closeDropdown(e) {
       var _this3 = this;
 
-      e.preventDefault();
+      // if (!this.dropdownMenu.contains(e.target)) {
       this.setState({
         showDropdown: false
       }, function () {
         document.removeEventListener('click', _this3.closeDropdown);
-      });
+      }); // }
+      //when showing the drop down, you are not able to click on redirect components.     
     }
   }, {
     key: "render",
