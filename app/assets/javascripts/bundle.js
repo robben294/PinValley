@@ -1205,7 +1205,7 @@ function (_React$Component) {
       e.preventDefault(); // e.stopPropagation();
 
       this.setState({
-        email: 'Hope you enjoy!',
+        email: 'Guest',
         password: '111111'
       }, function () {
         var user = Object.assign({}, _this2.state);

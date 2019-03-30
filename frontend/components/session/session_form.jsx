@@ -34,7 +34,7 @@ class SessionForm extends React.Component{
         e.preventDefault();
         // e.stopPropagation();
         this.setState({
-            email: 'Hope you enjoy!',
+            email: 'Guest',
             password: '111111',
         }, () => {
             const user = Object.assign({}, this.state);
