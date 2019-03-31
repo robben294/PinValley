@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Profile from './profile';
 
 const msp = state => ({
@@ -10,4 +11,4 @@ const mdp = dispatch => ({
 
 });
 
-export default connect(msp, mdp)(Profile);
+export default withRouter(connect(msp, mdp)(Profile));

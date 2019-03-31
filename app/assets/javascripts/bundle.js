@@ -1168,34 +1168,19 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Profile).call(this, props));
     _this.state = {
       circle: _this.props.currentUser.firstname[0],
-      redirectToEdit: false,
       showDropdown: false
     };
     _this.showDropdown = _this.showDropdown.bind(_assertThisInitialized(_this));
     _this.closeDropdown = _this.closeDropdown.bind(_assertThisInitialized(_this));
-    _this.setRedirectToEdit = _this.setRedirectToEdit.bind(_assertThisInitialized(_this));
+    _this.redirectToEdit = _this.redirectToEdit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Profile, [{
-    key: "setRedirectToEdit",
-    value: function setRedirectToEdit(e) {
+    key: "redirectToEdit",
+    value: function redirectToEdit(e) {
       e.preventDefault();
-
-      if (!this.state.showDropdown) {
-        this.setState({
-          redirectToEdit: true
-        });
-      }
-    }
-  }, {
-    key: "renderRedirect",
-    value: function renderRedirect() {
-      if (this.state.redirectToEdit && this.props.match.path !== '/profile/edit') {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-          to: "/profile/edit"
-        });
-      }
+      this.props.history.push('/profile/edit');
     }
   }, {
     key: "showDropdown",
@@ -1236,10 +1221,10 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_profile_create_dropdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
         showDropdown: this.state.showDropdown
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.setRedirectToEdit
+        onClick: this.redirectToEdit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pen"
-      })), this.renderRedirect()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-user"
@@ -1275,7 +1260,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+
 
 
 
@@ -1290,7 +1277,7 @@ var mdp = function mdp(dispatch) {
   return {};
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(_profile__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(_profile__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 

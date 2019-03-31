@@ -9,28 +9,16 @@ class Profile extends React.Component {
         super(props);
         this.state = {
             circle: this.props.currentUser.firstname[0],
-            redirectToEdit: false,
             showDropdown: false,
         };
         this.showDropdown = this.showDropdown.bind(this);
         this.closeDropdown = this.closeDropdown.bind(this);
-        this.setRedirectToEdit = this.setRedirectToEdit.bind(this);
+        this.redirectToEdit = this.redirectToEdit.bind(this);
     }
 
-    setRedirectToEdit(e) {
+    redirectToEdit(e) {
         e.preventDefault();
-        if (!this.state.showDropdown) {
-            this.setState({
-                redirectToEdit: true,
-            });
-        }
-    }
-
-    renderRedirect() {
-
-        if (this.state.redirectToEdit && this.props.match.path !== '/profile/edit') {
-            return <Redirect to='/profile/edit' />
-        }
+        this.props.history.push('/profile/edit');
     }
 
     showDropdown(e) {
@@ -62,10 +50,9 @@ class Profile extends React.Component {
                             <i className="fas fa-plus"></i>
                             <ProfileCreateDropdown showDropdown={this.state.showDropdown}/>  
                         </div>
-                        <div onClick={this.setRedirectToEdit}>
+                        <div onClick={this.redirectToEdit}>
                             <i className="fas fa-pen"></i>
                         </div>
-                        {this.renderRedirect()}
                     </div>
                     <div className='profile-info'>
                         <div className='profile-user'>
