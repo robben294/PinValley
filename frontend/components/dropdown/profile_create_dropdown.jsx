@@ -7,6 +7,7 @@ const Dropdown = ({ showDropdown }) => {
                 showDropdown
                     ? (
                         <div className="profile-dropdown-content">
+                            <div className="profile-arrow"> </div>
                             <div className="profile-arrow-up"></div>
                             <div className="profile-arrow-up-border"></div>
                             <div className="profile-dropdown-item">

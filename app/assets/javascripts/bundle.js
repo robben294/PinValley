@@ -345,6 +345,8 @@ var Dropdown = function Dropdown(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-dropdown-content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-arrow"
+  }, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-arrow-up"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-arrow-up-border"

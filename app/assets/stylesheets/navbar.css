@@ -73,10 +73,11 @@
     height: 0;
     position: absolute;
     bottom: 100%;
-    right: 30px;
-    border-width: 0 9px 9px 9px;
+    right: 29px;
+    border-width: 0 10px 10px 10px;
     border-style: solid;
     border-color: #fff transparent;  
+    z-index: 1;
 }
 
 .navbar-logo > .fas {

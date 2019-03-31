@@ -63,6 +63,7 @@
 }
 
 /* for dropdown */
+
 .profile-arrow-up-border {
     content: "";
     width: 0;
@@ -81,10 +82,11 @@
     height: 0;
     position: absolute;
     bottom: 100%;
-    left: 14px;
-    border-width: 0 9px 9px 9px;
+    left: 13px;
+    border-width: 0 10px 10px 10px;
     border-style: solid;
-    border-color: #fff transparent;  
+    border-color: #fff transparent; 
+    z-index: 1; 
 }
 
 .profile-item {
