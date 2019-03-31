@@ -6,6 +6,7 @@ import Profile from './profile/profile_component';
 import Modal from './modal/modal';
 import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_utils';
+import EditProfileForm from './profile/edit_profile_form';
 
 const App = () => {
     return (
@@ -14,7 +15,8 @@ const App = () => {
         <Switch>
             <ProtectedRoute path='/feed' component={GreetingFeed} />
             <AuthRoute exact path='/' component={GreetingLogin} />
-            <ProtectedRoute path='/profile' component={Profile} />
+            <ProtectedRoute exact path='/profile' component={Profile} />
+            <ProtectedRoute path='/profile/edit' component={EditProfileForm} />
         </Switch>
     </div>
 )};

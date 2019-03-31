@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../nav_bar/nav_bar';
+import { Redirect } from 'react-router-dom';
 import ProfileCreateDropdown from '../dropdown/profile_create_dropdown';
 
 class Profile extends React.Component {
@@ -8,10 +9,28 @@ class Profile extends React.Component {
         super(props);
         this.state = {
             circle: this.props.currentUser.firstname[0],
+            redirectToEdit: false,
             showDropdown: false,
         };
         this.showDropdown = this.showDropdown.bind(this);
         this.closeDropdown = this.closeDropdown.bind(this);
+        this.setRedirectToEdit = this.setRedirectToEdit.bind(this);
+    }
+
+    setRedirectToEdit(e) {
+        e.preventDefault();
+        if (!this.state.showDropdown) {
+            this.setState({
+                redirectToEdit: true,
+            });
+        }
+    }
+
+    renderRedirect() {
+
+        if (this.state.redirectToEdit && this.props.match.path !== '/profile/edit') {
+            return <Redirect to='/profile/edit' />
+        }
     }
 
     showDropdown(e) {
@@ -43,7 +62,10 @@ class Profile extends React.Component {
                             <i className="fas fa-plus"></i>
                             <ProfileCreateDropdown showDropdown={this.state.showDropdown}/>  
                         </div>
-                        <div><i className="fas fa-pen"></i></div>
+                        <div onClick={this.setRedirectToEdit}>
+                            <i className="fas fa-pen"></i>
+                        </div>
+                        {this.renderRedirect()}
                     </div>
                     <div className='profile-info'>
                         <div className='profile-user'>

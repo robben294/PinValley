@@ -4,6 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 //Testing
 import { signup, login, logout, receiveCurrentUser } from './action/session_actions';
+import { fetchUser } from './action/user_actions';
 //Testing 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.login = login;
     window.logout = logout;
     window.receiveCurrentUser = receiveCurrentUser;
+    window.fetchUser = fetchUser;
     window.getState = store.getState;
     window.dispatch = store.dispatch;
     //Testing
