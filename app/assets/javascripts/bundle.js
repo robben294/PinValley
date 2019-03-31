@@ -235,9 +235,8 @@ var updateUser = function updateUser(user) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user).then(function (user) {
       return dispatch(receiveUser(user));
-    }, function (err) {
-      return dispatch(receiveErrors(err.responseJSON));
-    });
+    } // err => dispatch(receiveErrors(err.responseJSON))
+    );
   };
 };
 
@@ -949,10 +948,11 @@ var mdp = function mdp(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _action_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../action/user_actions */ "./frontend/action/user_actions.js");
+/* harmony import */ var _nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/nav_bar */ "./frontend/components/nav_bar/nav_bar.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _action_user_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/user_actions */ "./frontend/action/user_actions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -972,6 +972,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1012,30 +1013,75 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Edit profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "People on Pinterest will get to know you with the info below"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-profile"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-sidebar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "edit-sidebar-pen fas fa-pen"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-sidebar-text"
+      }, "Edit profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-main"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-head"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-head-text"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-title"
+      }, "Edit profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-subtext"
+      }, "People on Pinterest will get to know you with the info below")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-buttons"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-button"
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-button",
         onClick: this.handleSubmit
-      }, "Done"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "First name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Done"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-name"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-firstname-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-firstname"
+      }, "First name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "edit-firstname-box",
         type: "text",
         value: this.state.firstname,
         onChange: this.handleInput('firstname'),
         placeholder: "Ex. Jo"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Last name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-lastname-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-lastname"
+      }, "Last name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "edit-lastname-box ",
         type: "text",
         value: this.state.lastname,
         onChange: this.handleInput('lastname'),
         placeholder: "Ex. Smith"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "About your profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-about"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-about-name"
+      }, "About your profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "edit-about-box",
         cols: "30",
         rows: "10",
         value: this.state.about_me,
         onChange: this.handleInput('about_me'),
         placeholder: "Write a little bit about yourself here"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-location"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-location-name"
+      }, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "edit-location-box",
         type: "text",
         value: this.state.location,
         onChange: this.handleInput('location'),
         placeholder: "Ex. San Francisco, CA"
-      }));
+      })))));
     }
   }]);
 
@@ -1051,12 +1097,12 @@ var msp = function msp(state) {
 var mdp = function mdp(dispatch) {
   return {
     updateUser: function updateUser(user) {
-      return dispatch(Object(_action_user_actions__WEBPACK_IMPORTED_MODULE_3__["updateUser"])(user));
+      return dispatch(Object(_action_user_actions__WEBPACK_IMPORTED_MODULE_4__["updateUser"])(user));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(EditProfileForm)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(msp, mdp)(EditProfileForm)));
 
 /***/ }),
 

@@ -20,7 +20,7 @@ class Api::UsersController < ApplicationController
     end
 
     def update
-        @user = User.find_by(email: params[:email])
+        @user = User.find(params[:id])
         if @user && @user.update_attributes(user_params)
             render :show
         elsif !@user
