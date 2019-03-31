@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../nav_bar/nav_bar';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { updateUser } from '../../action/user_actions';
 
 class EditProfileForm extends React.Component {
@@ -10,6 +10,7 @@ class EditProfileForm extends React.Component {
         super(props);
         this.state = this.props.currentUser;
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
 
     handleInput(field) {
@@ -25,15 +26,25 @@ class EditProfileForm extends React.Component {
         this.props.updateUser(this.state);
     }
 
+    handleCancel(e) {
+        e.preventDefault();
+        this.props.history.push('/profile');
+    }
+
     render() {
         return (
             <div>
                 <Navbar />
                 <div className='edit-profile'>
                     <div className='edit-sidebar'>
-                        <div><i className="edit-sidebar-pen fas fa-pen"></i></div>
-                        <div className='edit-sidebar-text'>Edit profile</div>
+                        <div className='edit-sidebar-profile'>
+                            <div className="edit-sidebar-profile-pen">
+                                <i className="fas fa-pen"></i>
+                            </div>
+                            <div className='edit-sidebar-profile-text'>Edit profile</div>
+                        </div>
                     </div>
+
                     <div className='edit-main'>
                         <div className='edit-head'>
                             <div className='edit-head-text'>
@@ -41,23 +52,27 @@ class EditProfileForm extends React.Component {
                                 <div className='edit-subtext'>People on Pinterest will get to know you with the info below</div>
                             </div>
                             <div className='edit-buttons'>
-                                <div className='edit-button'>Cancel</div>
-                                <div className='edit-button' onClick={this.handleSubmit}>Done</div>
+                                <div 
+                                    className='edit-button-cancel edit-button'
+                                    onClick={this.handleCancel}>
+                                    Cancel
+                                </div>
+                                <div className='edit-button-done edit-button' onClick={this.handleSubmit}>Done</div>
                             </div>
                         </div>
                         <div className='edit-name'>
-                            <div className='edit-firstname-form'>
-                                <div className='edit-firstname'>First name</div>
-                                <input className='edit-firstname-box'
+                            <div className='edit-name-form'>
+                                <div className='edit-name-text'>First name</div>
+                                <input className='edit-name-box'
                                     type="text" 
                                     value={this.state.firstname} 
                                     onChange={this.handleInput('firstname')}
                                     placeholder='Ex. Jo'/>
 
                             </div>
-                            <div className='edit-lastname-form'>
-                                <div className='edit-lastname'>Last name</div>
-                                <input className='edit-lastname-box '
+                            <div className='edit-name-form edit-lastname-form'>
+                                <div className='edit-name-text'>Last name</div>
+                                <input className='edit-name-box '
                                     type="text" 
                                     value={this.state.lastname} 
                                     onChange={this.handleInput('lastname')}

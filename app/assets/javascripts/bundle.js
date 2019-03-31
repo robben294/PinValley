@@ -992,6 +992,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EditProfileForm).call(this, props));
     _this.state = _this.props.currentUser;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1011,17 +1012,27 @@ function (_React$Component) {
       this.props.updateUser(this.state);
     }
   }, {
+    key: "handleCancel",
+    value: function handleCancel(e) {
+      e.preventDefault();
+      this.props.history.push('/profile');
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-profile"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-sidebar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "edit-sidebar-pen fas fa-pen"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-sidebar-profile"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-sidebar-profile-pen"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-pen"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-sidebar-text"
-      }, "Edit profile")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-sidebar-profile-text"
+      }, "Edit profile"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-head"
@@ -1034,28 +1045,29 @@ function (_React$Component) {
       }, "People on Pinterest will get to know you with the info below")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-buttons"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-button"
+        className: "edit-button-cancel edit-button",
+        onClick: this.handleCancel
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-button",
+        className: "edit-button-done edit-button",
         onClick: this.handleSubmit
       }, "Done"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-firstname-form"
+        className: "edit-name-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-firstname"
+        className: "edit-name-text"
       }, "First name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "edit-firstname-box",
+        className: "edit-name-box",
         type: "text",
         value: this.state.firstname,
         onChange: this.handleInput('firstname'),
         placeholder: "Ex. Jo"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-lastname-form"
+        className: "edit-name-form edit-lastname-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-lastname"
+        className: "edit-name-text"
       }, "Last name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "edit-lastname-box ",
+        className: "edit-name-box ",
         type: "text",
         value: this.state.lastname,
         onChange: this.handleInput('lastname'),
@@ -2103,7 +2115,7 @@ var updateUser = function updateUser(user) {
   return $.ajax({
     method: 'PATCH',
     url: "api/users/".concat(user.id),
-    date: {
+    data: {
       user: user
     }
   });

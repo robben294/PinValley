@@ -10,6 +10,36 @@
 .edit-sidebar {
     display: flex;
     width: 25%;
+    margin-top: 20px;
+}
+
+.edit-sidebar-profile {
+    display: flex;
+    justify-content: flex-start;
+    padding: 8px;
+    height: 26px;
+}
+
+.edit-sidebar-profile-pen .fas {
+    font-size: 16px;
+    color: #333333;
+    padding: 2px;
+    margin-top: 3px;
+}
+
+.edit-sidebar-profile-pen .fas:hover {
+    background: white;
+    cursor: default;
+}
+
+.edit-sidebar-profile-text {
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: 2px;
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
 }
 
 .edit-main {
@@ -44,23 +74,112 @@
 
 .edit-button {
     background-color: rgb(239, 239, 239);
-    color: rgba(0, 0, 0, 0.247);
+    color: #8E8E8E;
     font-size: 16px;
     font-weight: 700;
     min-height: 20px;
     border-radius: 8px;
     padding: 10px 14px;
     margin-left: 8px;
+    cursor: pointer;
+}
+
+.edit-button-done:hover {
+    background: #E60032;
+    color: white;
+}
+
+.edit-button-cancel:hover {
+    background: #ddd;
+    color: #333333;
 }
 
 .edit-title {
     font-size: 36px;
     font-weight: 700;
     letter-spacing: -0.4px;
+    margin-bottom: 4px;
     -webkit-font-smoothing: antialiased;
 }
 
 .edit-subtext {
     font-size: 14px;
     font-weight: 400;
+    color: #333333;
+}
+
+.edit-name-form {
+    width: 50%;
+    min-width: 116px;
+}
+
+.edit-name-text {
+    cursor: pointer;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 4px;
+    margin-top: 28px;
+}
+
+.edit-name-box {
+    height: 22px;
+    width: 264px;
+    border: 1px solid rgb(142, 142, 142);
+    border-radius: 4px;
+    color: #333333;
+    padding: 8px 14px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.edit-about {
+    margin-top: 20px;
+}
+
+.edit-about-name {
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 4px;
+}
+
+.edit-about-box {
+    resize: none;
+    width: 100%;
+    max-width: 564px;
+    height: 72px;
+    border: 1px solid rgb(142, 142, 142);
+    border-radius: 4px;
+    color: #333333;
+    letter-spacing: -0.4px;
+    font-size: 16px;
+    padding: 10px 14px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.edit-location {
+    margin-top: 20px;
+}
+
+.edit-location-name {
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 4px;
+}
+
+.edit-location-box {
+    width: 100%;
+    max-width: 564px;
+    height: 22px;
+    border: 1px solid rgb(142, 142, 142);
+    border-radius: 4px;
+    letter-spacing: -0.4px;
+    font-size: 16px;
+    padding: 10px 14px;
+    color: #333333;
+    -webkit-font-smoothing: antialiased;
 }
