@@ -18,7 +18,7 @@ class Api::BoardsController < ApplicationController
     end
 
     def index
-        @boards = Board.all
+        @boards = Board.where(creator_id: current_user.id)
         render :index
     end
 
