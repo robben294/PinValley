@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Navbar from '../nav_bar/nav_bar';
 import BoardsModal from '../modal/boards_modal';
 import ProfileCreateDropdown from '../dropdown/profile_create_dropdown';
@@ -69,6 +70,15 @@ class Profile extends React.Component {
                         </div>
                         <div>
                             <div className='profile-circle'>{this.state.circle}</div>
+                        </div>
+                    </div>
+
+                    <div className="profile-content">
+                        <div className='profile-content-nav'>                                       
+                            <NavLink to='/profile/boards'>Boards</NavLink>
+                        </div>
+                        <div className='profile-content-nav'>
+                            <NavLink to='/profile/Pins'>Pins</NavLink>
                         </div>
                     </div>
                 </div>  
