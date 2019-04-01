@@ -805,6 +805,11 @@ function (_React$Component) {
   }
 
   _createClass(Navbar, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.removeEventListener('click', this.closeDropdown);
+    }
+  }, {
     key: "setRedirectToProfile",
     value: function setRedirectToProfile(e) {
       e.preventDefault();
@@ -1008,8 +1013,12 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
-      this.props.updateUser(this.state);
+      this.props.updateUser(this.state).then(function () {
+        return _this3.props.history.push('/profile');
+      });
     }
   }, {
     key: "handleCancel",
@@ -1177,6 +1186,11 @@ function (_React$Component) {
   }
 
   _createClass(Profile, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.removeEventListener('click', this.closeDropdown);
+    }
+  }, {
     key: "redirectToEdit",
     value: function redirectToEdit(e) {
       e.preventDefault();
