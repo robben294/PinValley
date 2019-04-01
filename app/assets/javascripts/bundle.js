@@ -86,6 +86,87 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/action/board_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/action/board_actions.js ***!
+  \******************************************/
+/*! exports provided: RECEIVE_BOARD, RECEIVE_BOARDS, REMOVE_BOARD, receiveBoards, receiveBoard, removeBoard, fetchBoards, fetchBoard, createBoard, upateBoard, deleteBoard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BOARD", function() { return RECEIVE_BOARD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BOARDS", function() { return RECEIVE_BOARDS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_BOARD", function() { return REMOVE_BOARD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveBoards", function() { return receiveBoards; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveBoard", function() { return receiveBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeBoard", function() { return removeBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoards", function() { return fetchBoards; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoard", function() { return fetchBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBoard", function() { return createBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "upateBoard", function() { return upateBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBoard", function() { return deleteBoard; });
+/* harmony import */ var _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/board_api_util */ "./frontend/util/board_api_util.js");
+
+var RECEIVE_BOARD = 'RECEIVE_BOARD';
+var RECEIVE_BOARDS = 'RECEIVE_BOARDS';
+var REMOVE_BOARD = 'REMOVE_BOARD';
+var receiveBoards = function receiveBoards(boards) {
+  return {
+    type: RECEIVE_BOARDS,
+    boards: boards
+  };
+};
+var receiveBoard = function receiveBoard(board) {
+  return {
+    type: RECEIVE_BOARD,
+    board: board
+  };
+};
+var removeBoard = function removeBoard(boardId) {
+  return {
+    type: REMOVE_BOARD,
+    boardId: boardId
+  };
+};
+var fetchBoards = function fetchBoards() {
+  return function (dispatch) {
+    return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBoards"]().then(function (boards) {
+      return dispatch(receiveBoards(boards));
+    });
+  };
+};
+var fetchBoard = function fetchBoard(boardId) {
+  return function (dispatch) {
+    return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBoard"](boardId).then(function (board) {
+      return dispatch(receiveBoard(board));
+    });
+  };
+};
+var createBoard = function createBoard(board) {
+  return function (dispatch) {
+    return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["createBoard"](board).then(function (board) {
+      return dispatch(receiveBoard(board));
+    });
+  };
+};
+var upateBoard = function upateBoard(board) {
+  return function (dispatch) {
+    return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["updateBoard"](board).then(function (board) {
+      return dispatch(receiveBoard(board));
+    });
+  };
+};
+var deleteBoard = function deleteBoard(boardId) {
+  return function (dispatch) {
+    return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteBoard"](boardId).then(function () {
+      return dispatch(removeBoard(boardId));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/action/modal_actions.js":
 /*!******************************************!*\
   !*** ./frontend/action/modal_actions.js ***!
@@ -293,6 +374,144 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./frontend/components/boards/create_board_form.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/boards/create_board_form.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _action_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../action/board_actions */ "./frontend/action/board_actions.js");
+/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var CreateBoardForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(CreateBoardForm, _React$Component);
+
+  function CreateBoardForm(props) {
+    var _this;
+
+    _classCallCheck(this, CreateBoardForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CreateBoardForm).call(this, props));
+    _this.state = {
+      title: '',
+      creator_id: props.creator_id
+    };
+    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(CreateBoardForm, [{
+    key: "handleInput",
+    value: function handleInput(e) {
+      this.setState({
+        title: e.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      this.props.createBoard(this.state).then(function () {
+        return _this2.props.closeModal();
+      });
+    }
+  }, {
+    key: "handleClose",
+    value: function handleClose(e) {
+      e.preventDefault();
+      this.props.closeModal();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-title"
+      }, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-name"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-name-text"
+      }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-name-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.title,
+        onChange: this.handleInput,
+        placeholder: "Like \"Places to Go\" or \"Recipes to Make\""
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-buttons"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-button",
+        onClick: this.handleClose
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-button",
+        onClick: this.handleSubmit
+      }, "Create"))));
+    }
+  }]);
+
+  return CreateBoardForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var msp = function msp(state) {
+  return {
+    creator_id: state.session.id
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    closeModal: function closeModal() {
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
+    },
+    createBoard: function createBoard(board) {
+      return dispatch(Object(_action_board_actions__WEBPACK_IMPORTED_MODULE_3__["createBoard"])(board));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(CreateBoardForm)));
+
+/***/ }),
+
 /***/ "./frontend/components/dropdown/narbar_dropdown.jsx":
 /*!**********************************************************!*\
   !*** ./frontend/components/dropdown/narbar_dropdown.jsx ***!
@@ -316,10 +535,9 @@ var Dropdown = function Dropdown(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "arrow-up-border"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dropdown-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dropdown-item",
     onClick: logout
-  }, "Log out"))) : null);
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Log out"))) : null);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Dropdown);
@@ -340,7 +558,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Dropdown = function Dropdown(_ref) {
-  var showDropdown = _ref.showDropdown;
+  var showDropdown = _ref.showDropdown,
+      openModal = _ref.openModal;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-dropdown-content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -351,7 +570,11 @@ var Dropdown = function Dropdown(_ref) {
     className: "profile-arrow-up-border"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-dropdown-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create board")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return openModal('createBoard');
+    }
+  }, "Create board")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-dropdown-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create Pin"))) : null);
 };
@@ -666,6 +889,67 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/modal/boards_modal.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/modal/boards_modal.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _boards_create_board_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../boards/create_board_form */ "./frontend/components/boards/create_board_form.jsx");
+
+
+
+
+var Modal = function Modal(_ref) {
+  var modal = _ref.modal,
+      closeModal = _ref.closeModal;
+
+  if (!modal) {
+    return null;
+  }
+
+  var component;
+
+  switch (modal) {
+    case 'createBoard':
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_create_board_form__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+      break;
+
+    default:
+      return null;
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-background"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-child",
+    onClick: function onClick(e) {
+      return e.stopPropagation();
+    }
+  }, component)));
+};
+
+var msp = function msp(state) {
+  return {
+    modal: state.ui.modal
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(Modal));
+
+/***/ }),
+
 /***/ "./frontend/components/modal/modal.jsx":
 /*!*********************************************!*\
   !*** ./frontend/components/modal/modal.jsx ***!
@@ -799,75 +1083,38 @@ function (_React$Component) {
     };
     _this.showDropdown = _this.showDropdown.bind(_assertThisInitialized(_this));
     _this.closeDropdown = _this.closeDropdown.bind(_assertThisInitialized(_this));
-    _this.setRedirectToProfile = _this.setRedirectToProfile.bind(_assertThisInitialized(_this));
-    _this.setRedirectToFeed = _this.setRedirectToFeed.bind(_assertThisInitialized(_this));
+    _this.renderRedirect = _this.renderRedirect.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentWillUnmount() {
+  //     document.removeEventListener('click', this.closeDropdown);
+  // }
+
 
   _createClass(Navbar, [{
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      document.removeEventListener('click', this.closeDropdown);
-    }
-  }, {
-    key: "setRedirectToProfile",
-    value: function setRedirectToProfile(e) {
-      e.preventDefault();
-
-      if (!this.state.showDropdown) {
-        this.setState({
-          redirectToProfile: true
-        });
-      }
-    }
-  }, {
-    key: "setRedirectToFeed",
-    value: function setRedirectToFeed(e) {
-      e.preventDefault();
-
-      if (!this.state.showDropdown) {
-        this.setState({
-          redirectToFeed: true
-        });
-      }
-    }
-  }, {
     key: "renderRedirect",
-    value: function renderRedirect() {
-      if (this.state.redirectToProfile && this.props.match.path !== '/profile') {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-          to: "/profile"
-        });
-      }
+    value: function renderRedirect(path) {
+      var _this2 = this;
 
-      if (this.state.redirectToFeed && this.props.match.path !== '/feed') {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-          to: "/feed"
-        });
-      }
+      return function (e) {
+        if (_this2.props.match.path !== "/".concat(path)) {
+          _this2.props.history.push("/".concat(path));
+        }
+      };
     }
   }, {
     key: "showDropdown",
     value: function showDropdown(e) {
-      var _this2 = this;
-
       e.preventDefault();
       this.setState({
         showDropdown: true
-      }, function () {
-        document.addEventListener('click', _this2.closeDropdown);
       });
     }
   }, {
     key: "closeDropdown",
     value: function closeDropdown(e) {
-      var _this3 = this;
-
       // if (!this.dropdownMenu.contains(e.target)) {
       this.setState({
         showDropdown: false
-      }, function () {
-        document.removeEventListener('click', _this3.closeDropdown);
       }); // }
       //when showing the drop down, you are not able to click on redirect components.     
     }
@@ -881,7 +1128,7 @@ function (_React$Component) {
         className: "navbar-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-logo",
-        onClick: this.setRedirectToFeed
+        onClick: this.renderRedirect('feed')
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "fas",
         src: window.logo
@@ -893,21 +1140,23 @@ function (_React$Component) {
         className: "navbar-user"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "fas",
-        onClick: this.setRedirectToProfile
-      }, this.renderRedirect(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        onClick: this.renderRedirect('profile')
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "my-circle"
       }, this.state.currentUser.firstname[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "name"
       }, this.state.currentUser.firstname))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-option",
-        onClick: this.showDropdown
+        tabIndex: "1",
+        onFocus: this.showDropdown,
+        onBlur: this.closeDropdown
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         id: "navbar-option",
         className: "fas fa-ellipsis-h"
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_narbar_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_narbar_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
         logout: logout,
         showDropdown: this.state.showDropdown
-      }));
+      })))));
     }
   }]);
 
@@ -1089,7 +1338,7 @@ function (_React$Component) {
         className: "edit-about-box",
         cols: "30",
         rows: "10",
-        value: this.state.about_me,
+        value: this.state.about_me || "",
         onChange: this.handleInput('about_me'),
         placeholder: "Write a little bit about yourself here"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1099,7 +1348,7 @@ function (_React$Component) {
       }, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "edit-location-box",
         type: "text",
-        value: this.state.location,
+        value: this.state.location || "",
         onChange: this.handleInput('location'),
         placeholder: "Ex. San Francisco, CA"
       })))));
@@ -1139,7 +1388,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/nav_bar */ "./frontend/components/nav_bar/nav_bar.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _modal_boards_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modal/boards_modal */ "./frontend/components/modal/boards_modal.jsx");
 /* harmony import */ var _dropdown_profile_create_dropdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../dropdown/profile_create_dropdown */ "./frontend/components/dropdown/profile_create_dropdown.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -1183,14 +1432,12 @@ function (_React$Component) {
     _this.closeDropdown = _this.closeDropdown.bind(_assertThisInitialized(_this));
     _this.redirectToEdit = _this.redirectToEdit.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentWillUnmount() {
+  //     document.removeEventListener('click', this.closeDropdown);
+  // }
+
 
   _createClass(Profile, [{
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      document.removeEventListener('click', this.closeDropdown);
-    }
-  }, {
     key: "redirectToEdit",
     value: function redirectToEdit(e) {
       e.preventDefault();
@@ -1199,41 +1446,42 @@ function (_React$Component) {
   }, {
     key: "showDropdown",
     value: function showDropdown(e) {
-      var _this2 = this;
-
+      debugger;
       e.preventDefault();
       this.setState({
         showDropdown: true
-      }, function () {
-        document.addEventListener('click', _this2.closeDropdown);
       });
     }
   }, {
     key: "closeDropdown",
     value: function closeDropdown(e) {
-      var _this3 = this;
-
       this.setState({
         showDropdown: false
-      }, function () {
-        document.removeEventListener('click', _this3.closeDropdown);
       }); //when showing the drop down, you are not able to click on redirect components.     
     }
   }, {
     key: "render",
     value: function render() {
       var currentUser = this.props.currentUser;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+
+      if (!currentUser) {
+        return null;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_boards_modal__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-icon"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-dropdown",
-        onClick: this.showDropdown
+        tabIndex: "1",
+        onFocus: this.showDropdown,
+        onBlur: this.closeDropdown
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-plus"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_profile_create_dropdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        showDropdown: this.state.showDropdown
+        showDropdown: this.state.showDropdown,
+        openModal: this.props.openModal
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.redirectToEdit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -1276,6 +1524,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
+
 
 
 
@@ -1288,7 +1538,11 @@ var msp = function msp(state) {
 };
 
 var mdp = function mdp(dispatch) {
-  return {};
+  return {
+    openModal: function openModal(modal) {
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])(modal));
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(_profile__WEBPACK_IMPORTED_MODULE_3__["default"])));
@@ -1998,6 +2252,59 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/board_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/board_api_util.js ***!
+  \*****************************************/
+/*! exports provided: createBoard, fetchBoards, fetchBoard, updateBoard, deleteBoard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBoard", function() { return createBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoards", function() { return fetchBoards; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoard", function() { return fetchBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBoard", function() { return updateBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBoard", function() { return deleteBoard; });
+var createBoard = function createBoard(board) {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/boards',
+    data: {
+      board: board
+    }
+  });
+};
+var fetchBoards = function fetchBoards() {
+  return $.ajax({
+    method: 'GET',
+    url: "api/boards"
+  });
+};
+var fetchBoard = function fetchBoard(boardId) {
+  return $.ajax({
+    method: 'GET',
+    url: "api/boards/".concat(boardId)
+  });
+};
+var updateBoard = function updateBoard(board) {
+  return $.ajax({
+    method: 'PATCH',
+    url: "api/boards/".concat(board.id),
+    data: {
+      board: board
+    }
+  });
+};
+var deleteBoard = function deleteBoard(boardId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "api/boards/".concat(boardId)
+  });
+};
 
 /***/ }),
 

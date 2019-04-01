@@ -18,9 +18,10 @@ export const receiveBoard = (board) => {
     };
 };
 
-export const removeBoard = () => {
+export const removeBoard = (boardId) => {
     return {
         type: REMOVE_BOARD,
+        boardId
     };
 };
 
@@ -41,5 +42,5 @@ export const upateBoard = (board) => dispatch => {
 };
 
 export const deleteBoard = (boardId) => dispatch => {
-    return BoardApiUtil.deleteBoard(boardId).then(() => dispatch(removeBoard()));
+    return BoardApiUtil.deleteBoard(boardId).then(() => dispatch(removeBoard(boardId)));
 };
