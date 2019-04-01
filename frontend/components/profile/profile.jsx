@@ -16,6 +16,10 @@ class Profile extends React.Component {
         this.redirectToEdit = this.redirectToEdit.bind(this);
     }
 
+    componentWillUnmount() {
+        document.removeEventListener('click', this.closeDropdown);
+    }
+
     redirectToEdit(e) {
         e.preventDefault();
         this.props.history.push('/profile/edit');

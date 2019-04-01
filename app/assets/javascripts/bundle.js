@@ -1186,6 +1186,11 @@ function (_React$Component) {
   }
 
   _createClass(Profile, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.removeEventListener('click', this.closeDropdown);
+    }
+  }, {
     key: "redirectToEdit",
     value: function redirectToEdit(e) {
       e.preventDefault();
