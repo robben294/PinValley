@@ -93,7 +93,7 @@
 }
 
 .navbar-user > .fas:hover {
-    background: rbg(240, 240, 240);
+    background: rgb(240, 240, 240);
 }
 
 .navbar-user > .fas > .name {
