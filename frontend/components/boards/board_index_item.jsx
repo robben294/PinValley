@@ -5,8 +5,8 @@ class BoardIndexItem extends React.Component{
     render() {
         const { board } = this.props;
         return (
-            <div>
-                <div className='boards-cover'>
+            <div className='board-item'>
+                <div className='board-cover'>
                 </div>
                 <div>
                     {board.title}

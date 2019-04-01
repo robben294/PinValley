@@ -22,7 +22,7 @@ class BoardIndex extends React.Component {
                 <div>
                     <Profile />
                 </div>
-                <div>
+                <div className='boards'>
                     {boards}
                 </div>
             </div>
