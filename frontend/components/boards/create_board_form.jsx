@@ -9,7 +9,7 @@ class CreateBoardForm extends React.Component {
         super(props);
         this.state = {
             title: '',
-            creator_id: props.creator_id
+            creator_id: props.creator_id,
         };
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -54,10 +54,12 @@ class CreateBoardForm extends React.Component {
                     </div>
 
                     <div className='create-board-buttons'>
-                        <div className='create-board-button' onClick={this.handleClose}>
+                        <div className='create-board-button create-board-cancel-button' onClick={this.handleClose}>
                             Cancel
                         </div>
-                        <div className='create-board-button' onClick={this.handleSubmit}>
+                        <div 
+                            className={`${this.state.title !== "" ? 'active' : 'inactive'} create-board-button`}
+                            onClick={this.state.title !== "" ? this.handleSubmit : null}>
                             Create
                         </div>
                     </div>

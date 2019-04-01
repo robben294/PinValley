@@ -84,7 +84,12 @@
     cursor: pointer;
 }
 
-.edit-button-done:hover {
+.inactive {
+    cursor: default;
+}
+
+.active {
+    cursor: pointer;
     background: #E60032;
     color: white;
 }

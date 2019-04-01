@@ -11,19 +11,34 @@ class EditProfileForm extends React.Component {
         this.state = this.props.currentUser;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
+        
     }
 
     handleInput(field) {
         return (e) => {
+            // const { currentUser } = { ...this.state };
+            // const newState = currentUser;
+            // newState[field] = e.target.value;
+            // this.setState({currentUser: newState});
             this.setState({
                 [field]: e.target.value
             });
         };
     }
 
+    noChange() {
+        const { firstname, lastname, location, about_me } = this.props.currentUser;
+        return (this.state.firstname === firstname && 
+            this.state.lastname === lastname && 
+            this.state.location === location && 
+            this.state.about_me === about_me);
+    }
+
     handleSubmit(e) {
         e.preventDefault();
-        this.props.updateUser(this.state).then(() => this.props.history.push('/profile'));
+        if (!this.noChange()) {
+            this.props.updateUser(this.state).then(() => this.props.history.push('/profile'));
+        }
     }
 
     handleCancel(e) {
@@ -57,7 +72,9 @@ class EditProfileForm extends React.Component {
                                     onClick={this.handleCancel}>
                                     Cancel
                                 </div>
-                                <div className='edit-button-done edit-button' onClick={this.handleSubmit}>Done</div>
+                                <div className={`${this.noChange() ? 'inactive' : 'active'} edit-button-done edit-button`}
+                                    onClick={this.handleSubmit}>Done
+                                </div>
                             </div>
                         </div>
                         <div className='edit-name'>
@@ -65,7 +82,7 @@ class EditProfileForm extends React.Component {
                                 <div className='edit-name-text'>First name</div>
                                 <input className='edit-name-box'
                                     type="text" 
-                                    value={this.state.firstname} 
+                                    value={this.state.firstname || ''} 
                                     onChange={this.handleInput('firstname')}
                                     placeholder='Ex. Jo'/>
 
@@ -74,7 +91,7 @@ class EditProfileForm extends React.Component {
                                 <div className='edit-name-text'>Last name</div>
                                 <input className='edit-name-box '
                                     type="text" 
-                                    value={this.state.lastname} 
+                                    value={this.state.lastname || ''} 
                                     onChange={this.handleInput('lastname')}
                                     placeholder='Ex. Smith'/>
                             </div>

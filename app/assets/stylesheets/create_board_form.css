@@ -101,3 +101,25 @@ input::placeholder {
     margin-right: 8px;
     cursor: pointer;
 }
+
+.inactive {
+    cursor: default;
+}
+
+.active {
+    cursor: pointer;
+    background: #E60032;
+    color: white;
+}
+
+.active:hover {
+    background: rgb(165, 1, 36);
+}
+
+.create-board-cancel-button {
+    color: #333333;
+}
+
+.create-board-cancel-button:hover {
+    background: #ddd;
+}

@@ -487,11 +487,11 @@ function (_React$Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-buttons"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-board-button",
+        className: "create-board-button create-board-cancel-button",
         onClick: this.handleClose
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-board-button",
-        onClick: this.handleSubmit
+        className: "".concat(this.state.title !== "" ? 'active' : 'inactive', " create-board-button"),
+        onClick: this.state.title !== "" ? this.handleSubmit : null
       }, "Create"))));
     }
   }]);
@@ -1270,8 +1270,22 @@ function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
+        // const { currentUser } = { ...this.state };
+        // const newState = currentUser;
+        // newState[field] = e.target.value;
+        // this.setState({currentUser: newState});
         _this2.setState(_defineProperty({}, field, e.target.value));
       };
+    }
+  }, {
+    key: "noChange",
+    value: function noChange() {
+      var _this$props$currentUs = this.props.currentUser,
+          firstname = _this$props$currentUs.firstname,
+          lastname = _this$props$currentUs.lastname,
+          location = _this$props$currentUs.location,
+          about_me = _this$props$currentUs.about_me;
+      return this.state.firstname === firstname && this.state.lastname === lastname && this.state.location === location && this.state.about_me === about_me;
     }
   }, {
     key: "handleSubmit",
@@ -1279,9 +1293,12 @@ function (_React$Component) {
       var _this3 = this;
 
       e.preventDefault();
-      this.props.updateUser(this.state).then(function () {
-        return _this3.props.history.push('/profile');
-      });
+
+      if (!this.noChange()) {
+        this.props.updateUser(this.state).then(function () {
+          return _this3.props.history.push('/profile');
+        });
+      }
     }
   }, {
     key: "handleCancel",
@@ -1320,7 +1337,7 @@ function (_React$Component) {
         className: "edit-button-cancel edit-button",
         onClick: this.handleCancel
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-button-done edit-button",
+        className: "".concat(this.noChange() ? 'inactive' : 'active', " edit-button-done edit-button"),
         onClick: this.handleSubmit
       }, "Done"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-name"
@@ -1331,7 +1348,7 @@ function (_React$Component) {
       }, "First name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "edit-name-box",
         type: "text",
-        value: this.state.firstname,
+        value: this.state.firstname || '',
         onChange: this.handleInput('firstname'),
         placeholder: "Ex. Jo"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1341,7 +1358,7 @@ function (_React$Component) {
       }, "Last name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "edit-name-box ",
         type: "text",
-        value: this.state.lastname,
+        value: this.state.lastname || '',
         onChange: this.handleInput('lastname'),
         placeholder: "Ex. Smith"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
