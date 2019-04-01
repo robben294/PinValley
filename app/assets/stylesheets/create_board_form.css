@@ -1,0 +1,103 @@
+.boards-modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+}
+
+.create-board-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: white;
+    display: flex;
+    flex-direction: column;
+    max-width: 544px;
+    width: 80%;
+    color: rgb(33, 25, 34);
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+.create-board-title {
+    display: flex;
+}
+
+.create-board-title-text {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 auto;
+    padding: 20px 50px;
+}
+
+.create-board-close {
+    padding: 8px;
+
+    margin: 0;
+}
+
+.create-board-close .fas {
+    font-size: 30px;
+
+}
+
+.create-board-close .fas:hover{
+    background: rgb(240, 240, 240);
+}
+
+.create-board-name {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 8px;
+    border-top: 0.1px rgb(228, 227, 227) solid;
+    border-bottom: 0.1px rgb(228, 227, 227) solid
+}
+
+.create-board-text {
+    font-size: 14px;
+    color: #333333;
+    font-weight: 400;
+    padding: 12px 4px;
+}
+
+.create-board-name-box {
+    width: 498px;
+    margin: 0 auto;
+    height: 22px;
+    padding: 8px 14px;
+    border: 1px rgb(142,142,142) solid;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+}
+
+input::placeholder {
+  color: rgb(187, 186, 186);
+}
+
+.create-board-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.create-board-button {
+    background-color: rgb(239, 239, 239);
+    color: #8E8E8E;
+    font-size: 16px;
+    font-weight: 700;
+    min-height: 20px;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-left: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+}

@@ -26,7 +26,6 @@ class Profile extends React.Component {
     }
 
     showDropdown(e) {
-        debugger
         e.preventDefault();
         this.setState({
             showDropdown: true,

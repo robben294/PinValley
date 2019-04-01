@@ -12,7 +12,6 @@ class Api::UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         if @user
-            debugger
             render 'api/users/show'
         else
             render json: ['Could not locate user'], status: 400

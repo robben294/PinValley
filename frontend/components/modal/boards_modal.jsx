@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { closeModal } from '../../action/modal_actions';
 import CreateBoardForm from '../boards/create_board_form';
 
 const Modal = ({ modal, closeModal }) => {
@@ -16,7 +17,7 @@ const Modal = ({ modal, closeModal }) => {
     }
     return (
         <div>
-            <div className="modal-background">
+            <div className="boards-modal-background" onClick={closeModal}>
                 <div className="modal-child" onClick={e => e.stopPropagation()}>
                     {component}
                 </div>
@@ -31,7 +32,7 @@ const msp = (state) => ({
 });
 
 const mdp = dispatch => ({
-
+    closeModal: () => dispatch(closeModal()),
 });
 
 export default connect(msp, mdp)(Modal);

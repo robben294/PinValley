@@ -34,21 +34,23 @@ class CreateBoardForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="create-board-form">
                 <div className='create-board-title'>
-                    Create board
+                    <div className='create-board-title-text'>Create board</div>
+                    <div className='create-board-close' onClick={this.handleClose}>
+                        <i className="fas fa-times"></i>
+                    </div>
                 </div>
                 <div className='create-board-content'>
                     <div className='create-board-name'>
-                        <div className='create-board-name-text'>
+                        <div className='create-board-text'>
                             Name
                         </div>
-                        <div className='create-board-name-box'>
-                            <input type="text" 
-                                value={this.state.title} 
-                                onChange={this.handleInput} 
-                                placeholder='Like "Places to Go" or "Recipes to Make"'/>
-                        </div>
+                        <input className='create-board-name-box'
+                            type="text" 
+                            value={this.state.title} 
+                            onChange={this.handleInput} 
+                            placeholder='Like "Places to Go" or "Recipes to Make"'/>
                     </div>
 
                     <div className='create-board-buttons'>

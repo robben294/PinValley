@@ -28,8 +28,6 @@
 }
 
 .fas {
-    width: auto; /* Making auto-sizable width */
-    height: auto; /* Making auto-sizable height */
     cursor: pointer;
     position: relative;
     display: inline-block;
@@ -92,6 +90,10 @@
     border-radius: 20px;
     width: auto; /* Making auto-sizable width */
     height: auto; /* Making auto-sizable height */
+}
+
+.navbar-user > .fas:hover {
+    background: rbg(240, 240, 240);
 }
 
 .navbar-user > .fas > .name {

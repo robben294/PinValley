@@ -461,22 +461,30 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-title-text"
       }, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-close",
+        onClick: this.handleClose
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-times"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-board-name-text"
-      }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-board-name-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "create-board-text"
+      }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "create-board-name-box",
         type: "text",
         value: this.state.title,
         onChange: this.handleInput,
         placeholder: "Like \"Places to Go\" or \"Recipes to Make\""
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-buttons"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-button",
@@ -569,12 +577,11 @@ var Dropdown = function Dropdown(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-arrow-up-border"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "profile-dropdown-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-dropdown-item",
     onClick: function onClick() {
       return openModal('createBoard');
     }
-  }, "Create board")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create board")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-dropdown-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create Pin"))) : null);
 };
@@ -902,7 +909,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _boards_create_board_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../boards/create_board_form */ "./frontend/components/boards/create_board_form.jsx");
+/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
+/* harmony import */ var _boards_create_board_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../boards/create_board_form */ "./frontend/components/boards/create_board_form.jsx");
+
 
 
 
@@ -919,7 +928,7 @@ var Modal = function Modal(_ref) {
 
   switch (modal) {
     case 'createBoard':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_create_board_form__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_create_board_form__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       break;
 
     default:
@@ -927,7 +936,8 @@ var Modal = function Modal(_ref) {
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-background"
+    className: "boards-modal-background",
+    onClick: closeModal
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal-child",
     onClick: function onClick(e) {
@@ -943,7 +953,11 @@ var msp = function msp(state) {
 };
 
 var mdp = function mdp(dispatch) {
-  return {};
+  return {
+    closeModal: function closeModal() {
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(Modal));
@@ -1446,7 +1460,6 @@ function (_React$Component) {
   }, {
     key: "showDropdown",
     value: function showDropdown(e) {
-      debugger;
       e.preventDefault();
       this.setState({
         showDropdown: true
