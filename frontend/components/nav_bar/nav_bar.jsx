@@ -20,6 +20,10 @@ class Navbar extends React.Component {
         this.setRedirectToFeed = this.setRedirectToFeed.bind(this);
     }
 
+    componentWillUnmount() {
+        document.removeEventListener('click', this.closeDropdown);
+    }
+
     setRedirectToProfile(e) {
         e.preventDefault();
         if (!this.state.showDropdown) {
@@ -71,7 +75,6 @@ class Navbar extends React.Component {
 
     render() {
         const { logout } = this.props;
-        
         return (
             <div>
                 <div className='navbar-main'>
