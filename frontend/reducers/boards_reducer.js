@@ -18,6 +18,8 @@ const boardsReducer = (state = {}, action) => {
             delete newState[action.boardId];
             return newState;
         }
+        default: 
+            return state;
     }
 };
 
