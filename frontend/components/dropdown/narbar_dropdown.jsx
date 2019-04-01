@@ -9,8 +9,8 @@ const Dropdown = ({ showDropdown,logout }) => {
                         <div className="dropdown-content">
                             <div className="arrow-up"></div>
                             <div className="arrow-up-border"></div>
-                            <div className="dropdown-item">
-                                <div onClick={logout}>Log out</div>
+                            <div className="dropdown-item" onClick={logout}>
+                                <div>Log out</div>
                             </div>
                         </div>
                     )

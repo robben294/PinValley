@@ -83,7 +83,7 @@ class EditProfileForm extends React.Component {
                             <div className='edit-about-name'>About your profile</div>
                             <textarea className='edit-about-box'
                                 cols="30" rows="10" 
-                                value={this.state.about_me} 
+                                value={this.state.about_me || ""} 
                                 onChange={this.handleInput('about_me')}
                                 placeholder='Write a little bit about yourself here'>
                             </textarea>
@@ -92,7 +92,7 @@ class EditProfileForm extends React.Component {
                             <div className='edit-location-name'>Location</div>
                             <input className='edit-location-box'
                                 type="text" 
-                                value={this.state.location} 
+                                value={this.state.location || ""} 
                                 onChange={this.handleInput('location')}
                                 placeholder='Ex. San Francisco, CA'/>
                         </div>

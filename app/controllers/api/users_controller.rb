@@ -10,10 +10,10 @@ class Api::UsersController < ApplicationController
     end
 
     def show
-    
-        @user = User.find_by(id: params[:id])
+        @user = User.find(params[:id])
         if @user
-            render :show
+            debugger
+            render 'api/users/show'
         else
             render json: ['Could not locate user'], status: 400
         end

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Dropdown = ({ showDropdown }) => {
+const Dropdown = ({ showDropdown, openModal }) => {
     return (
         <div>
             {
@@ -11,7 +11,7 @@ const Dropdown = ({ showDropdown }) => {
                             <div className="profile-arrow-up"></div>
                             <div className="profile-arrow-up-border"></div>
                             <div className="profile-dropdown-item">
-                                <div>Create board</div>
+                                <div onClick={() => openModal('createBoard')}>Create board</div>
                             </div>
                             <div className="profile-dropdown-item">
                                 <div>Create Pin</div>
