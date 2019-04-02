@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { updateBoard, deleteBoard, fetchBoard } from '../../action/board_actions';
+import { fetchBoard } from '../../action/board_actions';
 import Navbar from '../nav_bar/nav_bar';
+import BoardsModal from '../modal/boards_modal';
 import BoardShowPlusDropdown from '../dropdown/board_show_plus_dropdown';
+import { openModal } from '../../action/modal_actions';
 
 class BoardShow extends React.Component {
 
@@ -41,11 +43,18 @@ class BoardShow extends React.Component {
         this.props.history.push('/profile');
     }
 
+    // handleOpenModal(e) {
+        
+    // }
+
     render() {
+
         const {title, description} = this.props.board || {};
         return (
         <div>
+                
             <Navbar />
+            <BoardsModal board={this.props.board}/>
             <div className='board-show'>
                 <div className='board-show-icons'>
                     <div className='board-show-icons-left'>
@@ -57,7 +66,7 @@ class BoardShow extends React.Component {
                             <BoardShowPlusDropdown
                                 showDropdown={this.state.showDropdown}/>
                         </div>
-                        <div>
+                            <div onClick={() => this.props.openModal('editBoard')}>
                             <i className="fas fa-pen"></i>
                         </div>
                     </div>
@@ -105,9 +114,8 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
     return {
-        updateBoard: (board) => dispatch(updateBoard(board)),
-        deleteBoard: (boardId) => dispatch(deleteBoard(boardId)),
         fetchBoard: (boardId) => dispatch(fetchBoard(boardId)), 
+        openModal: (modal) => dispatch(openModal(modal)),
     };
 };
 

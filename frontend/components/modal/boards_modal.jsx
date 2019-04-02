@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { closeModal } from '../../action/modal_actions';
 import CreateBoardForm from '../boards/create_board_form';
+import EditBoardForm from '../boards/edit_board_form';
 
-const Modal = ({ modal, closeModal }) => {
+const Modal = ({ modal, board, closeModal }) => {
     if (!modal) {
         return null;
     }
@@ -12,6 +13,9 @@ const Modal = ({ modal, closeModal }) => {
         case 'createBoard':
             component = <CreateBoardForm />;
             break;
+        case 'editBoard':
+        debugger
+            component = <EditBoardForm board={board}/>;
         default:
             return null;
     }
