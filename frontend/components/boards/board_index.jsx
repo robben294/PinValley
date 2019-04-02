@@ -12,10 +12,6 @@ class BoardIndex extends React.Component {
     }
 
     render() {
-        let component = null;
-        if (!this.props.fromProfile) {
-            component = <Profile />;
-        }
         
         const boards = this.props.boards.map(board => {
             return (
@@ -27,9 +23,6 @@ class BoardIndex extends React.Component {
         });
         return (
             <div>
-                <div>
-                    {component}
-                </div>
                 <div className='boards'>
                     {boards}
                 </div>

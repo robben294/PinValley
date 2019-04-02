@@ -83,7 +83,6 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </div>  
-                <BoardIndex fromProfile={true}/>
             </div>
         );
     }

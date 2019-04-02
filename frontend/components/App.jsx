@@ -16,12 +16,14 @@ const App = () => {
     <div>
         <Modal />
         <Switch>
+            <ProtectedRoute path='/profile/edit' component={EditProfileForm} />
+            <ProtectedRoute path='/profile' component={Profile} />
+        </Switch>
+        <Switch>
             <ProtectedRoute path='/feed' component={GreetingFeed} />
             <AuthRoute exact path='/' component={GreetingLogin} />
-            <ProtectedRoute exact path='/profile' component={Profile} />
-            <ProtectedRoute path='/profile/edit' component={EditProfileForm} />
-            <ProtectedRoute path='/profile/boards' component={BoardIndex} />
             <ProtectedRoute path='/boards/:boardId' component={BoardShow} />
+            <ProtectedRoute path='/profile' component={BoardIndex} />
         </Switch>
     </div>
 )};
