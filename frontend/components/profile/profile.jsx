@@ -67,7 +67,7 @@ class Profile extends React.Component {
                         <div className='profile-user'>
                             <div className='profile-username'>{currentUser.firstname} {currentUser.lastname}</div>
                             <div className='profile-follow-info'>follower · following</div>
-                            <div className='profile-location'>{currentUser.location}</div>
+                            <div className='profile-location'>{currentUser.location} · {currentUser.about_me}</div>
                         </div>
                         <div>
                             <div className='profile-circle'>{this.state.circle}</div>
