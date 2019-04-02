@@ -1,7 +1,8 @@
 .boards {
     display:flex;
     flex-wrap: wrap;
-    margin: 50px;
+    justify-content: center;
+    padding: 50px;
 }
 
 .board-item {
