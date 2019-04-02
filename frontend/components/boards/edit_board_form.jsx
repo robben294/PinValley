@@ -15,7 +15,6 @@ class EditBoardForm extends React.Component {
 
     handleInput(field) {
         return (e) => {
-            debugger
             this.setState({
                 [field]: e.target.value,
             });
@@ -71,7 +70,7 @@ class EditBoardForm extends React.Component {
                         <div className='edit-board-text'>
                             Description
                         </div>
-                        <textarea className='edit-board-descroption-box'
+                        <textarea className='edit-board-description-box'
                             type="text"
                             value={this.state.description || ""}
                             onChange={this.handleInput('description')}
@@ -80,7 +79,7 @@ class EditBoardForm extends React.Component {
 
                     <div className='edit-board-buttons'>
                         <div className='edit-board-buttons-left'>
-                            <div className='edit-board-button' 
+                            <div className='edit-board-button edit-board-delete-button' 
                                 onClick={this.handleDelete}>
                                 Delete
                             </div>

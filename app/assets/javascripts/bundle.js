@@ -90,7 +90,7 @@
 /*!******************************************!*\
   !*** ./frontend/action/board_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_BOARD, RECEIVE_BOARDS, REMOVE_BOARD, receiveBoards, receiveBoard, removeBoard, fetchBoards, fetchBoard, createBoard, upateBoard, deleteBoard */
+/*! exports provided: RECEIVE_BOARD, RECEIVE_BOARDS, REMOVE_BOARD, receiveBoards, receiveBoard, removeBoard, fetchBoards, fetchBoard, createBoard, updateBoard, deleteBoard */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -104,7 +104,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoards", function() { return fetchBoards; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoard", function() { return fetchBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBoard", function() { return createBoard; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "upateBoard", function() { return upateBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBoard", function() { return updateBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBoard", function() { return deleteBoard; });
 /* harmony import */ var _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/board_api_util */ "./frontend/util/board_api_util.js");
 
@@ -150,7 +150,7 @@ var createBoard = function createBoard(board) {
     });
   };
 };
-var upateBoard = function upateBoard(board) {
+var updateBoard = function updateBoard(board) {
   return function (dispatch) {
     return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["updateBoard"](board).then(function (board) {
       return dispatch(receiveBoard(board));
@@ -358,6 +358,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
+    path: "/profile/edit",
+    component: _profile_edit_profile_form__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
+    path: "/profile",
+    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
     path: "/feed",
     component: _greeting_greeting_feed__WEBPACK_IMPORTED_MODULE_3__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["AuthRoute"], {
@@ -365,18 +371,11 @@ var App = function App() {
     path: "/",
     component: _greeting_greeting_login__WEBPACK_IMPORTED_MODULE_2__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
-    exact: true,
-    path: "/profile",
-    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
-    path: "/profile/edit",
-    component: _profile_edit_profile_form__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
-    path: "/profile/boards",
-    component: _boards_board_index__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
     path: "/boards/:boardId",
     component: _boards_board_show__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
+    path: "/profile",
+    component: _boards_board_index__WEBPACK_IMPORTED_MODULE_7__["default"]
   })));
 };
 
@@ -447,12 +446,6 @@ function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      var component = null;
-
-      if (!this.props.fromProfile) {
-        component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_profile_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
-      }
-
       var boards = this.props.boards.map(function (board) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_5__["default"], {
           board: board,
@@ -460,7 +453,7 @@ function (_React$Component) {
           key: board.id
         });
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, component), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "boards"
       }, boards));
     }
@@ -977,20 +970,26 @@ function (_React$Component) {
       e.preventDefault();
       this.props.deleteBoard(this.props.board.id).then(function () {
         return _this4.props.closeModal();
+      }).then(function () {
+        return _this4.props.history.push('/profile/boards');
       });
     }
   }, {
     key: "noChange",
     value: function noChange() {
-      var _this$props$currentUs = this.props.currentUser,
-          title = _this$props$currentUs.title,
-          description = _this$props$currentUs.description;
+      var _ref = this.props.board || {},
+          title = _ref.title,
+          description = _ref.description;
+
       return this.state.title === title && this.state.description === description;
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      if (!this.state) {
+        return null;
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1011,7 +1010,7 @@ function (_React$Component) {
       }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "edit-board-name-box",
         type: "text",
-        value: this.state.title,
+        value: this.state.title || "",
         onChange: this.handleInput('title'),
         placeholder: "Like \"Places to Go\" or \"Recipes to Make\""
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1019,7 +1018,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board-text"
       }, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        className: "edit-board-descroption-box",
+        className: "edit-board-description-box",
         type: "text",
         value: this.state.description || "",
         onChange: this.handleInput('description'),
@@ -1029,7 +1028,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board-buttons-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board-button",
+        className: "edit-board-button edit-board-delete-button",
         onClick: this.handleDelete
       }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board-buttons-right"
@@ -1038,7 +1037,7 @@ function (_React$Component) {
         onClick: this.handleClose
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "".concat(this.noChange() ? 'inactive' : 'active', " edit-board-button"),
-        onClick: this.state.title !== "" ? this.handleSubmit : null
+        onClick: this.noChange() ? null : this.handleSubmit
       }, "Save")))));
     }
   }]);
@@ -1515,10 +1514,10 @@ var Modal = function Modal(_ref) {
       break;
 
     case 'editBoard':
-      debugger;
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_edit_board_form__WEBPACK_IMPORTED_MODULE_4__["default"], {
         board: board
       });
+      break;
 
     default:
       return null;
@@ -2131,9 +2130,7 @@ function (_React$Component) {
         className: "profile-content-nav"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
         to: "/profile/Pins"
-      }, "Pins")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_board_index__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        fromProfile: true
-      }));
+      }, "Pins")))));
     }
   }]);
 
