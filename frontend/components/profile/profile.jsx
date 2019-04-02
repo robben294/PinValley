@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
 import Navbar from '../nav_bar/nav_bar';
 import BoardsModal from '../modal/boards_modal';
 import ProfileCreateDropdown from '../dropdown/profile_create_dropdown';
+import BoardIndex from '../boards/board_index';
 
 class Profile extends React.Component {
 
@@ -81,6 +83,7 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </div>  
+                <BoardIndex fromProfile={true}/>
             </div>
         );
     }
