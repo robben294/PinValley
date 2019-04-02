@@ -15,6 +15,7 @@ class EditBoardForm extends React.Component {
 
     handleInput(field) {
         return (e) => {
+            debugger
             this.setState({
                 [field]: e.target.value,
             });
@@ -33,17 +34,19 @@ class EditBoardForm extends React.Component {
 
     handleDelete(e) {
         e.preventDefault();
-        this.props.deleteBoard(this.props.board.id).then(() => this.props.closeModal());
+        this.props.deleteBoard(this.props.board.id).then(() => this.props.closeModal()).then(() => this.props.history.push('/profile/boards'));
     }
 
     noChange() {
-        const { title, description } = this.props.currentUser;
+        const { title, description } = this.props.board || {};
         return (this.state.title === title &&
             this.state.description === description);
     }
 
     render() {
-        debugger
+        if (!this.state) {
+            return null;
+        }
         return (
             <div className="edit-board-form">
                 <div className='edit-board-title'>
@@ -59,7 +62,7 @@ class EditBoardForm extends React.Component {
                         </div>
                         <input className='edit-board-name-box'
                             type="text"
-                            value={this.state.title}
+                            value={this.state.title || ""}
                             onChange={this.handleInput('title')}
                             placeholder='Like "Places to Go" or "Recipes to Make"' />
                     </div>
@@ -90,7 +93,7 @@ class EditBoardForm extends React.Component {
                             </div>
                             <div
                                 className={`${this.noChange() ? 'inactive' : 'active'} edit-board-button`}
-                                onClick={this.state.title !== "" ? this.handleSubmit : null}>
+                                onClick={this.noChange() ? null : this.handleSubmit}>
                                 Save
                             </div>
                         </div>

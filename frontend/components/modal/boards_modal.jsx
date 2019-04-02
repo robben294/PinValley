@@ -14,8 +14,8 @@ const Modal = ({ modal, board, closeModal }) => {
             component = <CreateBoardForm />;
             break;
         case 'editBoard':
-        debugger
             component = <EditBoardForm board={board}/>;
+            break;
         default:
             return null;
     }

@@ -37,7 +37,7 @@ export const createBoard = (board) => dispatch => {
     return BoardApiUtil.createBoard(board).then(board => dispatch(receiveBoard(board)));
 };
 
-export const upateBoard = (board) => dispatch => {
+export const updateBoard = (board) => dispatch => {
     return BoardApiUtil.updateBoard(board).then(board => dispatch(receiveBoard(board)));
 };
 
