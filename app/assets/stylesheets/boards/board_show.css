@@ -1,0 +1,160 @@
+.board-show {
+    display: flex;
+    flex-direction: column;
+    max-width: 758px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 8px 12px;
+}
+
+.board-show-icons {
+    display: flex;
+    justify-content: space-between;
+    height: 48px;
+    padding: 8px 0px;
+}
+
+.board-show-icons-left {
+    display:flex;
+    justify-content: flex-start;
+}
+
+.board-show-icons-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.board-show-icons-left .fa-plus {
+    font-size: 24px;
+    margin-right: 6px;
+}
+
+.board-show-icons-left .fa-pen {
+    font-size: 22px;
+}
+
+.board-show-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: rgb(51, 51, 51);
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    letter-spacing: -0.4px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.board-show-subtext {
+    color: rgb(51, 51, 51);
+    font-size: 400;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.4px;
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.board-show-circle {
+    display:inline-block;
+    font-size:20px;
+    font-family: sans-serif;
+    width:40px;
+    height:40px;
+    line-height:42px;
+    text-align:center;
+    border-radius:50%;
+    background:rgb(233, 35, 154);
+    vertical-align: middle;
+    color:white;
+    margin-right: 8px;
+}
+
+.board-show-pins-nav {
+    margin-top: 60px;
+    display: inline-block;
+    justify-content: flex-start;
+    font-family: sans-serif;
+    font-size: 16px;
+    border: 1px hidden;
+    padding: 11px 16px;
+    color: grey;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.board-show-pins-nav {
+    color: rgb(51,51,51);
+    background: rgb(239, 239, 239);
+    border-bottom-left-radius: 999px;
+    border-bottom-right-radius: 999px;
+    border-top-left-radius: 999px;
+    border-top-right-radius: 999px;
+}
+
+.board-show-pins-nav:hover {
+    color: rgb(51,51,51);
+    text-decoration: underline;
+}
+
+
+/* for dropdown */
+
+.board-show-arrow-up-border {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    left: 7px;
+    border-width: 0 11px 11px 11px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.1) transparent;  
+}
+
+.board-show-arrow-up {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    left: 8px;
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: #fff transparent; 
+    z-index: 1; 
+}
+
+.board-show-item {
+    position: positive;
+}
+
+.board-show-dropdown-content {
+    position: absolute;
+    margin-top: 15px;
+    box-sizing: border-box;
+    color:#efefef;
+    background: #fff;
+    width: 238px;
+    min-height: 40px;
+    border: 1px solid;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .18);
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.board-show-dropdown-item {
+    align-items: flex-start;
+    padding: 10px 16px;
+    height: 18px;
+    /* width: 100%; */
+    color: #333;
+    font-weight: bold;
+    border-radius: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto Oxygen-Sans, Ubuntu, Cantarell, “Fira Sans”, “Droid Sans”, "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+
+.board-show-dropdown-item:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+

@@ -19,6 +19,10 @@ class BoardShow extends React.Component {
         this.redirectToProfile = this.redirectToProfile.bind(this);
     }
 
+    componentDidMount() {
+        this.props.fetchBoard(this.props.match.params.boardId);
+    }
+
     showDropdown(e) {
         e.preventDefault();
         this.setState({
@@ -38,11 +42,11 @@ class BoardShow extends React.Component {
     }
 
     render() {
-        const {title, description} = this.props;
+        const {title, description} = this.props.board || {};
         return (
         <div>
             <Navbar />
-            <div>
+            <div className='board-show'>
                 <div className='board-show-icons'>
                     <div className='board-show-icons-left'>
                         <div id="board-show-plus-dropdown" 
@@ -68,19 +72,19 @@ class BoardShow extends React.Component {
                     <div className='board-show-title'>
                         {title}
                     </div>
-                    <div className='board-show-number-pins'>
-                        Pins
+                    <div className='board-show-subtext'>
+                        0 Pins
                     </div>
-                    <div className='board-show-description'>
+                    <div className='board-show-subtext'>
                         {description}
                     </div>
                 </div>
-
+                
                 <div className='board-show-main'>
                     <div className='board-show-pins'>
                         <div className='board-show-pins-nav'>
                             Your Pins
-                        </div>
+                </div>
                         <div className='board-show-pins-content'>
 
                         </div>

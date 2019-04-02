@@ -619,6 +619,11 @@ function (_React$Component) {
   }
 
   _createClass(BoardShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchBoard(this.props.match.params.boardId);
+    }
+  }, {
     key: "showDropdown",
     value: function showDropdown(e) {
       e.preventDefault();
@@ -642,10 +647,13 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          title = _this$props.title,
-          description = _this$props.description;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      var _ref = this.props.board || {},
+          title = _ref.title,
+          description = _ref.description;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-icons"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-icons-left"
@@ -670,9 +678,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-title"
       }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show-number-pins"
-      }, "Pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show-description"
+        className: "board-show-subtext"
+      }, "0 Pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show-subtext"
       }, description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
