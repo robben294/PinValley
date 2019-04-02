@@ -5,7 +5,6 @@ import { fetchBoards } from '../../action/board_actions';
 import { openModal } from '../../action/modal_actions';
 import Profile from '../profile/profile_container';
 import BoardIndexItem from './board_index_item';
-import BoardsModal from '../modal/boards_modal';
 
 class BoardIndex extends React.Component {
 
@@ -31,7 +30,6 @@ class BoardIndex extends React.Component {
         });
         return (
             <div>
-                {/* <BoardsModal board={this.props.board} /> */}
                 <div className='boards'>
                     {boards}
                 </div>

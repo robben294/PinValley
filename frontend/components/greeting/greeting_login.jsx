@@ -6,7 +6,7 @@ class Greeting extends React.Component {
 
     componentDidMount() {
 
-        this.props.openModal('login');
+        this.props.openModal({modalType: 'login'});
 
     }
 

@@ -13,13 +13,13 @@ class Greeting extends React.Component {
 
     componentDidMount() {
         if (!this.props.currentUser) {
-            this.props.openModal('login');
+            this.props.openModal({ modalType: 'login' });
         } 
     }
 
     handleLogout(e) {
         e.preventDefault();
-        this.props.logout().then(this.props.openModal('login'));
+        this.props.logout().then(this.props.openModal({modalType: 'login'}));
     }
 
     render() {
@@ -34,7 +34,7 @@ class Greeting extends React.Component {
             )
         }
          else {
-            // this.props.openModal('login');
+
             return (
                 null
             )

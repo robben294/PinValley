@@ -1,5 +1,4 @@
 import React from 'react';
-import BoardsModal from '../modal/boards_modal';
 
 class BoardIndexItem extends React.Component{
 
@@ -30,7 +29,9 @@ class BoardIndexItem extends React.Component{
                         </div>
                     </div>
                     <div onClick={e => e.stopPropagation()}>
-                        <div onClick={() => this.props.openModal('editBoard')}>
+                        <div 
+                            onClick={() => this.props.openModal({ modalType: 'editBoard',
+                                                                 modalProps: board })}>
                             <i className="fas fa-pen"></i>
                         </div>
                     </div>

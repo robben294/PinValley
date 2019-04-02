@@ -12,12 +12,12 @@ const msp = state => ({
 const mdp = dispatch => ({
     processForm: (user) => dispatch(login(user)),
     otherForm: (
-        <a onClick={() => dispatch(openModal('signup'))}>
+        <a onClick={() => dispatch(openModal({modalType: 'signup'}))}>
             Not on Pinvalley yet? Sign up
         </a>
     ),
     otherFormTopLeft: (
-        <button onClick={() => dispatch(openModal('signup'))}>Sign up</button>
+        <button onClick={() => dispatch(openModal({modalType: 'signup'}))}>Sign up</button>
     ),
     closeModal: () => dispatch(closeModal()),
     clearSessionErrors: () => dispatch(clearSessionErrors()),

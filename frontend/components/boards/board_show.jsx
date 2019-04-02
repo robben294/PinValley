@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 
 import { fetchBoard } from '../../action/board_actions';
 import Navbar from '../nav_bar/nav_bar';
-import BoardsModal from '../modal/boards_modal';
 import BoardShowPlusDropdown from '../dropdown/board_show_plus_dropdown';
 import { openModal } from '../../action/modal_actions';
 
@@ -43,18 +42,12 @@ class BoardShow extends React.Component {
         this.props.history.push('/profile');
     }
 
-    // handleOpenModal(e) {
-        
-    // }
-
     render() {
-        debugger
         const {title, description} = this.props.board || {};
         return (
         <div>
                 
             <Navbar />
-            <BoardsModal board={this.props.board}/>
             <div className='board-show'>
                 <div className='board-show-icons'>
                     <div className='board-show-icons-left'>
@@ -66,7 +59,10 @@ class BoardShow extends React.Component {
                             <BoardShowPlusDropdown
                                 showDropdown={this.state.showDropdown}/>
                         </div>
-                            <div onClick={() => this.props.openModal('editBoard')}>
+                            <div onClick={() => this.props.openModal({
+                                modalType: 'editBoard',
+                                modalProps: this.props.board
+                                })}>
                             <i className="fas fa-pen"></i>
                         </div>
                     </div>

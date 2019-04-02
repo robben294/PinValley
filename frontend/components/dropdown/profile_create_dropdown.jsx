@@ -11,7 +11,7 @@ const Dropdown = ({ showDropdown, openModal }) => {
                             <div className="profile-arrow-up"></div>
                             <div className="profile-arrow-up-border"></div>
                             <div className="profile-dropdown-item" 
-                                onClick={() => openModal('createBoard')}>
+                                onClick={() => openModal({ modalType: 'createBoard'})}>
                                 <div>Create board</div>
                             </div>
                             <div className="profile-dropdown-item">
