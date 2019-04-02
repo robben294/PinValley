@@ -398,8 +398,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _action_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../action/board_actions */ "./frontend/action/board_actions.js");
-/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../profile/profile_container */ "./frontend/components/profile/profile_container.jsx");
-/* harmony import */ var _board_index_item__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./board_index_item */ "./frontend/components/boards/board_index_item.jsx");
+/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
+/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../profile/profile_container */ "./frontend/components/profile/profile_container.jsx");
+/* harmony import */ var _board_index_item__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./board_index_item */ "./frontend/components/boards/board_index_item.jsx");
+/* harmony import */ var _modal_boards_modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../modal/boards_modal */ "./frontend/components/modal/boards_modal.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -417,6 +419,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -446,10 +450,15 @@ function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      if (this.props.location.pathname === '/profile/edit') {
+        return null;
+      }
+
       var boards = this.props.boards.map(function (board) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_6__["default"], {
           board: board,
           push: _this.props.history.push,
+          openModal: _this.props.openModal,
           key: board.id
         });
       });
@@ -472,6 +481,9 @@ var mdp = function mdp(dispatch) {
   return {
     fetchBoards: function fetchBoards() {
       return dispatch(Object(_action_board_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBoards"])());
+    },
+    openModal: function openModal(modal) {
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])(modal));
     }
   };
 };
@@ -491,6 +503,7 @@ var mdp = function mdp(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modal_boards_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modal/boards_modal */ "./frontend/components/modal/boards_modal.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -508,6 +521,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -535,15 +549,33 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var board = this.props.board;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item",
         onClick: this.redirectToBoardShow
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-cover"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "0 Pins")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-item-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-item-text"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-item-title"
+      }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-item-number-pins"
+      }, "0 Pins")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick() {
+          return _this2.props.openModal('editBoard');
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pen"
-      })));
+      })))));
     }
   }]);
 
@@ -653,6 +685,8 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this2 = this;
+
+      debugger;
 
       var _ref = this.props.board || {},
           title = _ref.title,
@@ -1612,7 +1646,8 @@ var Modal = function Modal(_ref) {
 
 var msp = function msp(state) {
   return {
-    modal: state.ui.modal
+    modal: state.ui.modal // props: //
+
   };
 };
 
@@ -2118,7 +2153,7 @@ function (_React$Component) {
         className: "profile-follow-info"
       }, "follower \xB7 following"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-location"
-      }, currentUser.location)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, currentUser.location, " \xB7 ", currentUser.about_me)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-circle"
       }, this.state.circle))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-content"

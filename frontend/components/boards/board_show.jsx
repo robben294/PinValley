@@ -48,7 +48,7 @@ class BoardShow extends React.Component {
     // }
 
     render() {
-
+        debugger
         const {title, description} = this.props.board || {};
         return (
         <div>

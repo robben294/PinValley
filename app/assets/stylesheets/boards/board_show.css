@@ -66,6 +66,10 @@
     margin-right: 8px;
 }
 
+.board-show-circle:hover {
+    cursor: pointer;
+}
+
 .board-show-pins-nav {
     margin-top: 60px;
     display: inline-block;

@@ -5,7 +5,49 @@
 }
 
 .board-item {
+    display: flex;
+    flex-direction: column;
+    color: rgb(33, 25, 34);
     width: 300px;
     height: 265px;
-    padding: 20px 12px;
+    padding: 12px 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.board-item:hover {
+    background-color: rgb(240,240,240);
+    cursor: pointer;
+    border: none;
+    opacity: 1;
+    transition: background-color 0.3s ease 0.3s;
+}
+
+.board-item-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.board-item-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.board-item-title {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.board-item-number-pins {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.board-item i.fas {
+    display: none;
+}
+
+.board-item:hover i.fas {
+    display: inline-block;
 }

@@ -34,6 +34,7 @@ const Modal = ({ modal, closeModal }) => {
 
 const msp = (state) => ({
     modal: state.ui.modal,
+    // props: //
 });
 
 const mdp = dispatch => ({
