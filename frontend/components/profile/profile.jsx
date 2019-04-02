@@ -37,7 +37,6 @@ class Profile extends React.Component {
         this.setState({
             showDropdown: false,
         });
-        //when showing the drop down, you are not able to click on redirect components.     
     }
 
     render() {

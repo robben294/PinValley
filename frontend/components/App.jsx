@@ -6,6 +6,8 @@ import Profile from './profile/profile_container';
 import Modal from './modal/modal';
 import EditProfileForm from './profile/edit_profile_form';
 import BoardIndex from './boards/board_index';
+import BoardShow from './boards/board_show';
+
 import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_utils';
 
@@ -19,6 +21,7 @@ const App = () => {
             <ProtectedRoute exact path='/profile' component={Profile} />
             <ProtectedRoute path='/profile/edit' component={EditProfileForm} />
             <ProtectedRoute path='/profile/boards' component={BoardIndex} />
+            <ProtectedRoute path='/boards/:boardId' component={BoardShow} />
         </Switch>
     </div>
 )};
