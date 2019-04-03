@@ -7,6 +7,8 @@ import CreateBoardForm from '../boards/create_board_form';
 import EditBoardForm from '../boards/edit_board_form';
 
 const Modal = ({ modal, closeModal }) => {
+
+    
     if (!modal) {
         return null;
     }
@@ -32,19 +34,26 @@ const Modal = ({ modal, closeModal }) => {
         case 'editBoard':
             component = <EditBoardForm board={modal.modalProps} />;
             backgroundClass = "boards-modal-background";
-            debugger
+
             break;
         default:
             return null;
     }
+
+    const handleClick = (e) => {
+        if (backgroundClass === "modal-background") {
+            return null;
+        } else {
+            closeModal();
+        }
+    };
+
     return (
             <div>
                 {background}
                 <div 
                     className={backgroundClass} 
-                    onClick={backgroundClass === "modal-background" 
-                    ? null 
-                    : closeModal}>
+                    onClick={handleClick}>
                     <div className="modal-child" onClick={e => e.stopPropagation()}>
                         {component}
                     </div>
@@ -58,7 +67,7 @@ const msp = (state) => ({
 });
 
 const mdp = dispatch => ({
-    closeModal: () => dispatch(closeModal),
+    closeModal: () => dispatch(closeModal()),
 });
 
 export default connect(msp, mdp)(Modal);

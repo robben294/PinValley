@@ -13,7 +13,7 @@ class Api::BoardsController < ApplicationController
         if @board 
             render :show
         else
-            render json: ['Could not locate user'], status: 400
+            render json: ['Could not locate board'], status: 400
         end
     end
 

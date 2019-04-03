@@ -1577,16 +1577,23 @@ var Modal = function Modal(_ref) {
         board: modal.modalProps
       });
       backgroundClass = "boards-modal-background";
-      debugger;
       break;
 
     default:
       return null;
   }
 
+  var handleClick = function handleClick(e) {
+    if (backgroundClass === "modal-background") {
+      return null;
+    } else {
+      closeModal();
+    }
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, background, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: backgroundClass,
-    onClick: backgroundClass === "modal-background" ? null : closeModal
+    onClick: handleClick
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal-child",
     onClick: function onClick(e) {
@@ -1604,7 +1611,7 @@ var msp = function msp(state) {
 var mdp = function mdp(dispatch) {
   return {
     closeModal: function closeModal() {
-      return dispatch(_action_modal_actions__WEBPACK_IMPORTED_MODULE_1__["closeModal"]);
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_1__["closeModal"])());
     }
   };
 };
