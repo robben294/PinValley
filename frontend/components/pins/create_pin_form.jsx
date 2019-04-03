@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { createPin } from '../../action/pin_actions';
 import Navbar from '../nav_bar/nav_bar';
@@ -18,6 +19,7 @@ class CreatePinForm extends React.Component {
         this.handleFile = this.handleFile.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleRemovePhoto = this.handleRemovePhoto.bind(this);
+        this.redirectToProfile = this.redirectToProfile.bind(this);
     }
 
     handleFile(e) {
@@ -43,6 +45,10 @@ class CreatePinForm extends React.Component {
         };
     }
 
+    redirectToProfile(e) {
+        this.props.history.push('/profile');
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData();
@@ -50,7 +56,6 @@ class CreatePinForm extends React.Component {
             formData.append('pin[photo]', this.state.photoFile);
         }
         formData.append('pin[title]', this.state.title);
-        formData.append('pin[description]', this.state.description);
         formData.append('pin[website]', this.state.website);
         formData.append('pin[author_id]', this.props.currentUser.id);
         this.props.createPin(formData);
@@ -66,7 +71,7 @@ class CreatePinForm extends React.Component {
             <div>
                 <Navbar />
                 <div className='create-pin'>
-                    <div className='create-pin-back'>
+                    <div className='create-pin-back' onClick={this.redirectToProfile}>
                         <i className="fas fa-chevron-left"></i>
                         <div className='create-pin-back-text'>Home</div>
                     </div>
@@ -137,4 +142,4 @@ const mdp = dispatch => {
     };
 };
 
-export default connect(msp, mdp)(CreatePinForm);
+export default withRouter(connect(msp, mdp)(CreatePinForm));
