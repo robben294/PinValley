@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id              :bigint(8)        not null, primary key
-#  username        :string           not null
 #  email           :string           not null
 #  password_digest :string           not null
 #  session_token   :string           not null
@@ -24,10 +23,15 @@ class User < ApplicationRecord
 
     attr_reader :password
 
-    has_many :created_boards, class_name: :Board
+    has_many :created_boards, 
+        class_name: :Board,
+        foreign_key: :creator_id
 
-    has_many :authored_pins, class_name: :Pin
-    
+
+    has_many :authored_pins, 
+        class_name: :Pin,
+        foreign_key: :author_id
+
     has_many :saved_pins, 
         through: :created_boards,
         source: :pins
