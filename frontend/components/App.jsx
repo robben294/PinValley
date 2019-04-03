@@ -7,6 +7,7 @@ import Modal from './modal/modal';
 import EditProfileForm from './profile/edit_profile_form';
 import BoardIndex from './boards/board_index';
 import BoardShow from './boards/board_show';
+import CreatePinForm from './pins/create_pin_form';
 
 import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_utils';
@@ -24,6 +25,7 @@ const App = () => {
             <AuthRoute exact path='/' component={GreetingLogin} />
             <ProtectedRoute path='/boards/:boardId' component={BoardShow} />
             <ProtectedRoute path='/profile' component={BoardIndex} />
+            <ProtectedRoute path='/pin/new' component={CreatePinForm} />
         </Switch>
     </div>
 )};

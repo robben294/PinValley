@@ -4,7 +4,7 @@ class Api::PinsController < ApplicationController
         if @pin.save
             render :show
         else
-            render json: @pin.errors.full_messages, status: 401
+            render json: @pin.errors.full_messages, status: 422
         end
     end
 
@@ -13,7 +13,7 @@ class Api::PinsController < ApplicationController
         if @pin.update_attributes(pin_params)
             render :show
         else
-            render json: @pin.errors.full_messages, status: 401
+            render json: @pin.errors.full_messages, status: 422
         end
     end
     
@@ -27,7 +27,7 @@ class Api::PinsController < ApplicationController
         if @pin
             render :show
         else
-            render json: ['Could not locate pin'], status: 400
+            render json: ['Could not locate pin'], status: 422
         end
     end
 
@@ -42,6 +42,6 @@ class Api::PinsController < ApplicationController
 
     private
     def pin_params
-        params.require(:pin).permit(:image_url, :website, :author_id, :title, :description)
+        params.require(:pin).permit(:photo, :website, :author_id, :title, :description)
     end
 end

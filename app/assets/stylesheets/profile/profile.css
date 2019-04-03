@@ -19,6 +19,10 @@
     margin: 5px;
 }
 
+i:focus {
+    outline: none !important; 
+} 
+
 .profile-icon .fas {
     background: rbg(240,240,240);
 }

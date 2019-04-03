@@ -55,7 +55,8 @@ class Profile extends React.Component {
                             <i className="fas fa-plus"></i>
                             <ProfileCreateDropdown 
                                 showDropdown={this.state.showDropdown}
-                                openModal={this.props.openModal}/>  
+                                openModal={this.props.openModal}
+                                push={this.props.history.push}/>  
                         </div>
                         <div onClick={this.redirectToEdit}>
                             <i className="fas fa-pen"></i>

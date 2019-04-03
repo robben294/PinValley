@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Dropdown = ({ showDropdown, openModal }) => {
+const Dropdown = ({ showDropdown, push, openModal }) => {
     return (
         <div>
             {
@@ -14,7 +14,9 @@ const Dropdown = ({ showDropdown, openModal }) => {
                                 onClick={() => openModal({ modalType: 'createBoard'})}>
                                 <div>Create board</div>
                             </div>
-                            <div className="profile-dropdown-item">
+                            <div 
+                                className="profile-dropdown-item"
+                                onClick={() => push('/pin/new')}>
                                 <div>Create Pin</div>
                             </div>
                         </div>
