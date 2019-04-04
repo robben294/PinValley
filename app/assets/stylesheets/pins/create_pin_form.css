@@ -104,6 +104,10 @@
 .create-pin-form {
     display: flex;
     justify-content: space-around;
+    font-size: 16px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .create-pin-photo {
@@ -357,3 +361,111 @@
     background: none;
 }
 
+.create-new-board-button {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    margin-left: 20px;
+    padding-left: 12px;
+}
+
+.create-new-board-button:hover {
+    background: rgb(240,240,240);
+    cursor: pointer;
+}
+
+.create-new-board-button .fas {
+    padding: 0;
+    color: rgb(230, 0, 35);
+    font-size: 32px;
+    margin-right: 10px;
+}
+
+.create-new-board-button .fas:hover {
+    background: none;
+}
+
+.create-board-form-pin {
+    display: flex;
+    flex-direction: column;
+    width: 420px;
+    height: 370px;
+    padding-right: 20px;
+    margin-left: 20px;
+    margin-top: 50px;
+}
+
+.create-board-title-text-pin {
+    font-size: 21px;
+    padding: 12px 24px;
+}
+
+.create-board-name-pin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px;
+    border-top: 0.1px rgb(228, 227, 227) solid;
+    border-bottom: 0.1px rgb(228, 227, 227) solid
+}
+
+.create-board-text-pin {
+    font-size: 16px;
+    color: #333333;
+    font-weight: 400;
+    padding: 12px 4px;
+}
+
+.create-board-name-box-pin {
+    width: 356px;
+    height: 22px;
+    padding: 8px 14px;
+    border: 1px rgb(142,142,142) solid;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+}
+
+.create-board-buttons-pin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    margin-top: 250px;
+}
+
+.create-board-button-pin {
+    background-color: rgb(239, 239, 239);
+    color: #8E8E8E;
+    font-size: 16px;
+    font-weight: 700;
+    min-height: 20px;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-left: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.inactive {
+    cursor: default;
+}
+
+.active {
+    cursor: pointer;
+    background: #E60032;
+    color: white;
+}
+
+.active:hover {
+    background: rgb(165, 1, 36);
+}
+
+.create-board-cancel-button-pin {
+    color: #333333;
+}
+
+.create-board-cancel-button-pin:hover {
+    background: #ddd;
+}

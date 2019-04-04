@@ -105,9 +105,9 @@ class CreatePinForm extends React.Component {
         const wrappedBoards = Object.values(boards).map(board => {
             return (
                 <div className='create-pin-board-title' onClick={this.hideBoards} key={board.id}>
-                    <div className='create-pin-board-title-text'>
+                    <span className='create-pin-board-title-text'>
                         {board.title}
-                    </div>
+                    </span>
                     <div className='create-pin-board-title-select'>
                         Select
                     </div>
@@ -135,7 +135,7 @@ class CreatePinForm extends React.Component {
                         <div>
                             <i className="fas fa-plus-circle"></i>
                         </div>
-                        <div>
+                        <div className='create-new-board-button-text'>
                             Create Board
                         </div>
                     </div>
@@ -146,13 +146,13 @@ class CreatePinForm extends React.Component {
             pinForm = (
                 <div className="create-board-form-pin">
                     <div className='create-board-title-pin'>
-                        <div className='create-board-title-text-pin'>Create board</div>pin-
+                        <div className='create-board-title-text-pin'>Create board</div>
                     </div>
                     <div className='create-board-content-pin'>
                         <div className='create-board-name-pin'>
                             <div className='create-board-text-pin'>
                                 Name
-                        </div>
+                            </div>
                             <input className='create-board-name-box-pin'
                                 type="text"
                                 value={this.state.board_title}
@@ -245,7 +245,7 @@ class CreatePinForm extends React.Component {
                                         className='create-pin-file-input' />}
                                 </div>
                             </div>
-                        {pinForm}
+                            {pinForm}
                         </div>
                     </div>
                 </div>

@@ -2077,7 +2077,7 @@ function (_React$Component) {
           className: "create-pin-board-title",
           onClick: _this6.hideBoards,
           key: board.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "create-pin-board-title-text"
         }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "create-pin-board-title-select"
@@ -2104,7 +2104,9 @@ function (_React$Component) {
           onClick: this.openCreateBoard
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-plus-circle"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create Board")));
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "create-new-board-button-text"
+        }, "Create Board")));
       } else if (this.state.createBoard) {
         pinForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "create-board-form-pin"
@@ -2112,7 +2114,7 @@ function (_React$Component) {
           className: "create-board-title-pin"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "create-board-title-text-pin"
-        }, "Create board"), "pin-"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Create board")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "create-board-content-pin"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "create-board-name-pin"
