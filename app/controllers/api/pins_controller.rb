@@ -4,10 +4,10 @@ class Api::PinsController < ApplicationController
         @pin_board = @pin.pin_boards.new(pin_board_params) #Using pin's association to create a pin_board
         #when save one of them, both of them being saved.
         #Not passing current_user any more, and don't need to create pin_board from pinboard controller
-        if @pin_board.save
+        if @pin.save
             render :show
         else
-            render json: @pin_board.errors.full_messages.concat(@pin.errors.full_messages), status: 422
+            render json: {pin_board: @pin_board.errors.full_messages, pin: @pin.errors.full_messages}, status: 422
         end
     end
 
@@ -49,6 +49,6 @@ class Api::PinsController < ApplicationController
     end
 
     def pin_board_params
-        parmas.require(:pin_board).permit(:board_id, :description)
+        params.require(:pin_board).permit(:board_id, :description)
     end
 end

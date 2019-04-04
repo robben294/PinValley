@@ -60,6 +60,7 @@
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    height: 41px;
 }
 
 .create-pin-save {
@@ -266,3 +267,93 @@
 .create-pin-website input {
     margin-top: 200px;
 }
+
+.create-pin-board-titles {
+    display: flex;
+    flex-direction: column;
+    width: 420px;
+    height: 370px;
+    padding-right: 20px;
+    margin-left: 20px;
+    margin-top: 50px;
+    overflow: auto;
+    border-top: 1px solid rgb(216, 216, 216);
+    border-bottom: 1px solid rgb(216, 216, 216);
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.create-pin-dropdown-head {
+    font-size: 14px;
+    letter-spacing: -0.4px;
+    -webkit-font-smoothing: antialiased;
+    color: rgb(51,51,51);
+    font-weight: 400;
+    padding: 6px 24px;
+    border-radius: 8px;
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.create-pin-board-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 412px;
+    height: 36px;
+    padding: 12px 24px;
+    vertical-align: center;
+}
+
+.create-pin-board-title:hover {
+    background: rgb(240,240,240);
+    cursor: pointer;
+}
+
+.create-pin-board-title-select{
+    display: none;
+    background-color: #E60032;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-left: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.create-pin-board-title:hover .create-pin-board-title-select{
+    display: inline-block;
+}
+
+.create-pin-board-title-text {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.create-pin-dropdown {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    cursor: pointer;
+    border: 1px solid rgb(142,142,142);
+    letter-spacing: -0.4px;
+    -webkit-font-smoothing: antialiased;
+    color: rgb(51,51,51);
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px 0 10px 14px;
+    border-radius: 8px;
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.create-pin-dropdown .fas {
+    color: black;
+    padding: 0;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.create-pin-dropdown .fas:hover {
+    background: none;
+}
+

@@ -1,6 +1,6 @@
 class Api::BoardsController < ApplicationController
     def create
-        @board = Board.new(board_params)
+        @board = current_user.created_boards.new(board_params)
         if @board.save
             render :show
         else
@@ -42,6 +42,6 @@ class Api::BoardsController < ApplicationController
 
     private
     def board_params
-        params.require(:board).permit(:title, :creator_id, :description)
+        params.require(:board).permit(:title, :description)
     end
 end

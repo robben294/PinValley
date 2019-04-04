@@ -9,7 +9,6 @@ class CreateBoardForm extends React.Component {
         super(props);
         this.state = {
             title: '',
-            creator_id: props.creator_id,
         };
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
