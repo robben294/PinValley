@@ -2526,9 +2526,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -2546,9 +2546,13 @@ function (_React$Component) {
   _inherits(PinShow, _React$Component);
 
   function PinShow(props) {
+    var _this;
+
     _classCallCheck(this, PinShow);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(PinShow).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PinShow).call(this, props));
+    _this.handleBack = _this.handleBack.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(PinShow, [{
@@ -2556,6 +2560,11 @@ function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchBoards();
       this.props.fetchPin(this.props.match.params.pinId);
+    }
+  }, {
+    key: "handleBack",
+    value: function handleBack(e) {
+      this.props.history.goBack();
     }
   }, {
     key: "render",
@@ -2566,7 +2575,8 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show-back"
+        className: "pin-show-back",
+        onClick: this.handleBack
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-chevron-left"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2578,16 +2588,39 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-icon"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-ellipsis-h"
+        className: "fas fa-pen"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-icon"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-pen"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, boards ? boards[0].title : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-ellipsis-h"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-nav-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-nav-choose-board"
+      }, boards ? boards[0].title : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-chevron-down"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Save"))), pin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, pin.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, pin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: pin.photoUrl
-      }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, pin.website), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, pin.description)) : null));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-nav-save"
+      }, "Save"))), pin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-title"
+      }, pin.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: pin.website,
+        className: "pin-show-img-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-img"
+      }, pin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: pin.photoUrl,
+        alt: pin.website
+      }) : null)), pin.website ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: pin.website,
+        className: "pin-show-website"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-link"
+      }), pin.website) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-description"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, pin.description))) : null));
     }
   }]);
 
