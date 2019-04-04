@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import Navbar from '../nav_bar/nav_bar';
 import ProfileCreateDropdown from '../dropdown/profile_create_dropdown';
 import BoardIndex from '../boards/board_index';
 
@@ -48,7 +47,6 @@ class Profile extends React.Component {
         
         return (
             <div>
-                <Navbar />
                 <div className='profile'>
                     <div className='profile-icon'>
                         <div id="profile-dropdown" tabIndex='1' onFocus={this.showDropdown} onBlur={this.closeDropdown}>

@@ -20,7 +20,7 @@ class PinShow extends React.Component {
 
         const {pin, boards} = this.props;
         return (
-            <div>
+            <div className='pin-show-page'>
                 <div className='pin-show-back'>
                     <i className="fas fa-chevron-left"></i>
                 </div>

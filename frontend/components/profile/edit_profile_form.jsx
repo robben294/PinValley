@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../nav_bar/nav_bar';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import { updateUser } from '../../action/user_actions';
@@ -49,7 +48,6 @@ class EditProfileForm extends React.Component {
     render() {
         return (
             <div>
-                <Navbar />
                 <div className='edit-profile'>
                     <div className='edit-sidebar'>
                         <div className='edit-sidebar-profile'>

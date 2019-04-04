@@ -8,7 +8,6 @@ class BoardIndexItem extends React.Component{
     }
 
     redirectToBoardShow(e) {
-        // debugger
         this.props.push(`/boards/${this.props.board.id}`);
     }
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../../action/session_actions';
 import { openModal } from '../../action/modal_actions';
-import Navbar from '../nav_bar/nav_bar';
 
 class Greeting extends React.Component {
 
@@ -20,7 +19,7 @@ class Greeting extends React.Component {
         const currentUser = this.props.currentUser || {}; 
         // If we don't have a current_user, why is it going to render this component?
         return (
-            <Navbar />
+            null
         )
     }
 }

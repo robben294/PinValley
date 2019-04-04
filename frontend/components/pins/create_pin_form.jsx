@@ -5,12 +5,11 @@ import { withRouter } from 'react-router-dom';
 import { createPin } from '../../action/pin_actions';
 import { fetchBoards } from '../../action/board_actions';
 import { createBoard } from '../../action/board_actions';
-import Navbar from '../nav_bar/nav_bar';
+
 
 class CreatePinForm extends React.Component {
 
     constructor(props) {
-        debugger
         super(props);
         this.state = {
             title: '',
@@ -226,7 +225,6 @@ class CreatePinForm extends React.Component {
 
         return (
             <div>
-                <Navbar />
                 <div className='create-pin'>
                     <div className='create-pin-back' onClick={this.redirectToProfile}>
                         <i className="fas fa-chevron-left"></i>

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 
 import { fetchBoard } from '../../action/board_actions';
-import Navbar from '../nav_bar/nav_bar';
 import BoardShowPlusDropdown from '../dropdown/board_show_plus_dropdown';
 import PinIndex from '../pins/pin_index';
 import PinCreateForm from '../pins/create_pin_form';
@@ -48,8 +47,6 @@ class BoardShow extends React.Component {
         const {title, description, pin_ids} = this.props.board || {};
         return (
         <div>
-                
-            <Navbar />
             <div className='board-show'>
                 <div className='board-show-icons'>
                     <div className='board-show-icons-left'>
