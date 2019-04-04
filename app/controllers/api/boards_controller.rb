@@ -18,7 +18,7 @@ class Api::BoardsController < ApplicationController
     end
 
     def index
-        @boards = Board.where(creator_id: current_user.id).includes(:pins)
+        @boards = Board.where(creator_id: current_user.id).includes(pins: { photo_attachment: :blob })
         render :index
     end
 

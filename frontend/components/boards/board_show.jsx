@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import { fetchBoard } from '../../action/board_actions';
 import Navbar from '../nav_bar/nav_bar';
 import BoardShowPlusDropdown from '../dropdown/board_show_plus_dropdown';
+import PinIndex from '../pins/pin_index';
+import PinCreateForm from '../pins/create_pin_form';
 import { openModal } from '../../action/modal_actions';
 
 class BoardShow extends React.Component {
@@ -42,8 +44,16 @@ class BoardShow extends React.Component {
         this.props.history.push('/profile');
     }
 
+    // redirectToCreatePin(e) {
+    //     debugger
+    //     <Redirect to={{
+    //         pathname: '/pin/new',
+    //         state: { board: this.props.board },
+    //     }} />
+    // }
+
     render() {
-        const {title, description} = this.props.board || {};
+        const {title, description, pin_ids} = this.props.board || {};
         return (
         <div>
                 
@@ -57,7 +67,8 @@ class BoardShow extends React.Component {
                             onBlur={this.closeDropdown}>
                             <i className="fas fa-plus"></i>
                             <BoardShowPlusDropdown
-                                showDropdown={this.state.showDropdown}/>
+                                showDropdown={this.state.showDropdown}
+                                push={this.props.history.push}/>
                         </div>
                             <div onClick={() => this.props.openModal({
                                 modalType: 'editBoard',
@@ -78,7 +89,7 @@ class BoardShow extends React.Component {
                         {title}
                     </div>
                     <div className='board-show-subtext'>
-                        0 Pins
+                        {pin_ids ? pin_ids.length : 0} Pins
                     </div>
                     <div className='board-show-subtext'>
                         {description}
@@ -89,12 +100,12 @@ class BoardShow extends React.Component {
                     <div className='board-show-pins'>
                         <div className='board-show-pins-nav'>
                             Your Pins
-                </div>
-                        <div className='board-show-pins-content'>
-
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='board-show-pins-content'>
+                <PinIndex />
             </div>
         </div>
         )

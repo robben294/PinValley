@@ -1,0 +1,94 @@
+.pins {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+
+.pin-cover {
+    position: relative;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.pin-cover:hover {
+    background-color: rgb(240,240,240);
+    cursor: zoom-in;
+}
+
+.pin-item {
+    padding: 0 12px 20px;
+}
+
+.pin-cover > img{
+    width: 236px;
+    border-radius: 12px;
+}
+
+.pin-cover .fa-pen {
+    display: none;
+    font-size: 20px;
+    color: black;
+    padding: 12px;
+    top: 37px;
+    left: 37px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: white;
+}
+
+.pin-cover:hover .fa-pen {
+    display: inline-block;
+}
+
+.pin-save-container {
+    display: none;
+    width: 100%;
+    height: 41px;
+}
+.pin-cover:hover .pin-save-container {
+    display: inline;
+}
+
+.pin-save {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    right: 8px;
+    background-color: #E60032;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    min-height: 20px;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-left: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.pin-save:hover {
+    background: rgb(165, 1, 36)
+}
+
+
+.pin-save-pin .fas {
+    color: white;
+    font-size: 20px;
+    padding: 0;
+    margin-right: 4px;
+}
+
+.pin-save-text {
+    font-size: 16px;
+    letter-spacing: -0.4px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.pin-save-pin .fas:hover {
+    background: rgb(165, 1, 36)
+}

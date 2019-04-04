@@ -650,7 +650,7 @@ function (_React$Component) {
         className: "board-item-title"
       }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item-number-pins"
-      }, "0 Pins")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, board.pin_ids.length, " Pins")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick(e) {
           return e.stopPropagation();
         }
@@ -691,7 +691,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _action_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../action/board_actions */ "./frontend/action/board_actions.js");
 /* harmony import */ var _nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../nav_bar/nav_bar */ "./frontend/components/nav_bar/nav_bar.jsx");
 /* harmony import */ var _dropdown_board_show_plus_dropdown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dropdown/board_show_plus_dropdown */ "./frontend/components/dropdown/board_show_plus_dropdown.jsx");
-/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
+/* harmony import */ var _pins_pin_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pins/pin_index */ "./frontend/components/pins/pin_index.jsx");
+/* harmony import */ var _pins_create_pin_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pins/create_pin_form */ "./frontend/components/pins/create_pin_form.jsx");
+/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -709,6 +711,8 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -764,7 +768,14 @@ function (_React$Component) {
     value: function redirectToProfile(e) {
       e.preventDefault();
       this.props.history.push('/profile');
-    }
+    } // redirectToCreatePin(e) {
+    //     debugger
+    //     <Redirect to={{
+    //         pathname: '/pin/new',
+    //         state: { board: this.props.board },
+    //     }} />
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -772,7 +783,8 @@ function (_React$Component) {
 
       var _ref = this.props.board || {},
           title = _ref.title,
-          description = _ref.description;
+          description = _ref.description,
+          pin_ids = _ref.pin_ids;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_nav_bar__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show"
@@ -788,7 +800,8 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-plus"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_board_show_plus_dropdown__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        showDropdown: this.state.showDropdown
+        showDropdown: this.state.showDropdown,
+        push: this.props.history.push
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick() {
           return _this2.props.openModal({
@@ -809,7 +822,7 @@ function (_React$Component) {
         className: "board-show-title"
       }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-subtext"
-      }, "0 Pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, pin_ids ? pin_ids.length : 0, " Pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-subtext"
       }, description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-main"
@@ -817,9 +830,9 @@ function (_React$Component) {
         className: "board-show-pins"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-pins-nav"
-      }, "Your Pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Your Pins")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-pins-content"
-      })))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_pin_index__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
     }
   }]);
 
@@ -839,7 +852,7 @@ var mdp = function mdp(dispatch) {
       return dispatch(Object(_action_board_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBoard"])(boardId));
     },
     openModal: function openModal(modal) {
-      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_6__["openModal"])(modal));
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_8__["openModal"])(modal));
     }
   };
 };
@@ -1197,7 +1210,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Dropdown = function Dropdown(_ref) {
-  var showDropdown = _ref.showDropdown;
+  var showDropdown = _ref.showDropdown,
+      push = _ref.push;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-show-dropdown-content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1207,7 +1221,10 @@ var Dropdown = function Dropdown(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-show-arrow-up-border"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-show-dropdown-item"
+    className: "board-show-dropdown-item",
+    onClick: function onClick() {
+      return push('/pin/new');
+    }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create Pin"))) : null);
 };
 
@@ -2018,7 +2035,7 @@ function (_React$Component) {
       formData.append('pin[website]', this.state.website);
       formData.append('pin_board[board_id]', this.state.boardId);
       this.props.createPin(formData).then(function () {
-        return _this4.props.history.push('/profile');
+        return _this4.props.history.push("/boards/".concat(_this4.state.boardId));
       });
     }
   }, {
@@ -2245,6 +2262,182 @@ var mdp = function mdp(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(CreatePinForm)));
+
+/***/ }),
+
+/***/ "./frontend/components/pins/pin_index.jsx":
+/*!************************************************!*\
+  !*** ./frontend/components/pins/pin_index.jsx ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _pin_index_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pin_index_item */ "./frontend/components/pins/pin_index_item.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var PinIndex =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PinIndex, _React$Component);
+
+  function PinIndex() {
+    _classCallCheck(this, PinIndex);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(PinIndex).apply(this, arguments));
+  }
+
+  _createClass(PinIndex, [{
+    key: "render",
+    value: function render() {
+      if (this.props.location.pathname === '/profile/edit') {
+        return null;
+      }
+
+      var pins = this.props.pins.map(function (pin) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          pin: pin,
+          key: pin.id
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pins"
+      }, pins));
+    }
+  }]);
+
+  return PinIndex;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var msp = function msp(state) {
+  return {
+    pins: Object.values(state.entities.pins)
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(PinIndex)));
+
+/***/ }),
+
+/***/ "./frontend/components/pins/pin_index_item.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/pins/pin_index_item.jsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var PinIndexItem =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PinIndexItem, _React$Component);
+
+  function PinIndexItem(props) {
+    _classCallCheck(this, PinIndexItem);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(PinIndexItem).call(this, props));
+  }
+
+  _createClass(PinIndexItem, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var pin = this.props.pin;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-cover"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: pin.photoUrl
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick() {
+          return _this.props.openModal({
+            modalType: 'editPin',
+            modalProps: pin
+          });
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-pen"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-save-container",
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-save"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-save-pin"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-thumbtack"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-save-text"
+      }, "Save")))));
+    }
+  }]);
+
+  return PinIndexItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (PinIndexItem);
 
 /***/ }),
 

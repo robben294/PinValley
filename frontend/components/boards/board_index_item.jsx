@@ -24,8 +24,7 @@ class BoardIndexItem extends React.Component{
                             {board.title}
                         </div>
                         <div className='board-item-number-pins'>
-                            {/* {board.pinsId.length} */}
-                            0 Pins
+                            {board.pin_ids.length} Pins
                         </div>
                     </div>
                     <div onClick={e => e.stopPropagation()}>

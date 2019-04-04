@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Dropdown = ({ showDropdown }) => {
+const Dropdown = ({ showDropdown, push }) => {
     return (
         <div>
             {
@@ -10,7 +10,7 @@ const Dropdown = ({ showDropdown }) => {
                             <div className="board-show-arrow"> </div>
                             <div className="board-show-arrow-up"></div>
                             <div className="board-show-arrow-up-border"></div>
-                            <div className="board-show-dropdown-item">
+                            <div className="board-show-dropdown-item" onClick={() => push('/pin/new')}>
                                 <div>Create Pin</div>
                             </div>
                         </div>
