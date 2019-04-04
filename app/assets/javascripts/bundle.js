@@ -773,14 +773,7 @@ function (_React$Component) {
     value: function redirectToProfile(e) {
       e.preventDefault();
       this.props.history.push('/profile');
-    } // redirectToCreatePin(e) {
-    //     debugger
-    //     <Redirect to={{
-    //         pathname: '/pin/new',
-    //         state: { board: this.props.board },
-    //     }} />
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -806,7 +799,7 @@ function (_React$Component) {
         className: "fas fa-plus"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_board_show_plus_dropdown__WEBPACK_IMPORTED_MODULE_5__["default"], {
         showDropdown: this.state.showDropdown,
-        push: this.props.history.push
+        board: this.props.board
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick() {
           return _this2.props.openModal({
@@ -1212,26 +1205,80 @@ var mdp = function mdp(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
-var Dropdown = function Dropdown(_ref) {
-  var showDropdown = _ref.showDropdown,
-      push = _ref.push;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-show-dropdown-content"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-show-arrow"
-  }, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-show-arrow-up"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-show-arrow-up-border"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-show-dropdown-item",
-    onClick: function onClick() {
-      return push('/pin/new');
+
+
+var Dropdown =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Dropdown, _React$Component);
+
+  function Dropdown(props) {
+    var _this;
+
+    _classCallCheck(this, Dropdown);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Dropdown).call(this, props));
+    _this.state = {
+      createPin: false
+    };
+    _this.handleRedirect = _this.handleRedirect.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Dropdown, [{
+    key: "handleRedirect",
+    value: function handleRedirect(e) {
+      this.setState({
+        createPin: true
+      });
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create Pin"))) : null);
-};
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show-dropdown-content"
+      }, this.state.createPin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+        to: {
+          pathname: '/pin/new',
+          state: {
+            board: this.props.board
+          }
+        }
+      }) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show-arrow"
+      }, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show-arrow-up"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show-arrow-up-border"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show-dropdown-item",
+        onClick: this.handleRedirect
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Create Pin"))) : null);
+    }
+  }]);
+
+  return Dropdown;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Dropdown);
 
@@ -1954,6 +2001,7 @@ function (_React$Component) {
 
     _classCallCheck(this, CreatePinForm);
 
+    debugger;
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CreatePinForm).call(this, props));
     _this.state = {
       title: '',
@@ -1982,6 +2030,12 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBoards();
+
+      if (this.props.location.state) {
+        this.setState({
+          boardId: this.props.location.state.board.id
+        });
+      }
     }
   }, {
     key: "handleFile",

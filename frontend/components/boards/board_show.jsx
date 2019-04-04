@@ -44,14 +44,6 @@ class BoardShow extends React.Component {
         this.props.history.push('/profile');
     }
 
-    // redirectToCreatePin(e) {
-    //     debugger
-    //     <Redirect to={{
-    //         pathname: '/pin/new',
-    //         state: { board: this.props.board },
-    //     }} />
-    // }
-
     render() {
         const {title, description, pin_ids} = this.props.board || {};
         return (
@@ -67,8 +59,8 @@ class BoardShow extends React.Component {
                             onBlur={this.closeDropdown}>
                             <i className="fas fa-plus"></i>
                             <BoardShowPlusDropdown
-                                showDropdown={this.state.showDropdown}
-                                push={this.props.history.push}/>
+                                showDropdown={this.state.showDropdown} 
+                                board={this.props.board}/>
                         </div>
                             <div onClick={() => this.props.openModal({
                                 modalType: 'editBoard',

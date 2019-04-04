@@ -10,6 +10,7 @@ import Navbar from '../nav_bar/nav_bar';
 class CreatePinForm extends React.Component {
 
     constructor(props) {
+        debugger
         super(props);
         this.state = {
             title: '',
@@ -35,6 +36,9 @@ class CreatePinForm extends React.Component {
 
     componentDidMount() {
         this.props.fetchBoards();
+        if (this.props.location.state) {
+            this.setState({ boardId: this.props.location.state.board.id });
+        }
     }
 
     handleFile(e) {
