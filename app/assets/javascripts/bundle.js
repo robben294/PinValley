@@ -1952,6 +1952,7 @@ function (_React$Component) {
     _this.hideBoards = _this.hideBoards.bind(_assertThisInitialized(_this));
     _this.handleCreateBoard = _this.handleCreateBoard.bind(_assertThisInitialized(_this));
     _this.openCreateBoard = _this.openCreateBoard.bind(_assertThisInitialized(_this));
+    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2062,6 +2063,16 @@ function (_React$Component) {
       });
       this.setState({
         boardId: e._targetInst._currentElement.key
+      });
+    }
+  }, {
+    key: "handleClose",
+    value: function handleClose(e) {
+      this.setState({
+        renderBoards: true
+      });
+      this.setState({
+        createBoard: false
       });
     }
   }, {

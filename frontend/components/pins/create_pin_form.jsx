@@ -30,6 +30,7 @@ class CreatePinForm extends React.Component {
         this.hideBoards = this.hideBoards.bind(this);
         this.handleCreateBoard = this.handleCreateBoard.bind(this);
         this.openCreateBoard = this.openCreateBoard.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     componentDidMount() {
@@ -97,6 +98,11 @@ class CreatePinForm extends React.Component {
     hideBoards(e) {
         this.setState({renderBoards: false});
         this.setState({boardId: e._targetInst._currentElement.key});
+    }
+
+    handleClose(e) {
+        this.setState({ renderBoards: true });
+        this.setState({ createBoard: false });
     }
 
     render() {
