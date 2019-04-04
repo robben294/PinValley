@@ -9,7 +9,7 @@ class PinIndexItem extends React.Component {
     render() {
         const { pin } = this.props;
         return (
-            <div className='pin-item'>
+            <div className='pin-item' onClick={() => this.props.push(`/pin/${pin.id}`)}>
                 <div className='pin-cover'>
                     <img src={pin.photoUrl}/>
 

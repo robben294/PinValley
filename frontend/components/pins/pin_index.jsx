@@ -13,7 +13,7 @@ class PinIndex extends React.Component {
 
         const pins = this.props.pins.map(pin => {
             return (
-                <PinIndexItem pin={pin} key={pin.id}/>
+                <PinIndexItem pin={pin} key={pin.id} push={this.props.history.push}/>
             )
         });
         return (

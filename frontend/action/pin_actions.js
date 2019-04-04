@@ -29,7 +29,7 @@ export const fetchPins = () => dispatch => {
     return PinApiUtil.fetchPins().then((pins) => dispatch(receivePins(pins)));
 };
 
-export const fetchPin = (inId) => dispatch => {
+export const fetchPin = (pinId) => dispatch => {
     return PinApiUtil.fetchPin(pinId).then(pin => dispatch(receivePin(pin)));
 };
 
