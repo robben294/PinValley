@@ -7,15 +7,15 @@ export const REMOVE_BOARD = 'REMOVE_BOARD';
 export const receiveBoards = (boards) => {
     return {
         type: RECEIVE_BOARDS,
-        boards
+        boards,
     };
 };
 
-export const receiveBoard = ({board, pins}) => {
+export const receiveBoard = ({board, pin}) => {
     return {
         type: RECEIVE_BOARD,
         board,
-        pins
+        pin
     };
 };
 

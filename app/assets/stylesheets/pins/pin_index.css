@@ -15,6 +15,7 @@
 .pin-cover:hover {
     background-color: rgb(240,240,240);
     cursor: zoom-in;
+    transition: background-color 0.1s ease 0.01s;
 }
 
 .pin-item {

@@ -3,7 +3,7 @@ import {
     RECEIVE_PINS,
     REMOVE_PIN
 } from '../action/pin_actions';
-import { RECEIVE_BOARD } from '../action/board_actions';
+import { RECEIVE_BOARD, RECEIVE_BOARDS } from '../action/board_actions';
 
 const pinsReducer = (state = {}, action) => {
     const oldState = Object.freeze(state);
@@ -16,6 +16,8 @@ const pinsReducer = (state = {}, action) => {
         }
         case RECEIVE_BOARD: 
             return Object.assign({}, oldState, action.pins);
+        // case RECEIVE_BOARDS:
+        //     return Object.assign({}, oldState, action.pins);
         case REMOVE_PIN: {
             let newState = Object.assign({}, oldState);
             delete newState[action.pinId];

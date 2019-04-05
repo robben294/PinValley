@@ -19,6 +19,23 @@
     font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.board-cover {
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+    background: #EFEFEF;
+}
+
+.board-cover > img {
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+}
+
+.board-item:hover .board-cover {
+    background: rgb(222, 222, 222);
+}
+
 .board-item:hover {
     background-color: rgb(240,240,240);
     cursor: pointer;
@@ -30,6 +47,7 @@
 .board-item-header {
     display: flex;
     justify-content: space-between;
+    padding: 8px;
 }
 
 .board-item-text {

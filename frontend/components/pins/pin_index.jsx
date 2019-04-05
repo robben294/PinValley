@@ -11,24 +11,31 @@ class PinIndex extends React.Component {
             return null;
         }
 
-        const pins = this.props.pins.map(pin => {
+        if (!this.props.pins) {
+            return null;
+        }
+
+        const boardPins = this.props.pins.filter(pin => this.props.board.pin_ids.includes(pin.id));
+
+        const wrappedPins = boardPins.map((pin,idx) => {
             return (
-                <PinIndexItem pin={pin} key={pin.id} push={this.props.history.push}/>
+                <PinIndexItem pin={pin} key={idx} push={this.props.history.push}/>
             )
         });
         return (
             <div>
                 <div className='pins'>
-                    {pins}
+                    {wrappedPins}
                 </div>
             </div>
         );
     }
 }
 
-const msp = state => {
+const msp = (state, ownProps) => {
     return {
         pins: Object.values(state.entities.pins),
+        board: state.entities.boards[ownProps.match.params.boardId]
     };
 };
 
