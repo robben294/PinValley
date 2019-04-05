@@ -18,7 +18,7 @@ class BoardIndexItem extends React.Component{
     }
 
     render() {
-
+        debugger
         const { board, pins } = this.props;
         return (
             <div className='board-item' onClick={this.redirectToBoardShow}>
@@ -49,9 +49,9 @@ class BoardIndexItem extends React.Component{
 }
 
 const msp = state => {
-
+    debugger
     return {
-        pins: Object.values(state.entities.pins),
+        pins: state.entities.pins,
     }
 };
 

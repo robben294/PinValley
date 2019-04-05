@@ -119,11 +119,11 @@ var receiveBoards = function receiveBoards(boards) {
 };
 var receiveBoard = function receiveBoard(_ref) {
   var board = _ref.board,
-      pin = _ref.pin;
+      pins = _ref.pins;
   return {
     type: RECEIVE_BOARD,
     board: board,
-    pin: pin
+    pins: pins
   };
 };
 var removeBoard = function removeBoard(boardId) {
@@ -659,6 +659,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      debugger;
       var _this$props = this.props,
           board = _this$props.board,
           pins = _this$props.pins;
@@ -698,8 +699,9 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var msp = function msp(state) {
+  debugger;
   return {
-    pins: Object.values(state.entities.pins)
+    pins: state.entities.pins
   };
 };
 

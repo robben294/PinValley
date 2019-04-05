@@ -11,11 +11,11 @@ export const receiveBoards = (boards) => {
     };
 };
 
-export const receiveBoard = ({board, pin}) => {
+export const receiveBoard = ({board, pins}) => {
     return {
         type: RECEIVE_BOARD,
         board,
-        pin
+        pins
     };
 };
 
