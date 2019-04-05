@@ -111,15 +111,18 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_BOARD = 'RECEIVE_BOARD';
 var RECEIVE_BOARDS = 'RECEIVE_BOARDS';
 var REMOVE_BOARD = 'REMOVE_BOARD';
-var receiveBoards = function receiveBoards(boards) {
+var receiveBoards = function receiveBoards(_ref) {
+  var boards = _ref.boards,
+      pins = _ref.pins;
   return {
     type: RECEIVE_BOARDS,
-    boards: boards
+    boards: boards,
+    pins: pins
   };
 };
-var receiveBoard = function receiveBoard(_ref) {
-  var board = _ref.board,
-      pins = _ref.pins;
+var receiveBoard = function receiveBoard(_ref2) {
+  var board = _ref2.board,
+      pins = _ref2.pins;
   return {
     type: RECEIVE_BOARD,
     board: board,
@@ -540,7 +543,6 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBoards();
-      this.props.fetchPins();
     }
   }, {
     key: "render",
@@ -551,6 +553,7 @@ function (_React$Component) {
         return null;
       }
 
+      debugger;
       var boards = this.props.boards.map(function (board) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_7__["default"], {
           board: board,
@@ -662,6 +665,7 @@ function (_React$Component) {
       var _this$props = this.props,
           board = _this$props.board,
           pins = _this$props.pins;
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item",
         onClick: this.redirectToBoardShow
@@ -1721,6 +1725,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_signup_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../session/signup_form_container */ "./frontend/components/session/signup_form_container.jsx");
 /* harmony import */ var _boards_create_board_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../boards/create_board_form */ "./frontend/components/boards/create_board_form.jsx");
 /* harmony import */ var _boards_edit_board_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../boards/edit_board_form */ "./frontend/components/boards/edit_board_form.jsx");
+/* harmony import */ var _pins_edit_pin_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pins/edit_pin_form */ "./frontend/components/pins/edit_pin_form.jsx");
+
 
 
 
@@ -1768,6 +1774,14 @@ var Modal = function Modal(_ref) {
     case 'editBoard':
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_edit_board_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
         board: modal.modalProps
+      });
+      backgroundClass = "boards-modal-background";
+      break;
+
+    case 'editPin':
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_edit_pin_form__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        pin: modal.modalProps.pin,
+        board: modal.modalProps.board
       });
       backgroundClass = "boards-modal-background";
       break;
@@ -2353,6 +2367,179 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/pins/edit_pin_form.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/pins/edit_pin_form.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
+/* harmony import */ var _action_pin_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/pin_actions */ "./frontend/action/pin_actions.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var EditPinForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(EditPinForm, _React$Component);
+
+  function EditPinForm(props) {
+    var _this;
+
+    _classCallCheck(this, EditPinForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditPinForm).call(this, props));
+    _this.state = _this.props.pin;
+    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(EditPinForm, [{
+    key: "handleInput",
+    value: function handleInput(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+    }
+  }, {
+    key: "handleClose",
+    value: function handleClose(e) {
+      e.preventDefault();
+      this.props.closeModal();
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      e.preventDefault();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-title-text"
+      }, "Edit this Pin"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-close",
+        onClick: this.handleClose
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-times"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-content-text"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-select-board"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-name"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-text"
+      }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "edit-pin-name-box",
+        type: "text",
+        value: this.state.title || "",
+        onChange: this.handleInput('title')
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-description"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-text"
+      }, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "edit-pin-description-box",
+        type: "text",
+        value: this.state.description || "",
+        onChange: this.handleInput('description'),
+        placeholder: "Tell us about this Pin..."
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-website"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-text"
+      }, "Website"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "edit-pin-website-box",
+        type: "text",
+        value: this.state.website || "",
+        onChange: this.handleInput('website')
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-img"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.props.pin.photoUrl
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-buttons"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-buttons-left"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-button edit-pin-delete-button",
+        onClick: this.handleDelete
+      }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-buttons-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-button edit-pin-cancel-button",
+        onClick: this.handleClose
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin-button edit-pin-save-button",
+        onClick: this.handleSubmit
+      }, "Save"))));
+    }
+  }]);
+
+  return EditPinForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var msp = function msp(state, ownProps) {
+  return {};
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    closeModal: function closeModal() {
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(EditPinForm)));
+
+/***/ }),
+
 /***/ "./frontend/components/pins/pin_index.jsx":
 /*!************************************************!*\
   !*** ./frontend/components/pins/pin_index.jsx ***!
@@ -2368,6 +2555,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _pin_index_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pin_index_item */ "./frontend/components/pins/pin_index_item.jsx");
+/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2385,6 +2573,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2423,7 +2612,8 @@ function (_React$Component) {
           pin: pin,
           board: _this.props.board,
           key: idx,
-          push: _this.props.history.push
+          push: _this.props.history.push,
+          openModal: _this.props.openModal
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2443,7 +2633,11 @@ var msp = function msp(state, ownProps) {
 };
 
 var mdp = function mdp(dispatch) {
-  return {};
+  return {
+    openModal: function openModal(modal) {
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])(modal));
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(PinIndex)));
@@ -3677,9 +3871,8 @@ var pinsReducer = function pinsReducer() {
       }
 
     case _action_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
+    case _action_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARDS"]:
       return Object.assign({}, oldState, action.pins);
-    // case RECEIVE_BOARDS:
-    //     return Object.assign({}, oldState, action.pins);
 
     case _action_pin_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PIN"]:
       {

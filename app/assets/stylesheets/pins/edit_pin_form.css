@@ -1,0 +1,181 @@
+.edit-pin-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: white;
+    display: flex;
+    flex-direction: column;
+    max-width: 772px;
+    width: 84%;
+    color: rgb(33, 25, 34);
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+.edit-pin-title {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    border-bottom: 0.1px rgb(242, 242, 242) solid;
+}
+
+.edit-pin-title-text {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 18px 16px;
+}
+
+.edit-pin-close {
+    position: absolute;
+    right: 10px;
+    padding: 8px;
+    margin: 0;
+}
+
+.edit-pin-close i.fas:hover{
+    background: white;
+}
+
+.edit-pin-close .fas {
+    font-size: 30px;
+
+}
+
+.edit-pin-close .fas:hover{
+    background: rgb(240, 240, 240);
+}
+
+.edit-pin-content {
+    display: flex;
+    border-bottom: 0.1px rgb(242, 242, 242) solid;
+}
+
+.edit-pin-img {
+    width: 33.3%;
+    padding: 12px 16px;
+
+}
+
+.edit-pin-img > img {
+    width: 236px;
+    border-radius: 8px;
+}
+
+.edit-pin-content-text {
+    width: 66.6%;
+}
+
+.edit-pin-name {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 0.1px rgb(242, 242, 242) solid
+}
+
+.edit-pin-text {
+    font-size: 14px;
+    color: #333333;
+    font-weight: 400;
+    padding: 8px 0;
+}
+
+.edit-pin-name-box {
+    height: 22px;
+    width: 63%;
+    padding: 8px 14px;
+    border: 1px rgb(142,142,142) solid;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+}
+
+.edit-pin-description {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 16px;
+    border-bottom: 0.1px rgb(242, 242, 242) solid
+}
+
+.edit-pin-description-box {
+    resize: none;
+    width: 63%;
+    height: 72px;
+    padding: 10px 14px;
+    border: 1px rgb(142,142,142) solid;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+}
+
+.edit-pin-website-box {
+    height: 22px;
+    width: 63%;
+    padding: 8px 14px;
+    border: 1px rgb(142,142,142) solid;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+}
+
+
+input::placeholder {
+  color: rgb(187, 186, 186);
+}
+
+
+.edit-pin-website {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 16px;
+    border-bottom: 0.1px rgb(242, 242, 242) solid
+}
+
+
+
+.edit-pin-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+}
+
+.edit-pin-buttons-right {
+    display: flex;
+}
+
+.edit-pin-button {
+    background-color: rgb(239, 239, 239);
+    color: #8E8E8E;
+    font-size: 16px;
+    font-weight: 700;
+    min-height: 20px;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-left: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.edit-pin-save-button {
+    cursor: pointer;
+    background: #E60032;
+    color: white;
+}
+
+.edit-pin-button:hover {
+    background: rgb(165, 1, 36);
+}
+
+.edit-pin-cancel-button, .edit-pin-delete-button {
+    color: #333333;
+}
+
+.edit-pin-cancel-button:hover, .edit-pin-delete-button:hover {
+    background: #ddd;
+}
