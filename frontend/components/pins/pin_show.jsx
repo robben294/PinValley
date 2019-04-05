@@ -4,6 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 
 import { fetchPin } from '../../action/pin_actions';
 import { fetchBoards } from '../../action/board_actions';
+import { openModal } from '../../action/modal_actions';
 
 class PinShow extends React.Component {
     constructor(props) {
@@ -22,17 +23,20 @@ class PinShow extends React.Component {
     }
 
     render() {
-
         const {pin, boards} = this.props;
         return (
-            <div className='pin-show-page' >
+            <div className='pin-show-page'>
                 <div className='pin-show-back' onClick={this.handleBack}>
                     <i className="fas fa-chevron-left"></i>
                 </div>
                 <div className='pin-show-main'>
                     <div className='pin-show-nav'>
                         <div className='pin-show-icons'> 
-                            <div className='pin-show-icon'>
+                            <div className='pin-show-icon' 
+                            onClick={() => this.props.openModal({
+                                modalType: 'editPin',
+                                modalProps: { pin }
+                            })}>
                                 <i className="fas fa-pen"></i>
                             </div>
                             <div className='pin-show-icon'>
@@ -91,6 +95,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => ({
     fetchPin: (pinId) => dispatch(fetchPin(pinId)),
     fetchBoards: () => dispatch(fetchBoards()),
+    openModal: (modal) => dispatch(openModal(modal)),
 });
 
 export default withRouter(connect(msp, mdp)(PinShow));
