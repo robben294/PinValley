@@ -19,7 +19,7 @@ class PinIndex extends React.Component {
 
         const wrappedPins = boardPins.map((pin,idx) => {
             return (
-                <PinIndexItem pin={pin} key={idx} push={this.props.history.push}/>
+                <PinIndexItem pin={pin} board={this.props.board} key={idx} push={this.props.history.push}/>
             )
         });
         return (

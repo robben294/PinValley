@@ -7,7 +7,7 @@ class PinIndexItem extends React.Component {
     }
 
     render() {
-        const { pin } = this.props;
+        const { pin, board } = this.props;
         return (
             <div className='pin-item' onClick={() => this.props.push(`/pin/${pin.id}`)}>
                 <div className='pin-cover'>
@@ -17,7 +17,7 @@ class PinIndexItem extends React.Component {
                         <div
                             onClick={() => this.props.openModal({
                                 modalType: 'editPin',
-                                modalProps: pin
+                                modalProps: { pin, board }
                             })}>
                             <i className="fas fa-pen"></i>
                         </div>

@@ -659,7 +659,6 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      debugger;
       var _this$props = this.props,
           board = _this$props.board,
           pins = _this$props.pins;
@@ -699,7 +698,6 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var msp = function msp(state) {
-  debugger;
   return {
     pins: state.entities.pins
   };
@@ -2423,6 +2421,7 @@ function (_React$Component) {
       var wrappedPins = boardPins.map(function (pin, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
           pin: pin,
+          board: _this.props.board,
           key: idx,
           push: _this.props.history.push
         });
@@ -2498,7 +2497,9 @@ function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      var pin = this.props.pin;
+      var _this$props = this.props,
+          pin = _this$props.pin,
+          board = _this$props.board;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item",
         onClick: function onClick() {
@@ -2516,7 +2517,10 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this.props.openModal({
             modalType: 'editPin',
-            modalProps: pin
+            modalProps: {
+              pin: pin,
+              board: board
+            }
           });
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
