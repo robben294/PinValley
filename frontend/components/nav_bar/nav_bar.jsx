@@ -51,6 +51,9 @@ class Navbar extends React.Component {
 
     render() {
         const { logout } = this.props;
+        if (!this.props.currentUser) {
+            return null;
+        }
         return (
             <div>
                 <div className='navbar-main'>
@@ -67,8 +70,8 @@ class Navbar extends React.Component {
                             
                             <div className="fas" onClick={this.renderRedirect('profile')}>
                             {/* {this.renderRedirect()} */}
-                                <span className='my-circle'>{this.state.currentUser.firstname[0]}</span>
-                                <span className='name'>{this.state.currentUser.firstname}</span> 
+                                <span className='my-circle'>{this.props.currentUser.firstname[0]}</span>
+                                <span className='name'>{this.props.currentUser.firstname}</span> 
                             </div>
                         </div>
 

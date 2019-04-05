@@ -1921,6 +1921,11 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var logout = this.props.logout;
+
+      if (!this.props.currentUser) {
+        return null;
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1942,9 +1947,9 @@ function (_React$Component) {
         onClick: this.renderRedirect('profile')
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "my-circle"
-      }, this.state.currentUser.firstname[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, this.props.currentUser.firstname[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "name"
-      }, this.state.currentUser.firstname))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.currentUser.firstname))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-option",
         tabIndex: "1",
         onFocus: this.showDropdown,
