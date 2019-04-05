@@ -11,7 +11,6 @@ class BoardIndex extends React.Component {
 
     componentDidMount() {
         this.props.fetchBoards();
-        this.props.fetchPins();
     }
 
     render() {
@@ -19,6 +18,7 @@ class BoardIndex extends React.Component {
             return null;
         }
         
+        debugger
         const boards = this.props.boards.map(board => {
             return (
 

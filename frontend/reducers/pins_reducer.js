@@ -15,9 +15,8 @@ const pinsReducer = (state = {}, action) => {
             return Object.assign({}, oldState, action.pin);
         }
         case RECEIVE_BOARD: 
+        case RECEIVE_BOARDS:
             return Object.assign({}, oldState, action.pins);
-        // case RECEIVE_BOARDS:
-        //     return Object.assign({}, oldState, action.pins);
         case REMOVE_PIN: {
             let newState = Object.assign({}, oldState);
             delete newState[action.pinId];

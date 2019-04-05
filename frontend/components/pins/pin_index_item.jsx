@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class PinIndexItem extends React.Component {
 
     constructor(props) {

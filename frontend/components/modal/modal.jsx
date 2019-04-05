@@ -5,6 +5,7 @@ import LoginFormContainer from '../session/login_form_container';
 import SignupFormContainer from '../session/signup_form_container';
 import CreateBoardForm from '../boards/create_board_form';
 import EditBoardForm from '../boards/edit_board_form';
+import EditPinForm from '../pins/edit_pin_form';
 
 const Modal = ({ modal, closeModal }) => {
 
@@ -34,7 +35,10 @@ const Modal = ({ modal, closeModal }) => {
         case 'editBoard':
             component = <EditBoardForm board={modal.modalProps} />;
             backgroundClass = "boards-modal-background";
-
+            break;
+        case 'editPin': 
+            component = <EditPinForm pin={modal.modalProps.pin} board={modal.modalProps.board} />;
+            backgroundClass = "boards-modal-background";
             break;
         default:
             return null;

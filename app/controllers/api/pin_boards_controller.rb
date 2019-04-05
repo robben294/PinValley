@@ -1,8 +1,17 @@
 class PinBoardsController < ApplicationController 
+    def create
+        @pin_board = PinBoard.new(pin_board_params)
+        if @pin_board.save
+            render 'api/pins/show'
+        else
+            render json: @pin_board.errors.full_messages, status: 422
+        end
+    end
+
     def destroy
         @pin_board = PinBoard.find(params[:id])
         if @pin_board.destroy
-            render :show
+            render 'api/pins/show'
         else
             render json: @board.errors.full_messages, status: 422
         end

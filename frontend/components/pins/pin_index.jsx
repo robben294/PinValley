@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import PinIndexItem from './pin_index_item';
+import { openModal } from '../../action/modal_actions';
 
 class PinIndex extends React.Component {
 
@@ -19,7 +20,11 @@ class PinIndex extends React.Component {
 
         const wrappedPins = boardPins.map((pin,idx) => {
             return (
-                <PinIndexItem pin={pin} board={this.props.board} key={idx} push={this.props.history.push}/>
+                <PinIndexItem pin={pin} 
+                    board={this.props.board} 
+                    key={idx} 
+                    push={this.props.history.push}
+                    openModal={this.props.openModal}/>
             )
         });
         return (
@@ -41,7 +46,7 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
     return {
-
+        openModal: (modal) => dispatch(openModal(modal)),
     };
 };
 

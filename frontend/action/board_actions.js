@@ -4,10 +4,11 @@ export const RECEIVE_BOARD = 'RECEIVE_BOARD';
 export const RECEIVE_BOARDS = 'RECEIVE_BOARDS';
 export const REMOVE_BOARD = 'REMOVE_BOARD';
 
-export const receiveBoards = (boards) => {
+export const receiveBoards = ({boards, pins}) => {
     return {
         type: RECEIVE_BOARDS,
         boards,
+        pins
     };
 };
 

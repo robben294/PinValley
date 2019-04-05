@@ -19,6 +19,7 @@ class BoardIndexItem extends React.Component{
 
     render() {
         const { board, pins } = this.props;
+        debugger
         return (
             <div className='board-item' onClick={this.redirectToBoardShow}>
                 <div className='board-cover'>
