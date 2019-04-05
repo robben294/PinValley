@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../action/modal_actions';
-import { updatePin, deletePin } from '../../action/pin_actions';
+import { createPinBoard, deletePinBoard } from '../../action/pin_actions';
 
 class EditPinForm extends React.Component {
     constructor(props) {

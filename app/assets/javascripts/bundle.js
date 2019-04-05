@@ -553,7 +553,6 @@ function (_React$Component) {
         return null;
       }
 
-      debugger;
       var boards = this.props.boards.map(function (board) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_7__["default"], {
           board: board,
@@ -665,7 +664,6 @@ function (_React$Component) {
       var _this$props = this.props,
           board = _this$props.board,
           pins = _this$props.pins;
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item",
         onClick: this.redirectToBoardShow

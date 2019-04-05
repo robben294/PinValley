@@ -18,7 +18,6 @@ class BoardIndex extends React.Component {
             return null;
         }
         
-        debugger
         const boards = this.props.boards.map(board => {
             return (
 

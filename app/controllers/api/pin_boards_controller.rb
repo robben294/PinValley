@@ -9,7 +9,7 @@ class PinBoardsController < ApplicationController
     end
 
     def destroy
-        @pin_board = PinBoard.find(params[:id])
+        @pin_board = PinBoard.find_by(params[:id])
         if @pin_board.destroy
             render 'api/pins/show'
         else
