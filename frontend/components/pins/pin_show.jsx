@@ -18,7 +18,6 @@ class PinShow extends React.Component {
     }
 
     handleBack(e) {
-
         this.props.history.goBack();
     }
 

@@ -8,11 +8,13 @@ end
 
 json.pins do
     @boards.each do |board|
+        count = 0
         board.pins.each do |pin|
+            count += 1
+            break if count > 6
             json.partial! 'api/pins/pin', pin: pin
         end
     end
 end
-
 
 

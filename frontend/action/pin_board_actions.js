@@ -10,17 +10,17 @@ export const receivePinBoard = (pinBoard) => {
     };
 };
 
-export const removeBoard = (pinBoardId) => {
+export const removePinBoard = (pinBoardId) => {
     return {
         type: REMOVE_PIN_BOARD,
         pinBoardId
     };
 };
 
-export const createBoard = (board) => dispatch => {
+export const createPinBoard = (pinBoard) => dispatch => {
     return PinBoardApiUtil.createPinBoard(pinBoard).then(pinBoard => dispatch(receiveBoard(pinBoard)));
 };
 
-export const deleteBoard = (boardId) => dispatch => {
-    return PinBoardApiUtil.deletePinBoard(pinBoardId).then(() => dispatch(removeBoard(boardId)));
+export const deletePinBoard = (pinBoardId) => dispatch => {
+    return PinBoardApiUtil.deletePinBoard(pinBoardId).then(() => dispatch(removeBoard(pinBoardId)));
 };

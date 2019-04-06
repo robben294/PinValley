@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../action/modal_actions';
-import { createPinBoard, deletePinBoard } from '../../action/pin_actions';
+import { createPinBoard, deletePinBoard } from '../../action/pin_board_actions';
 
 class EditPinForm extends React.Component {
     constructor(props) {
@@ -30,6 +30,7 @@ class EditPinForm extends React.Component {
 
     handleDelete(e) {
         e.preventDefault();
+        this.props.deletePinBoard(this.props.params.pinBoardId);
     }
 
     render() {
@@ -117,7 +118,7 @@ const msp = (state, ownProps) => ({
 const mdp = dispatch => {
     return {
         closeModal: () => dispatch(closeModal()),
-
+        deletePinBoard: (pinBoardId) => dispatch(deletePinBoard(pinBoardId)),
     };
 };
 

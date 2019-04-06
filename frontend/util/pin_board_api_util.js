@@ -6,7 +6,7 @@ export const createPinBoard = (pinBoard) => {
     });
 };
 
-export const deleteBoard = (pinBoardId) => {
+export const deletePinBoard = (pinBoardId) => {
     return $.ajax({
         method: 'DELETE',
         url: `api/pin_boards/${pinBoardId}`,
