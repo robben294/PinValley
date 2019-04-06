@@ -59,19 +59,26 @@ class PinShow extends React.Component {
                                 <div className='pin-show-title'>
                                     {pin.title}
                                 </div>
-                                <a href={pin.website} className='pin-show-img-container'>
-                                    <div className='pin-show-img'>
-                                        {pin ? <img src={pin.photoUrl} alt={pin.website}/> : null}
-                                    </div>
-                                </a>
+                                
                                 { 
                                     pin.website
-                                    ? 
-                                        <a href={pin.website} className='pin-show-website'>
-                                            <i className="fas fa-link"></i>
-                                            {pin.website}
-                                        </a>
-                                    : null
+                                    ? <div>
+                                            <a href={pin.website} className='pin-show-img-container'>
+                                                <div className='pin-show-img'>
+                                                    {pin ? <img src={pin.photoUrl} /> : null}
+                                                </div>
+                                            </a>
+                                            <a href={pin.website} className='pin-show-website'>
+                                                <i className="fas fa-link"></i>
+                                                {pin.website}
+                                            </a>
+                                    </div>
+                                        
+                                    : <a className='pin-show-img-container'>
+                                            <div className='pin-show-img'>
+                                                {pin ? <img src={pin.photoUrl} /> : null}
+                                            </div>
+                                    </a>
                                 }
                             </div>
                             <div className='pin-show-description'>

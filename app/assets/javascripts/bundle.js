@@ -2863,20 +2863,25 @@ function (_React$Component) {
         className: "pin-show-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-title"
-      }, pin.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, pin.title), pin.website ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: pin.website,
         className: "pin-show-img-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-img"
       }, pin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: pin.photoUrl,
-        alt: pin.website
-      }) : null)), pin.website ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        src: pin.photoUrl
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: pin.website,
         className: "pin-show-website"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-link"
-      }), pin.website) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), pin.website)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "pin-show-img-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-img"
+      }, pin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: pin.photoUrl
+      }) : null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-description"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, pin.description))) : null));
     }
