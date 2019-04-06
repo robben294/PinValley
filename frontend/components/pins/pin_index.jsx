@@ -18,6 +18,9 @@ class PinIndex extends React.Component {
 
         const boardPins = this.props.pins.filter(pin => this.props.board.pin_ids.includes(pin.id));
 
+        // this.props.pinBoards
+        // const boardPins = 
+
         const wrappedPins = boardPins.map((pin,idx) => {
             return (
                 <PinIndexItem pin={pin} 
@@ -40,6 +43,7 @@ class PinIndex extends React.Component {
 const msp = (state, ownProps) => {
     return {
         pins: Object.values(state.entities.pins),
+        pinBoards: state.entities.pinBoards,
         board: state.entities.boards[ownProps.match.params.boardId]
     };
 };

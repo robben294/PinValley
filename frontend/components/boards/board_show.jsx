@@ -44,7 +44,7 @@ class BoardShow extends React.Component {
     }
 
     render() {
-        const {title, description, pin_ids} = this.props.board || {};
+        const {title, description, pin_board_ids} = this.props.board || {};
         return (
         <div>
             <div className='board-show'>
@@ -78,7 +78,7 @@ class BoardShow extends React.Component {
                         {title}
                     </div>
                     <div className='board-show-subtext'>
-                        {pin_ids ? pin_ids.length : 0} Pins
+                        {pin_board_ids ? pin_board_ids.length : 0} Pins
                     </div>
                     <div className='board-show-subtext'>
                         {description}

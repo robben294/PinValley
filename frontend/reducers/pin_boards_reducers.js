@@ -2,11 +2,16 @@ import {
     RECEIVE_PIN_BOARD,
     REMOVE_PIN_BOARD
 } from '../action/pin_board_actions';
+import { RECEIVE_BOARDS } from '../action/board_actions';
 
-const boardsReducer = (state = {}, action) => {
+const pinBoardsReducer = (state = {}, action) => {
     const oldState = Object.freeze(state);
     switch (action.type) {
-        case RECEIVE_PIN_BOARD: {
+        case RECEIVE_BOARDS: {
+            return Object.assign({}, oldState, action.pinBoards);
+        }
+        case RECEIVE_PIN_BOARD:
+        {
             return Object.assign({}, oldState, action.pinBoard);
         }
         case REMOVE_PIN_BOARD: {
@@ -19,4 +24,4 @@ const boardsReducer = (state = {}, action) => {
     }
 };
 
-export default boardsReducer;
+export default pinBoardsReducer;

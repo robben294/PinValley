@@ -113,11 +113,13 @@ var RECEIVE_BOARDS = 'RECEIVE_BOARDS';
 var REMOVE_BOARD = 'REMOVE_BOARD';
 var receiveBoards = function receiveBoards(_ref) {
   var boards = _ref.boards,
-      pins = _ref.pins;
+      pins = _ref.pins,
+      pinBoards = _ref.pinBoards;
   return {
     type: RECEIVE_BOARDS,
     boards: boards,
-    pins: pins
+    pins: pins,
+    pinBoards: pinBoards
   };
 };
 var receiveBoard = function receiveBoard(_ref2) {
@@ -622,6 +624,7 @@ function (_React$Component) {
 var msp = function msp(state) {
   return {
     boards: Object.values(state.entities.boards),
+    pinBoards: Object.values(state.entities.pinBoards),
     pins: Object.values(state.entities.pins)
   };
 };
@@ -727,7 +730,7 @@ function (_React$Component) {
         className: "board-item-title"
       }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item-number-pins"
-      }, board.pin_ids.length, " Pins")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, board.pin_board_ids.length, " Pins")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick(e) {
           return e.stopPropagation();
         }
@@ -866,7 +869,7 @@ function (_React$Component) {
       var _ref = this.props.board || {},
           title = _ref.title,
           description = _ref.description,
-          pin_ids = _ref.pin_ids;
+          pin_board_ids = _ref.pin_board_ids;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show"
@@ -904,7 +907,7 @@ function (_React$Component) {
         className: "board-show-title"
       }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-subtext"
-      }, pin_ids ? pin_ids.length : 0, " Pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, pin_board_ids ? pin_board_ids.length : 0, " Pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-subtext"
       }, description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-main"
@@ -2661,7 +2664,9 @@ function (_React$Component) {
 
       var boardPins = this.props.pins.filter(function (pin) {
         return _this.props.board.pin_ids.includes(pin.id);
-      });
+      }); // this.props.pinBoards
+      // const boardPins = 
+
       var wrappedPins = boardPins.map(function (pin, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
           pin: pin,
@@ -2683,6 +2688,7 @@ function (_React$Component) {
 var msp = function msp(state, ownProps) {
   return {
     pins: Object.values(state.entities.pins),
+    pinBoards: state.entities.pinBoards,
     board: state.entities.boards[ownProps.match.params.boardId]
   };
 };
@@ -3847,15 +3853,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _boards_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./boards_reducer */ "./frontend/reducers/boards_reducer.js");
 /* harmony import */ var _pins_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pins_reducer */ "./frontend/reducers/pins_reducer.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/index.js");
+/* harmony import */ var _pin_boards_reducers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pin_boards_reducers */ "./frontend/reducers/pin_boards_reducers.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/index.js");
 
 
 
 
-var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_3__["combineReducers"])({
+
+var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_4__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
   boards: _boards_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  pins: _pins_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  pins: _pins_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  pinBoards: _pin_boards_reducers__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -3912,6 +3921,52 @@ var modalReducer = function modalReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modalReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/pin_boards_reducers.js":
+/*!**************************************************!*\
+  !*** ./frontend/reducers/pin_boards_reducers.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../action/pin_board_actions */ "./frontend/action/pin_board_actions.js");
+/* harmony import */ var _action_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../action/board_actions */ "./frontend/action/board_actions.js");
+
+
+
+var pinBoardsReducer = function pinBoardsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var oldState = Object.freeze(state);
+
+  switch (action.type) {
+    case _action_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARDS"]:
+      {
+        return Object.assign({}, oldState, action.pinBoards);
+      }
+
+    case _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PIN_BOARD"]:
+      {
+        return Object.assign({}, oldState, action.pinBoard);
+      }
+
+    case _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PIN_BOARD"]:
+      {
+        var newState = Object.assign({}, oldState);
+        delete newState[action.pinBoardId];
+        return newState;
+      }
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (pinBoardsReducer);
 
 /***/ }),
 

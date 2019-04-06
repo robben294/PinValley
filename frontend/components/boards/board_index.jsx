@@ -43,6 +43,7 @@ class BoardIndex extends React.Component {
 const msp = state => {
     return {
         boards: Object.values(state.entities.boards),
+        pinBoards: Object.values(state.entities.pinBoards),
         pins: Object.values(state.entities.pins),
     };
 };
