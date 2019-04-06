@@ -728,9 +728,11 @@ function (_React$Component) {
         className: "board-item-text"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item-title"
-      }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, board.title), board.pin_board_ids.length === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item-number-pins"
-      }, board.pin_board_ids.length, " Pins")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, " ", board.pin_board_ids.length, " Pin ") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-item-number-pins"
+      }, " ", board.pin_board_ids.length, " Pins ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick(e) {
           return e.stopPropagation();
         }
@@ -907,7 +909,7 @@ function (_React$Component) {
         className: "board-show-title"
       }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-subtext"
-      }, pin_board_ids ? pin_board_ids.length : 0, " Pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, board.pin_board_ids.length === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", board.pin_board_ids.length, " Pin ") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", board.pin_board_ids.length, " Pins ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-subtext"
       }, description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-main"

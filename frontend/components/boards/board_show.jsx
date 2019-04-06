@@ -78,7 +78,11 @@ class BoardShow extends React.Component {
                         {title}
                     </div>
                     <div className='board-show-subtext'>
-                        {pin_board_ids ? pin_board_ids.length : 0} Pins
+                            {
+                                board.pin_board_ids.length === 1
+                                    ? <div> {board.pin_board_ids.length} Pin </div>
+                                    : <div> {board.pin_board_ids.length} Pins </div>
+                            }
                     </div>
                     <div className='board-show-subtext'>
                         {description}
