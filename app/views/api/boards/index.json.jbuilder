@@ -19,7 +19,10 @@ end
 
 json.pinBoards do
     @boards.each do |board|
+        count = 0
         board.pin_boards.each do |pin_board|
+            count += 1
+            break if count > 6
             json.partial! 'api/pin_boards/pin_board', pin_board: pin_board
         end
     end

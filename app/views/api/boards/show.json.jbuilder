@@ -7,3 +7,9 @@ json.pins do
         json.partial! 'api/pins/pin', pin: pin
     end
 end
+
+json.pinBoards do
+    @board.pin_boards.each do |pin_board|
+        json.partial! 'api/pin_boards/pin_board', pin_board: pin_board
+    end
+end

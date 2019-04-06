@@ -7,24 +7,26 @@ import { openModal } from '../../action/modal_actions';
 
 class PinIndex extends React.Component {
 
-    render() {
+    render() {  
         if (this.props.location.pathname === '/profile/edit') {
             return null;
         }
 
-        if (!this.props.pins) {
+        const { board, pinBoards, pins } = this.props;
+        if (!pins || Object.keys(pinBoards).length === 0) {
             return null;
         }
 
-        const boardPins = this.props.pins.filter(pin => this.props.board.pin_ids.includes(pin.id));
 
-        // this.props.pinBoards
-        // const boardPins = 
+        const boardPins = board.pin_board_ids.map(pin_board_id => {
+            return Object.assign(pins[pinBoards[pin_board_id].pin_id], {pin_board_id}); 
+            //merge pin_board_id into pins, so that it canbe passed into PinIndexItem
+        });
 
         const wrappedPins = boardPins.map((pin,idx) => {
             return (
                 <PinIndexItem pin={pin} 
-                    board={this.props.board} 
+                    board={board} 
                     key={idx} 
                     push={this.props.history.push}
                     openModal={this.props.openModal}/>
@@ -42,7 +44,7 @@ class PinIndex extends React.Component {
 
 const msp = (state, ownProps) => {
     return {
-        pins: Object.values(state.entities.pins),
+        pins: state.entities.pins,
         pinBoards: state.entities.pinBoards,
         board: state.entities.boards[ownProps.match.params.boardId]
     };

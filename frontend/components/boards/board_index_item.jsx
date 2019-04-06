@@ -18,12 +18,12 @@ class BoardIndexItem extends React.Component{
     }
 
     render() {
-        const { board, pins } = this.props;
+        const { board, pins, pinBoards } = this.props;
         return (
             <div className='board-item' onClick={this.redirectToBoardShow}>
                 <div className='board-cover'>
-                    {board.pin_ids && pins[board.pin_ids[0]] ? 
-                        <img src={pins[board.pin_ids[0]].photoUrl} /> : null}
+                    {board.pin_board_ids && pinBoards[board.pin_board_ids[0]] ? 
+                        <img src={pins[pinBoards[board.pin_board_ids[0]].pin_id].photoUrl} /> : null}
                 </div>
                 <div className='board-item-header'>
                     <div className='board-item-text'>
@@ -53,6 +53,7 @@ const msp = state => {
 
     return {
         pins: state.entities.pins,
+        pinBoards: state.entities.pinBoards,
     }
 };
 

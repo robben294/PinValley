@@ -14,7 +14,7 @@ class PinShow extends React.Component {
 
     componentDidMount() {
         this.props.fetchBoards();
-        this.props.fetchPin(this.props.match.params.pinId);
+        this.props.fetchPinBoard(this.props.match.params.pinBoardId);
     }
 
     handleBack(e) {

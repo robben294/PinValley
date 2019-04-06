@@ -124,11 +124,13 @@ var receiveBoards = function receiveBoards(_ref) {
 };
 var receiveBoard = function receiveBoard(_ref2) {
   var board = _ref2.board,
-      pins = _ref2.pins;
+      pins = _ref2.pins,
+      pinBoards = _ref2.pinBoards;
   return {
     type: RECEIVE_BOARD,
     board: board,
-    pins: pins
+    pins: pins,
+    pinBoards: pinBoards
   };
 };
 var removeBoard = function removeBoard(boardId) {
@@ -523,7 +525,7 @@ var App = function App() {
     path: "/pin/new",
     component: _pins_create_pin_form__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_13__["ProtectedRoute"], {
-    path: "/pin/:pinBoardId",
+    path: "/pinBoard/:pinBoardId",
     component: _pins_pin_show__WEBPACK_IMPORTED_MODULE_11__["default"]
   })));
 };
@@ -714,14 +716,15 @@ function (_React$Component) {
 
       var _this$props = this.props,
           board = _this$props.board,
-          pins = _this$props.pins;
+          pins = _this$props.pins,
+          pinBoards = _this$props.pinBoards;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item",
         onClick: this.redirectToBoardShow
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-cover"
-      }, board.pin_ids && pins[board.pin_ids[0]] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: pins[board.pin_ids[0]].photoUrl
+      }, board.pin_board_ids && pinBoards[board.pin_board_ids[0]] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: pins[pinBoards[board.pin_board_ids[0]].pin_id].photoUrl
       }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -754,7 +757,8 @@ function (_React$Component) {
 
 var msp = function msp(state) {
   return {
-    pins: state.entities.pins
+    pins: state.entities.pins,
+    pinBoards: state.entities.pinBoards
   };
 };
 
@@ -868,6 +872,10 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      if (!this.props.board) {
+        return null;
+      }
+
       var _ref = this.props.board || {},
           title = _ref.title,
           description = _ref.description,
@@ -909,7 +917,7 @@ function (_React$Component) {
         className: "board-show-title"
       }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-subtext"
-      }, board.pin_board_ids.length === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", board.pin_board_ids.length, " Pin ") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", board.pin_board_ids.length, " Pins ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, pin_board_ids.length === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", pin_board_ids.length, " Pin ") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", pin_board_ids.length, " Pins ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-subtext"
       }, description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-main"
@@ -2660,19 +2668,24 @@ function (_React$Component) {
         return null;
       }
 
-      if (!this.props.pins) {
+      var _this$props = this.props,
+          board = _this$props.board,
+          pinBoards = _this$props.pinBoards,
+          pins = _this$props.pins;
+
+      if (!pins || Object.keys(pinBoards).length === 0) {
         return null;
       }
 
-      var boardPins = this.props.pins.filter(function (pin) {
-        return _this.props.board.pin_ids.includes(pin.id);
-      }); // this.props.pinBoards
-      // const boardPins = 
-
+      var boardPins = board.pin_board_ids.map(function (pin_board_id) {
+        return Object.assign(pins[pinBoards[pin_board_id].pin_id], {
+          pin_board_id: pin_board_id
+        }); //merge pin_board_id into pins, so that it canbe passed into PinIndexItem
+      });
       var wrappedPins = boardPins.map(function (pin, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
           pin: pin,
-          board: _this.props.board,
+          board: board,
           key: idx,
           push: _this.props.history.push,
           openModal: _this.props.openModal
@@ -2689,7 +2702,7 @@ function (_React$Component) {
 
 var msp = function msp(state, ownProps) {
   return {
-    pins: Object.values(state.entities.pins),
+    pins: state.entities.pins,
     pinBoards: state.entities.pinBoards,
     board: state.entities.boards[ownProps.match.params.boardId]
   };
@@ -2760,7 +2773,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item",
         onClick: function onClick() {
-          return _this.props.push("/pin/".concat(pin.id));
+          return _this.props.push("/pinBoard/".concat(pin.pin_board_id));
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-cover"
@@ -2867,7 +2880,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBoards();
-      this.props.fetchPin(this.props.match.params.pinId);
+      this.props.fetchPinBoard(this.props.match.params.pinBoardId);
     }
   }, {
     key: "handleBack",
@@ -3749,12 +3762,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _action_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./action/session_actions */ "./frontend/action/session_actions.js");
 /* harmony import */ var _action_user_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./action/user_actions */ "./frontend/action/user_actions.js");
+/* harmony import */ var _action_board_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./action/board_actions */ "./frontend/action/board_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
  //Testing
+
 
 
  //Testing 
@@ -3787,6 +3802,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.logout = _action_session_actions__WEBPACK_IMPORTED_MODULE_4__["logout"];
   window.receiveCurrentUser = _action_session_actions__WEBPACK_IMPORTED_MODULE_4__["receiveCurrentUser"];
   window.fetchUser = _action_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchUser"];
+  window.fetchBoard = _action_board_actions__WEBPACK_IMPORTED_MODULE_6__["fetchBoard"];
   window.getState = store.getState;
   window.dispatch = store.dispatch; //Testing
 
@@ -3947,6 +3963,7 @@ var pinBoardsReducer = function pinBoardsReducer() {
 
   switch (action.type) {
     case _action_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARDS"]:
+    case _action_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
       {
         return Object.assign({}, oldState, action.pinBoards);
       }
