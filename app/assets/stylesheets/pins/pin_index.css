@@ -94,3 +94,40 @@
 .pin-save-pin .fas:hover {
     background: rgb(165, 1, 36)
 }
+
+.pin-website {
+    display: none;
+}
+
+.pin-cover:hover .pin-website {
+    position: absolute;
+    max-width: 200px;
+    bottom: 22px;
+    left: 16px;
+    background: rgb(240,240,240);
+    border-radius: 4px;
+    text-decoration: none; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4px;
+    padding-right: 8px;
+    font-weight: 700;
+}
+
+.pin-website span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pin-website .fa-link {
+    padding: 4px;
+}
+
+.pin-website .fa-link:hover {
+    background: none;
+}
+
+.pin-website span:visited {
+    color: inherit;
+}

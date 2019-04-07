@@ -7,6 +7,19 @@ class PinIndexItem extends React.Component {
         super(props);
     }
 
+    shortenWebsite(website) {
+        if (website.includes(".com")) {
+            website = website.split(".com")[0] + ".com";
+        }
+        if (website.includes("//")) {
+            website = website.split("//")[1];
+        }
+        if (website.includes("www.")) {
+            website = website.split("www.")[1];
+        }
+        return website;
+    }
+
     render() {
         const { pin, board } = this.props;
         return (
@@ -34,6 +47,18 @@ class PinIndexItem extends React.Component {
                             </div>
                         </div>
                     </div>
+                    {
+                        pin.website
+                            ? <div className='pin-website-container' onClick={e => e.stopPropagation()}>
+
+                                    <a href={pin.website} className='pin-website'>
+                                        <i className="fas fa-link"></i>
+                                        <span>{this.shortenWebsite(pin.website)}</span>
+                                    </a>
+
+                            </div>
+                            : null
+                    }
                 </div>
             </div>
         )

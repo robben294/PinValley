@@ -21,6 +21,19 @@ class PinShow extends React.Component {
         this.props.history.goBack();
     }
 
+    shortenWebsite(website) {
+        if (website.includes(".com")) {
+            website = website.split(".com")[0] + ".com";
+        }
+        if (website.includes("//")) {
+            website = website.split("//")[1];
+        }
+        if (website.includes("www.")) {
+            website = website.split("www.")[1];
+        }
+        return website;
+    }
+
     render() {
         const { pins, pinBoard, boards } = this.props;
         if (!pinBoard) {
@@ -74,7 +87,7 @@ class PinShow extends React.Component {
                                             </a>
                                             <a href={pin.website} className='pin-show-website'>
                                                 <i className="fas fa-link"></i>
-                                                {pin.website}
+                                                {this.shortenWebsite(pin.website)}
                                             </a>
                                     </div>
                                         

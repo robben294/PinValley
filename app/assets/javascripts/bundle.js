@@ -2800,6 +2800,23 @@ function (_React$Component) {
   }
 
   _createClass(PinIndexItem, [{
+    key: "shortenWebsite",
+    value: function shortenWebsite(website) {
+      if (website.includes(".com")) {
+        website = website.split(".com")[0] + ".com";
+      }
+
+      if (website.includes("//")) {
+        website = website.split("//")[1];
+      }
+
+      if (website.includes("www.")) {
+        website = website.split("www.")[1];
+      }
+
+      return website;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
@@ -2845,7 +2862,17 @@ function (_React$Component) {
         className: "fas fa-thumbtack"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-save-text"
-      }, "Save")))));
+      }, "Save"))), pin.website ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-website-container",
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: pin.website,
+        className: "pin-website"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-link"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.shortenWebsite(pin.website)))) : null));
     }
   }]);
 
@@ -2925,6 +2952,23 @@ function (_React$Component) {
       this.props.history.goBack();
     }
   }, {
+    key: "shortenWebsite",
+    value: function shortenWebsite(website) {
+      if (website.includes(".com")) {
+        website = website.split(".com")[0] + ".com";
+      }
+
+      if (website.includes("//")) {
+        website = website.split("//")[1];
+      }
+
+      if (website.includes("www.")) {
+        website = website.split("www.")[1];
+      }
+
+      return website;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -2994,7 +3038,7 @@ function (_React$Component) {
         className: "pin-show-website"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-link"
-      }), pin.website)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }), this.shortenWebsite(pin.website))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "pin-show-img-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-img"
