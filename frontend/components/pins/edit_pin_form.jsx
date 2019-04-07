@@ -22,6 +22,7 @@ class EditPinForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.props.createPinBoard()
     }
 
     handleClose(e) {
@@ -32,6 +33,10 @@ class EditPinForm extends React.Component {
         const pinBoardId = this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1];
         this.props.deletePinBoard(pinBoardId)
         .then(() => this.props.history.goBack()).then(() => this.handleClose());
+    }
+
+    checkAuthor() {
+        return this.props.currentUserId === this.props.pin.author_id ;
     }
 
     render() {
@@ -50,15 +55,19 @@ class EditPinForm extends React.Component {
                         <div className='edit-pin-select-board'>
 
                         </div>
-                        <div className='edit-pin-name'>
-                            <div className='edit-pin-text'>
-                                Title
-                            </div>
-                            <input className='edit-pin-name-box'
-                                type="text"
-                                value={this.state.title || ""}
-                                onChange={this.handleInput('title')}/>
-                        </div>
+                        {
+                            this.checkAuthor()
+                                ? <div className='edit-pin-name'>
+                                    <div className='edit-pin-text'>
+                                        Title
+                                    </div>
+                                    <input className='edit-pin-name-box'
+                                        type="text"
+                                        value={this.state.title || ""}
+                                        onChange={this.handleInput('title')}/>
+                                </div>
+                                : null
+                        }
 
                         <div className='edit-pin-description'>
                             <div className='edit-pin-text'>
@@ -71,15 +80,20 @@ class EditPinForm extends React.Component {
                                 placeholder="Tell us about this Pin..." />
                         </div>
 
-                        <div className='edit-pin-website'>
-                            <div className='edit-pin-text'>
-                                Website
-                            </div>
-                            <input className='edit-pin-website-box'
-                                type="text"
-                                value={this.state.website || ""}
-                                onChange={this.handleInput('website')}/>
-                        </div>
+                        {
+                            this.checkAuthor() 
+                                ? <div className='edit-pin-website'>
+                                    <div className='edit-pin-text'>
+                                        Website
+                                </div>
+                                    <input className='edit-pin-website-box'
+                                        type="text"
+                                        value={this.state.website || ""}
+                                        onChange={this.handleInput('website')} />
+                                </div>
+                                : null
+                        }
+
                     </div>
 
                     <div className='edit-pin-img'>
@@ -115,7 +129,7 @@ class EditPinForm extends React.Component {
 
 const msp = (state, ownProps) => {
     return {
-
+        currentUserId: state.session.id,
     };
 };
 

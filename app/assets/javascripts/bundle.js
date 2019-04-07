@@ -2514,6 +2514,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
+      this.props.createPinBoard();
     }
   }, {
     key: "handleClose",
@@ -2531,6 +2532,11 @@ function (_React$Component) {
       }).then(function () {
         return _this3.handleClose();
       });
+    }
+  }, {
+    key: "checkAuthor",
+    value: function checkAuthor() {
+      return this.props.currentUserId === this.props.pin.author_id;
     }
   }, {
     key: "render",
@@ -2552,7 +2558,7 @@ function (_React$Component) {
         className: "edit-pin-content-text"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin-select-board"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.checkAuthor() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin-text"
@@ -2561,7 +2567,7 @@ function (_React$Component) {
         type: "text",
         value: this.state.title || "",
         onChange: this.handleInput('title')
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin-description"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin-text"
@@ -2571,7 +2577,7 @@ function (_React$Component) {
         value: this.state.description || "",
         onChange: this.handleInput('description'),
         placeholder: "Tell us about this Pin..."
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), this.checkAuthor() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin-website"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin-text"
@@ -2580,7 +2586,7 @@ function (_React$Component) {
         type: "text",
         value: this.state.website || "",
         onChange: this.handleInput('website')
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin-img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.pin.photoUrl
@@ -2607,7 +2613,9 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var msp = function msp(state, ownProps) {
-  return {};
+  return {
+    currentUserId: state.session.id
+  };
 };
 
 var mdp = function mdp(dispatch) {
