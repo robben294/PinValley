@@ -28,7 +28,6 @@ class PinShow extends React.Component {
         }
         const pin = pins[pinBoard.pin_id];
         const board = boards[pinBoard.board_id];
-        debugger
         return (
             <div className='pin-show-page'>
                 <div className='pin-show-back' onClick={this.handleBack}>
@@ -58,7 +57,7 @@ class PinShow extends React.Component {
                             </div>
                         </div>
                     </div>
-                    { pin ? 
+
                         <div>
                             <div className='pin-show-content'>
                                 <div className='pin-show-title'>
@@ -70,7 +69,7 @@ class PinShow extends React.Component {
                                     ? <div>
                                             <a href={pin.website} className='pin-show-img-container'>
                                                 <div className='pin-show-img'>
-                                                    {pin ? <img src={pin.photoUrl} /> : null}
+                                                    <img src={pin.photoUrl} />
                                                 </div>
                                             </a>
                                             <a href={pin.website} className='pin-show-website'>
@@ -81,7 +80,7 @@ class PinShow extends React.Component {
                                         
                                     : <a className='pin-show-img-container'>
                                             <div className='pin-show-img'>
-                                                {pin ? <img src={pin.photoUrl} /> : null}
+                                                <img src={pin.photoUrl} />
                                             </div>
                                     </a>
                                 }
@@ -90,7 +89,7 @@ class PinShow extends React.Component {
                                 <a>{pinBoard.description}</a>
                             </div>
                         </div>
-                    : null }
+
                 </div>
             </div>
         )

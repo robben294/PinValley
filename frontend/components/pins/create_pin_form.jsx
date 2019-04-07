@@ -76,6 +76,7 @@ class CreatePinForm extends React.Component {
         formData.append('pin[title]', this.state.title);
         formData.append('pin[website]', this.state.website);
         formData.append('pin_board[board_id]', this.state.boardId);
+        formData.append('pin_board[description]', this.state.description);
         this.props.createPin(formData).then(() => this.props.history.push(`/boards/${this.state.boardId}`));
     }
 

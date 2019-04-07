@@ -2211,6 +2211,7 @@ function (_React$Component) {
       formData.append('pin[title]', this.state.title);
       formData.append('pin[website]', this.state.website);
       formData.append('pin_board[board_id]', this.state.boardId);
+      formData.append('pin_board[description]', this.state.description);
       this.props.createPin(formData).then(function () {
         return _this4.props.history.push("/boards/".concat(_this4.state.boardId));
       });
@@ -2939,7 +2940,6 @@ function (_React$Component) {
 
       var pin = pins[pinBoard.pin_id];
       var board = boards[pinBoard.board_id];
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2978,7 +2978,7 @@ function (_React$Component) {
         className: "fas fa-chevron-down"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-nav-save"
-      }, "Save"))), pin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-title"
@@ -2987,9 +2987,9 @@ function (_React$Component) {
         className: "pin-show-img-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-img"
-      }, pin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: pin.photoUrl
-      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: pin.website,
         className: "pin-show-website"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -2998,11 +2998,11 @@ function (_React$Component) {
         className: "pin-show-img-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-img"
-      }, pin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: pin.photoUrl
-      }) : null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-description"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, pinBoard.description))) : null));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, pinBoard.description)))));
     }
   }]);
 

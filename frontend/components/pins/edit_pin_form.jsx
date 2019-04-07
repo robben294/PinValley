@@ -22,7 +22,7 @@ class EditPinForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createPinBoard()
+        this.props.createPinBoard();
     }
 
     handleClose(e) {

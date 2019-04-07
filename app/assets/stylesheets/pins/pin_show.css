@@ -1,6 +1,6 @@
 .pin-show-page {
     display:flex;
-    background: rgb(240,240,240);
+    background: linear-gradient(to bottom, rgb(240,240,240), white);
     /* min-height: 100vh; */
     width: 100%;
     color: rgb(51, 51, 51);
@@ -135,4 +135,9 @@
 
 .pin-show-content a:visited {
     color: inherit;
+}
+
+.pin-show-description {
+    margin-top: 10px;
+    text-align: center;
 }
