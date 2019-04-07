@@ -12,3 +12,10 @@ export const deletePinBoard = (pinBoardId) => {
         url: `api/pin_boards/${pinBoardId}`,
     });
 };
+
+export const fetchPinBoard = (pinBoardId) => {
+    return $.ajax({
+        method: 'GET',
+        url: `api/pin_boards/${pinBoardId}`
+    });
+};

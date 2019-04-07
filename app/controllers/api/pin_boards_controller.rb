@@ -1,4 +1,4 @@
-class PinBoardsController < ApplicationController 
+class Api::PinBoardsController < ApplicationController 
     def create
         @pin_board = PinBoard.new(pin_board_params)
         if @pin_board.save
@@ -8,8 +8,17 @@ class PinBoardsController < ApplicationController
         end
     end
 
+    def show
+        @pin_board = PinBoard.find(params[:id])
+        if @pin_board
+            render :show
+        else
+            render json: ['Could not locate pin_board'], status: 422
+        end
+    end
+
     def destroy
-        @pin_board = PinBoard.find_by(params[:id])
+        @pin_board = PinBoard.find(params[:id])
         if @pin_board.destroy
             render :show
         else

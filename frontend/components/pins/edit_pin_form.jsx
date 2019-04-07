@@ -9,6 +9,7 @@ class EditPinForm extends React.Component {
         super(props);
         this.state = this.props.pin;
         this.handleClose = this.handleClose.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleInput(field) {
@@ -24,13 +25,13 @@ class EditPinForm extends React.Component {
     }
 
     handleClose(e) {
-        e.preventDefault();
         this.props.closeModal();
     }
 
     handleDelete(e) {
-        e.preventDefault();
-        this.props.deletePinBoard(this.props.params.pinBoardId);
+        const pinBoardId = this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1];
+        this.props.deletePinBoard(pinBoardId)
+        .then(() => this.props.history.goBack()).then(() => this.handleClose());
     }
 
     render() {
@@ -112,8 +113,11 @@ class EditPinForm extends React.Component {
     }
 }
 
-const msp = (state, ownProps) => ({
-});
+const msp = (state, ownProps) => {
+    return {
+
+    };
+};
 
 const mdp = dispatch => {
     return {

@@ -1,8 +1,7 @@
 .pin-show-page {
     display:flex;
     background: rgb(240,240,240);
-    /* max-height: 1000px; */
-    height: 150%;
+    /* min-height: 100vh; */
     width: 100%;
     color: rgb(51, 51, 51);
     letter-spacing: -0.4px;

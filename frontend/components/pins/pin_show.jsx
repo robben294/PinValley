@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-import { fetchPin } from '../../action/pin_actions';
 import { fetchBoards } from '../../action/board_actions';
+import { fetchPinBoard } from '../../action/pin_board_actions';
 import { openModal } from '../../action/modal_actions';
 
 class PinShow extends React.Component {
@@ -22,7 +22,13 @@ class PinShow extends React.Component {
     }
 
     render() {
-        const {pin, boards} = this.props;
+        const { pins, pinBoard, boards } = this.props;
+        if (!pinBoard) {
+            return null;
+        }
+        const pin = pins[pinBoard.pin_id];
+        const board = boards[pinBoard.board_id];
+        debugger
         return (
             <div className='pin-show-page'>
                 <div className='pin-show-back' onClick={this.handleBack}>
@@ -34,7 +40,7 @@ class PinShow extends React.Component {
                             <div className='pin-show-icon' 
                             onClick={() => this.props.openModal({
                                 modalType: 'editPin',
-                                modalProps: { pin }
+                                modalProps: { pin, pinBoard }
                             })}>
                                 <i className="fas fa-pen"></i>
                             </div>
@@ -44,7 +50,7 @@ class PinShow extends React.Component {
                         </div>
                         <div className='pin-show-nav-right'>
                             <div className='pin-show-nav-choose-board'>
-                                { boards ? boards[0].title : null}
+                                { board ? board.title : null}
                                 <i className="fas fa-chevron-down"></i>
                             </div>
                             <div className='pin-show-nav-save'>
@@ -81,7 +87,7 @@ class PinShow extends React.Component {
                                 }
                             </div>
                             <div className='pin-show-description'>
-                                <a>{pin.description}</a>
+                                <a>{pinBoard.description}</a>
                             </div>
                         </div>
                     : null }
@@ -93,13 +99,14 @@ class PinShow extends React.Component {
 
 const msp = (state, ownProps) => {
     return { 
-        pin: state.entities.pins[ownProps.match.params.pinId],
-        boards: Object.values[state.entities.boards],
+        pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
+        pins: state.entities.pins,
+        boards: state.entities.boards,
     }
 };
 
 const mdp = dispatch => ({
-    fetchPin: (pinId) => dispatch(fetchPin(pinId)),
+    fetchPinBoard: (pinBoardId) => dispatch(fetchPinBoard(pinBoardId)),
     fetchBoards: () => dispatch(fetchBoards()),
     openModal: (modal) => dispatch(openModal(modal)),
 });
