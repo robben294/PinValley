@@ -23,6 +23,7 @@
     align-items: center;
     margin: 0 auto;
     background: white;
+    box-shadow: 0 5px 5px rgb(240,240,240);
     width: auto;
     height: auto;
     max-width: 628px;
