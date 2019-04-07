@@ -1851,7 +1851,8 @@ var Modal = function Modal(_ref) {
     case 'editPin':
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_edit_pin_form__WEBPACK_IMPORTED_MODULE_7__["default"], {
         pin: modal.modalProps.pin,
-        board: modal.modalProps.board
+        board: modal.modalProps.board,
+        pinBoardId: modal.modalProps.pinBoardId
       });
       backgroundClass = "boards-modal-background";
       break;
@@ -2527,9 +2528,8 @@ function (_React$Component) {
     value: function handleDelete(e) {
       var _this3 = this;
 
-      var pinBoardId = this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1];
-      this.props.deletePinBoard(pinBoardId).then(function () {
-        return _this3.props.history.goBack();
+      this.props.deletePinBoard(this.props.pinBoardId).then(function () {
+        return _this3.props.history.push("/boards/".concat(_this3.props.board.id));
       }).then(function () {
         return _this3.handleClose();
       });
@@ -2824,6 +2824,7 @@ function (_React$Component) {
       var _this$props = this.props,
           pin = _this$props.pin,
           board = _this$props.board;
+      var pinBoardId = pin.pin_board_id;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item",
         onClick: function onClick() {
@@ -2843,7 +2844,8 @@ function (_React$Component) {
             modalType: 'editPin',
             modalProps: {
               pin: pin,
-              board: board
+              board: board,
+              pinBoardId: pinBoardId
             }
           });
         }
@@ -2984,6 +2986,7 @@ function (_React$Component) {
 
       var pin = pins[pinBoard.pin_id];
       var board = boards[pinBoard.board_id];
+      var pinBoardId = pinBoard.id;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3004,7 +3007,8 @@ function (_React$Component) {
             modalType: 'editPin',
             modalProps: {
               pin: pin,
-              pinBoard: pinBoard
+              board: board,
+              pinBoardId: pinBoardId
             }
           });
         }

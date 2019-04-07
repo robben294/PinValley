@@ -37,7 +37,10 @@ const Modal = ({ modal, closeModal }) => {
             backgroundClass = "boards-modal-background";
             break;
         case 'editPin': 
-            component = <EditPinForm pin={modal.modalProps.pin} board={modal.modalProps.board} />;
+            component = <EditPinForm 
+                            pin={modal.modalProps.pin} 
+                            board={modal.modalProps.board} 
+                            pinBoardId={modal.modalProps.pinBoardId}/>;
             backgroundClass = "boards-modal-background";
             break;
         default:

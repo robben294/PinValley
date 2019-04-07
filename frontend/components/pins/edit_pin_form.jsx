@@ -30,9 +30,8 @@ class EditPinForm extends React.Component {
     }
 
     handleDelete(e) {
-        const pinBoardId = this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1];
-        this.props.deletePinBoard(pinBoardId)
-        .then(() => this.props.history.goBack()).then(() => this.handleClose());
+        this.props.deletePinBoard(this.props.pinBoardId)
+        .then(() => this.props.history.push(`/boards/${this.props.board.id}`)).then(() => this.handleClose());
     }
 
     checkAuthor() {
@@ -40,7 +39,6 @@ class EditPinForm extends React.Component {
     }
 
     render() {
-
         return (
             <div className="edit-pin-form">
                 <div className='edit-pin-title'>
