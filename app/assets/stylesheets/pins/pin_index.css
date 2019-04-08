@@ -1,17 +1,22 @@
 .pins {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     padding-top: 20px;
+    /* flex-wrap: wrap;
+    display: flex;
+    justify-content: center;  */
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
 }
 
 
 .pin-cover {
     position: relative;
     padding: 8px;
-    margin: -8px;
+    margin: -8px; 
     border-radius: 6px;
 }
+
+
 
 .pin-cover:hover {
     background-color: rgb(240,240,240);
@@ -25,6 +30,8 @@
 
 .pin-cover > img{
     width: 236px;
+    /* width: 100%; */
+    height: auto;
     border-radius: 12px;
 }
 
@@ -131,3 +138,27 @@
 .pin-website span:visited {
     color: inherit;
 }
+
+/* @media screen and (mid-width: 560px) {
+    #pins-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
+} */
+
+/* @media screen and (mid-width: 780px) {
+    #pins-columns {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+    }
+} */
+
+/* @media screen and (mid-width: 1100px) {
+    #pins-columns {
+        -webkit-column-count: 5;
+        -moz-column-count: 5;
+        column-count: 5;
+    }
+} */
