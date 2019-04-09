@@ -2165,7 +2165,11 @@ function (_React$Component) {
           return null;
         }
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "boardpins-index"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "boardpins-number-pins"
+      }, wrappedPinBoards.length === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, wrappedPinBoards.length), " Pin ") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, wrappedPinBoards.length), " Pins ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pins"
       }, wrappedPinBoards));
     }

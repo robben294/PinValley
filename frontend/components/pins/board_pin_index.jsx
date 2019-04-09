@@ -39,7 +39,14 @@ class BoardPinIndex extends React.Component {
         });
         return (
             
-            <div>
+            <div className="boardpins-index">
+                <div className="boardpins-number-pins">
+                    {
+                        wrappedPinBoards.length === 1
+                            ? <div> <strong>{wrappedPinBoards.length}</strong> Pin </div>
+                            : <div> <strong>{wrappedPinBoards.length}</strong> Pins </div>
+                    }
+                </div>
                 <div className='pins'>
                     {wrappedPinBoards}
                 </div>
