@@ -17,6 +17,15 @@ class Api::PinBoardsController < ApplicationController
         end
     end
 
+    def update
+        @pin_board = PinBoard.find(params[:id])
+        if @pin_board.update_attributes(pin_board_params)
+            render :show
+        else
+            render json: @board.errors.full_messages, status: 422 
+        end
+    end
+
     def destroy
         @pin_board = PinBoard.find(params[:id])
         if @pin_board.destroy
@@ -28,6 +37,6 @@ class Api::PinBoardsController < ApplicationController
 
     private
     def pin_board_params
-        parmas.require(pin_board).permit(:pin_id, :board_id, :description)
+        params.require(:pin_board).permit(:id, :pin_id, :board_id, :description)
     end
 end

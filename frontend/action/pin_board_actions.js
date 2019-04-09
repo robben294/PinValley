@@ -30,6 +30,10 @@ export const fetchPinBoard = (pinBoardId) => dispatch => {
     });
 };
 
+export const updatePinBoard = (pinBoard) => dispatch => {
+    return PinBoardApiUtil.updatePinBoard(pinBoard).then((pinBoard) => dispatch(receivePinBoard(pinBoard)));
+};
+
 export const deletePinBoard = (pinBoardId) => dispatch => {
     return PinBoardApiUtil.deletePinBoard(pinBoardId).then(() => dispatch(removePinBoard(pinBoardId)));
 };

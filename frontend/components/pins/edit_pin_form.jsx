@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../action/modal_actions';
 import { updatePinBoard, deletePinBoard } from '../../action/pin_board_actions';
-import { updatePin } from '../../action/pin_actions';
+import { createPin } from '../../action/pin_actions';
 
 class EditPinForm extends React.Component {
     constructor(props) {
@@ -11,13 +11,12 @@ class EditPinForm extends React.Component {
         const { pin, pinBoard, board } = this.props;
         this.state = {
             title: pin.title || "",
-            author_id: pin.author_id,
             website: pin.website,
-            photoUrl: pin.photoUrl,
             description: pinBoard.description,
         };
         this.handleClose = this.handleClose.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -32,8 +31,42 @@ class EditPinForm extends React.Component {
         };
     }
 
+    needUpdatePinBoard() {
+        return this.state.description !== this.props.pinBoard.description;
+    }
+
+    needCreatePin() {
+        return this.state.title !== this.props.pin.title || this.state.website !== this.props.pin.website;
+    }
+
     handleSubmit(e) {
         e.preventDefault();
+        const { pinBoard } = this.props; 
+        const { title, description, website } = this.state;
+
+        const new_pin_board = { 
+            description,
+            id: pinBoard.id,
+            pin_id: pinBoard.pin_id,
+            board_id: pinBoard.board_id,
+        };
+
+        // const new_in = {
+        //     description,
+        //     title,
+        //     website,
+        //     author_id: pin.author_id,
+        //     board_id: pinBoard.board_id,
+        //     photo: 
+        // };
+
+        if (this.needUpdatePinBoard()) {
+            this.props.updatePinBoard(new_pin_board)
+                .then(this.handleClose);
+        }
+        // if (this.needCreatePin()) {
+        //     this.props.createPin(this.state);
+        // }
         // this.props.updatePin(this.state).then(() => this.props.updatePinBoard(this.state));
     }
 
@@ -148,7 +181,7 @@ const mdp = dispatch => {
         closeModal: () => dispatch(closeModal()),
         deletePinBoard: (pinBoardId) => dispatch(deletePinBoard(pinBoardId)),
         updatePinBoard: (pinBoard) => dispatch(updatePinBoard(pinBoard)),
-        updatePin: (pin) => dispatch(updatePin),
+        createPin: (pin) => dispatch(createPin(pin)),
     };
 };
 

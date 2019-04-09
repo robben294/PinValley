@@ -291,7 +291,7 @@ var deletePin = function deletePin(pinId) {
 /*!**********************************************!*\
   !*** ./frontend/action/pin_board_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_PIN_BOARD, REMOVE_PIN_BOARD, receivePinBoard, removePinBoard, createPinBoard, fetchPinBoard, deletePinBoard */
+/*! exports provided: RECEIVE_PIN_BOARD, REMOVE_PIN_BOARD, receivePinBoard, removePinBoard, createPinBoard, fetchPinBoard, updatePinBoard, deletePinBoard */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -302,6 +302,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removePinBoard", function() { return removePinBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPinBoard", function() { return createPinBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPinBoard", function() { return fetchPinBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePinBoard", function() { return updatePinBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePinBoard", function() { return deletePinBoard; });
 /* harmony import */ var _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/pin_board_api_util */ "./frontend/util/pin_board_api_util.js");
 
@@ -333,6 +334,13 @@ var fetchPinBoard = function fetchPinBoard(pinBoardId) {
   return function (dispatch) {
     return _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPinBoard"](pinBoardId).then(function (pinBoard) {
       dispatch(receivePinBoard(pinBoard));
+    });
+  };
+};
+var updatePinBoard = function updatePinBoard(pinBoard) {
+  return function (dispatch) {
+    return _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__["updatePinBoard"](pinBoard).then(function (pinBoard) {
+      return dispatch(receivePinBoard(pinBoard));
     });
   };
 };
@@ -2642,13 +2650,12 @@ function (_React$Component) {
         board = _this$props.board;
     _this.state = {
       title: pin.title || "",
-      author_id: pin.author_id,
       website: pin.website,
-      photoUrl: pin.photoUrl,
       description: pinBoard.description
     };
     _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2666,9 +2673,45 @@ function (_React$Component) {
       };
     }
   }, {
+    key: "needUpdatePinBoard",
+    value: function needUpdatePinBoard() {
+      return this.state.description !== this.props.pinBoard.description;
+    }
+  }, {
+    key: "needCreatePin",
+    value: function needCreatePin() {
+      return this.state.title !== this.props.pin.title || this.state.website !== this.props.pin.website;
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // this.props.updatePin(this.state).then(() => this.props.updatePinBoard(this.state));
+      e.preventDefault();
+      var pinBoard = this.props.pinBoard;
+      var _this$state = this.state,
+          title = _this$state.title,
+          description = _this$state.description,
+          website = _this$state.website;
+      var new_pin_board = {
+        description: description,
+        id: pinBoard.id,
+        pin_id: pinBoard.pin_id,
+        board_id: pinBoard.board_id
+      }; // const new_in = {
+      //     description,
+      //     title,
+      //     website,
+      //     author_id: pin.author_id,
+      //     board_id: pinBoard.board_id,
+      //     photo: 
+      // };
+
+      if (this.needUpdatePinBoard()) {
+        this.props.updatePinBoard(new_pin_board).then(this.handleClose);
+      } // if (this.needCreatePin()) {
+      //     this.props.createPin(this.state);
+      // }
+      // this.props.updatePin(this.state).then(() => this.props.updatePinBoard(this.state));
+
     }
   }, {
     key: "handleClose",
@@ -2782,8 +2825,8 @@ var mdp = function mdp(dispatch) {
     updatePinBoard: function updatePinBoard(pinBoard) {
       return dispatch(Object(_action_pin_board_actions__WEBPACK_IMPORTED_MODULE_4__["updatePinBoard"])(pinBoard));
     },
-    updatePin: function updatePin(pin) {
-      return dispatch(_action_pin_actions__WEBPACK_IMPORTED_MODULE_5__["updatePin"]);
+    createPin: function createPin(pin) {
+      return dispatch(Object(_action_pin_actions__WEBPACK_IMPORTED_MODULE_5__["createPin"])(pin));
     }
   };
 };
@@ -4608,7 +4651,7 @@ var deletePin = function deletePin(pinId) {
 /*!*********************************************!*\
   !*** ./frontend/util/pin_board_api_util.js ***!
   \*********************************************/
-/*! exports provided: createPinBoard, deletePinBoard, fetchPinBoard */
+/*! exports provided: createPinBoard, deletePinBoard, fetchPinBoard, updatePinBoard */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4616,6 +4659,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPinBoard", function() { return createPinBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePinBoard", function() { return deletePinBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPinBoard", function() { return fetchPinBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePinBoard", function() { return updatePinBoard; });
 var createPinBoard = function createPinBoard(pinBoard) {
   return $.ajax({
     method: 'POST',
@@ -4635,6 +4679,15 @@ var fetchPinBoard = function fetchPinBoard(pinBoardId) {
   return $.ajax({
     method: 'GET',
     url: "api/pin_boards/".concat(pinBoardId)
+  });
+};
+var updatePinBoard = function updatePinBoard(pinBoard) {
+  return $.ajax({
+    method: 'PATCH',
+    url: "api/pin_boards/".concat(pinBoard.id),
+    data: {
+      pin_board: pinBoard
+    }
   });
 };
 

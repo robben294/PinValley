@@ -19,3 +19,11 @@ export const fetchPinBoard = (pinBoardId) => {
         url: `api/pin_boards/${pinBoardId}`
     });
 };
+
+export const updatePinBoard = (pinBoard) => {
+    return $.ajax({
+        method: 'PATCH',
+        url: `api/pin_boards/${pinBoard.id}`,
+        data: {pin_board: pinBoard}
+    });
+};
