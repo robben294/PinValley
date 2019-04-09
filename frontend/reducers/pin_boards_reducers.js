@@ -3,12 +3,14 @@ import {
     REMOVE_PIN_BOARD
 } from '../action/pin_board_actions';
 import { RECEIVE_BOARDS, RECEIVE_BOARD } from '../action/board_actions';
+import { RECEIVE_FEED } from '../action/pin_actions';
 
 const pinBoardsReducer = (state = {}, action) => {
     const oldState = Object.freeze(state);
     switch (action.type) {
         case RECEIVE_BOARDS:
-        case RECEIVE_BOARD: 
+        case RECEIVE_BOARD:
+        case RECEIVE_FEED:
         {
             return Object.assign({}, oldState, action.pinBoards);
         }

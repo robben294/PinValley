@@ -15,6 +15,13 @@ export const fetchPins = () => {
     });
 };
 
+export const fetchFeed = () => {
+    return $.ajax({
+        method: 'GET',
+        url: 'api/feed'
+    });
+};
+
 export const fetchPin = (pinId) => {
     return $.ajax({
         method: 'GET',
