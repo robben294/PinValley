@@ -40,7 +40,7 @@ const Modal = ({ modal, closeModal }) => {
             component = <EditPinForm 
                             pin={modal.modalProps.pin} 
                             board={modal.modalProps.board} 
-                            pinBoardId={modal.modalProps.pinBoardId}/>;
+                            pinBoard={modal.modalProps.pinBoard}/>;
             backgroundClass = "boards-modal-background";
             break;
         default:

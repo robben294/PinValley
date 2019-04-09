@@ -23,11 +23,12 @@ class BoardPinIndex extends React.Component {
             return null;
         }
 
-        const wrappedPins = Object.values(pins).map((pin,idx) => {
-            if (pin) {
+        const wrappedPinBoards = Object.values(pinBoards).map((pinBoard,idx) => {
+            if (pinBoard) {
                 return (
-                    <PinIndexItem pin={pin} 
+                    <PinIndexItem pinBoard={pinBoard} 
                         board={board} 
+                        pin={pins[pinBoard.pin_id]}
                         key={idx} 
                         push={this.props.history.push}
                         openModal={this.props.openModal}/>
@@ -40,7 +41,7 @@ class BoardPinIndex extends React.Component {
             
             <div>
                 <div className='pins'>
-                    {wrappedPins}
+                    {wrappedPinBoards}
                 </div>
             </div>
         );

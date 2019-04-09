@@ -21,18 +21,20 @@ class PinIndex extends React.Component {
             //It's possible that previous state's pins/boards/pinBoards are not empty 
             //but some of them are not there, so cannot read property pin_id of null
             if (pinBoards[pin_board_id]) {
-                return Object.assign(pins[pinBoards[pin_board_id].pin_id], {pin_board_id}); 
+                return pinBoards[pin_board_id];
+                // return Object.assign(pins[pinBoards[pin_board_id].pin_id], {pin_board_id}); 
             } else {
                 return null;
             }
             //merge pin_board_id into pins, so that it canbe passed into PinIndexItem
         });
 
-        const wrappedPins = boardPins.map((pin,idx) => {
-            if (pin) {
+        const wrappedPinBoards = boardPins.map((pinBoard,idx) => {
+            if (pinBoard) {
                 return (
-                    <PinIndexItem pin={pin} 
+                    <PinIndexItem pinBoard={pinBoard} 
                         board={board} 
+                        pin={pins[pinBoard.pin_id]}
                         key={idx} 
                         push={this.props.history.push}
                         openModal={this.props.openModal}/>
@@ -44,7 +46,7 @@ class PinIndex extends React.Component {
         return (
             <div>
                 <div className='pins'>
-                    {wrappedPins}
+                    {wrappedPinBoards}
                 </div>
             </div>
         );

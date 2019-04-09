@@ -8,7 +8,14 @@ import { updatePin } from '../../action/pin_actions';
 class EditPinForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.pin;
+        const { pin, pinBoard, board } = this.props;
+        this.state = {
+            title: pin.title || "",
+            author_id: pin.author_id,
+            website: pin.website,
+            photoUrl: pin.photoUrl,
+            description: pinBoard.description,
+        };
         this.handleClose = this.handleClose.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
@@ -35,7 +42,7 @@ class EditPinForm extends React.Component {
     }
 
     handleDelete(e) {
-        this.props.deletePinBoard(this.props.pinBoardId)
+        this.props.deletePinBoard(this.props.pinBoard.id)
         .then(() => this.props.history.push(`/boards/${this.props.board.id}`)).then(() => this.handleClose());
     }
 

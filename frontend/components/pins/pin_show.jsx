@@ -41,7 +41,6 @@ class PinShow extends React.Component {
         }
         const pin = pins[pinBoard.pin_id];
         const board = boards[pinBoard.board_id];
-        const pinBoardId = pinBoard.id;
         return (
             <div className='pin-show-page'>
                 <div className='pin-show-back' onClick={this.handleBack}>
@@ -53,7 +52,7 @@ class PinShow extends React.Component {
                             <div className='pin-show-icon' 
                             onClick={() => this.props.openModal({
                                 modalType: 'editPin',
-                                modalProps: { pin, board, pinBoardId, boards }
+                                modalProps: { pin, board, pinBoard, boards }
                             })}>
                                 <i className="fas fa-pen"></i>
                             </div>

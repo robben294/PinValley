@@ -1857,7 +1857,7 @@ var Modal = function Modal(_ref) {
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_edit_pin_form__WEBPACK_IMPORTED_MODULE_7__["default"], {
         pin: modal.modalProps.pin,
         board: modal.modalProps.board,
-        pinBoardId: modal.modalProps.pinBoardId
+        pinBoard: modal.modalProps.pinBoard
       });
       backgroundClass = "boards-modal-background";
       break;
@@ -2151,11 +2151,12 @@ function (_React$Component) {
         return null;
       }
 
-      var wrappedPins = Object.values(pins).map(function (pin, idx) {
-        if (pin) {
+      var wrappedPinBoards = Object.values(pinBoards).map(function (pinBoard, idx) {
+        if (pinBoard) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-            pin: pin,
+            pinBoard: pinBoard,
             board: board,
+            pin: pins[pinBoard.pin_id],
             key: idx,
             push: _this.props.history.push,
             openModal: _this.props.openModal
@@ -2166,7 +2167,7 @@ function (_React$Component) {
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pins"
-      }, wrappedPins));
+      }, wrappedPinBoards));
     }
   }]);
 
@@ -2631,7 +2632,17 @@ function (_React$Component) {
     _classCallCheck(this, EditPinForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EditPinForm).call(this, props));
-    _this.state = _this.props.pin;
+    var _this$props = _this.props,
+        pin = _this$props.pin,
+        pinBoard = _this$props.pinBoard,
+        board = _this$props.board;
+    _this.state = {
+      title: pin.title || "",
+      author_id: pin.author_id,
+      website: pin.website,
+      photoUrl: pin.photoUrl,
+      description: pinBoard.description
+    };
     _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
@@ -2665,7 +2676,7 @@ function (_React$Component) {
     value: function handleDelete(e) {
       var _this3 = this;
 
-      this.props.deletePinBoard(this.props.pinBoardId).then(function () {
+      this.props.deletePinBoard(this.props.pinBoard.id).then(function () {
         return _this3.props.history.push("/boards/".concat(_this3.props.board.id));
       }).then(function () {
         return _this3.handleClose();
@@ -2850,19 +2861,18 @@ function (_React$Component) {
         //It's possible that previous state's pins/boards/pinBoards are not empty 
         //but some of them are not there, so cannot read property pin_id of null
         if (pinBoards[pin_board_id]) {
-          return Object.assign(pins[pinBoards[pin_board_id].pin_id], {
-            pin_board_id: pin_board_id
-          });
+          return pinBoards[pin_board_id]; // return Object.assign(pins[pinBoards[pin_board_id].pin_id], {pin_board_id}); 
         } else {
           return null;
         } //merge pin_board_id into pins, so that it canbe passed into PinIndexItem
 
       });
-      var wrappedPins = boardPins.map(function (pin, idx) {
-        if (pin) {
+      var wrappedPinBoards = boardPins.map(function (pinBoard, idx) {
+        if (pinBoard) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-            pin: pin,
+            pinBoard: pinBoard,
             board: board,
+            pin: pins[pinBoard.pin_id],
             key: idx,
             push: _this.props.history.push,
             openModal: _this.props.openModal
@@ -2873,7 +2883,7 @@ function (_React$Component) {
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pins"
-      }, wrappedPins));
+      }, wrappedPinBoards));
     }
   }]);
 
@@ -2966,12 +2976,12 @@ function (_React$Component) {
 
       var _this$props = this.props,
           pin = _this$props.pin,
-          board = _this$props.board;
-      var pinBoardId = pin.pin_board_id;
+          board = _this$props.board,
+          pinBoard = _this$props.pinBoard;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item",
         onClick: function onClick() {
-          return _this.props.push("/pinBoards/".concat(pin.pin_board_id));
+          return _this.props.push("/pinBoards/".concat(pinBoard.id));
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-cover"
@@ -2988,7 +2998,7 @@ function (_React$Component) {
             modalProps: {
               pin: pin,
               board: board,
-              pinBoardId: pinBoardId
+              pinBoard: pinBoard
             }
           });
         }
@@ -3129,7 +3139,6 @@ function (_React$Component) {
 
       var pin = pins[pinBoard.pin_id];
       var board = boards[pinBoard.board_id];
-      var pinBoardId = pinBoard.id;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3151,7 +3160,7 @@ function (_React$Component) {
             modalProps: {
               pin: pin,
               board: board,
-              pinBoardId: pinBoardId,
+              pinBoard: pinBoard,
               boards: boards
             }
           });
