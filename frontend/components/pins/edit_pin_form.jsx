@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../action/modal_actions';
-import { createPinBoard, deletePinBoard } from '../../action/pin_board_actions';
+import { updatePinBoard, deletePinBoard } from '../../action/pin_board_actions';
+import { updatePin } from '../../action/pin_actions';
 
 class EditPinForm extends React.Component {
     constructor(props) {
@@ -10,6 +11,10 @@ class EditPinForm extends React.Component {
         this.state = this.props.pin;
         this.handleClose = this.handleClose.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    componentDidMount() {
+        // this.props.fetchBoards();
     }
 
     handleInput(field) {
@@ -22,7 +27,7 @@ class EditPinForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createPinBoard();
+        // this.props.updatePin(this.state).then(() => this.props.updatePinBoard(this.state));
     }
 
     handleClose(e) {
@@ -135,6 +140,8 @@ const mdp = dispatch => {
     return {
         closeModal: () => dispatch(closeModal()),
         deletePinBoard: (pinBoardId) => dispatch(deletePinBoard(pinBoardId)),
+        updatePinBoard: (pinBoard) => dispatch(updatePinBoard(pinBoard)),
+        updatePin: (pin) => dispatch(updatePin),
     };
 };
 

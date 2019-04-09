@@ -10,6 +10,7 @@ import BoardIndex from './boards/board_index';
 import BoardShow from './boards/board_show';
 import CreatePinForm from './pins/create_pin_form';
 import PinShow from './pins/pin_show';
+import BoardPinIndex from './pins/board_pin_index';
 
 import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_utils';
@@ -27,6 +28,7 @@ const App = () => {
             <ProtectedRoute path='/feed' component={GreetingFeed} />
             <AuthRoute exact path='/' component={GreetingLogin} />
             <ProtectedRoute path='/boards/:boardId' component={BoardShow} />
+            <ProtectedRoute path='/profile/Pins/' component={BoardPinIndex} />
             <ProtectedRoute path='/profile' component={BoardIndex} />
             <ProtectedRoute path='/pin/new' component={CreatePinForm} />
             <ProtectedRoute path='/pinBoards/:pinBoardId' component={PinShow} />

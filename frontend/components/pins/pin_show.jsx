@@ -53,7 +53,7 @@ class PinShow extends React.Component {
                             <div className='pin-show-icon' 
                             onClick={() => this.props.openModal({
                                 modalType: 'editPin',
-                                modalProps: { pin, board, pinBoardId }
+                                modalProps: { pin, board, pinBoardId, boards }
                             })}>
                                 <i className="fas fa-pen"></i>
                             </div>

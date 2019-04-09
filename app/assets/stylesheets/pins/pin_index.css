@@ -1,11 +1,11 @@
 .pins {
     padding-top: 20px;
-    /* flex-wrap: wrap;
+    flex-wrap: wrap;
     display: flex;
-    justify-content: center;  */
-    display: grid;
+    justify-content: center; 
+    /* display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 250px)); */
 }
 
 
