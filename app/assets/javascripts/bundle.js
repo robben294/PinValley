@@ -3386,13 +3386,32 @@ function (_React$Component) {
   _createClass(PinShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchBoards();
-      this.props.fetchPinBoard(this.props.match.params.pinBoardId);
+      var _this2 = this;
+
+      this.props.fetchBoards().then(function () {
+        return _this2.props.fetchPinBoard(_this2.props.match.params.pinBoardId);
+      });
     }
   }, {
     key: "handleBack",
     value: function handleBack(e) {
       this.props.history.goBack();
+    }
+  }, {
+    key: "isOwner",
+    value: function isOwner() {
+      //checking the owner of the pin
+      //if currentUser is the owner, currentUser has authority to edit
+      var _this$props = this.props,
+          currentUserId = _this$props.currentUserId,
+          pinBoard = _this$props.pinBoard,
+          pins = _this$props.pins,
+          boards = _this$props.boards;
+      var pin = pins[pinBoard.pin_id];
+      var board = boards[pinBoard.board_id];
+      var authorId = pin.author_id;
+      var ownerId = board.creator_id;
+      return currentUserId === authorId || currentUserId === ownerId;
     }
   }, {
     key: "shortenWebsite",
@@ -3414,14 +3433,14 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
-      var _this$props = this.props,
-          pins = _this$props.pins,
-          pinBoard = _this$props.pinBoard,
-          boards = _this$props.boards;
+      var _this$props2 = this.props,
+          pins = _this$props2.pins,
+          pinBoard = _this$props2.pinBoard,
+          boards = _this$props2.boards;
 
-      if (!pinBoard) {
+      if (!pinBoard || !pins || !boards) {
         return null;
       }
 
@@ -3440,10 +3459,10 @@ function (_React$Component) {
         className: "pin-show-nav"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-icons"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.isOwner() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-icon",
         onClick: function onClick() {
-          return _this2.props.openModal({
+          return _this3.props.openModal({
             modalType: 'editPin',
             modalProps: {
               pin: pin,
@@ -3455,7 +3474,7 @@ function (_React$Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pen"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-icon"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-ellipsis-h"
@@ -3502,7 +3521,8 @@ var msp = function msp(state, ownProps) {
   return {
     pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
     pins: state.entities.pins,
-    boards: state.entities.boards
+    boards: state.entities.boards,
+    currentUserId: state.session.id
   };
 };
 

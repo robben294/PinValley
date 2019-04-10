@@ -13,12 +13,23 @@ class PinShow extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchBoards();
-        this.props.fetchPinBoard(this.props.match.params.pinBoardId);
+        this.props.fetchBoards()
+            .then(() => this.props.fetchPinBoard(this.props.match.params.pinBoardId));
     }
 
     handleBack(e) {
         this.props.history.goBack();
+    }
+
+    isOwner() {
+        //checking the owner of the pin
+        //if currentUser is the owner, currentUser has authority to edit
+        const { currentUserId, pinBoard, pins, boards } = this.props;
+        const pin = pins[pinBoard.pin_id];
+        const board = boards[pinBoard.board_id];
+        const authorId = pin.author_id;
+        const ownerId = board.creator_id;
+        return (currentUserId === authorId || currentUserId === ownerId) 
     }
 
     shortenWebsite(website) {
@@ -36,7 +47,7 @@ class PinShow extends React.Component {
 
     render() {
         const { pins, pinBoard, boards } = this.props;
-        if (!pinBoard) {
+        if (!pinBoard || !pins || !boards) {
             return null;
         }
         const pin = pins[pinBoard.pin_id];
@@ -49,13 +60,19 @@ class PinShow extends React.Component {
                 <div className='pin-show-main'>
                     <div className='pin-show-nav'>
                         <div className='pin-show-icons'> 
-                            <div className='pin-show-icon' 
-                            onClick={() => this.props.openModal({
-                                modalType: 'editPin',
-                                modalProps: { pin, board, pinBoard, boards }
-                            })}>
-                                <i className="fas fa-pen"></i>
-                            </div>
+
+                            {
+                                this.isOwner() 
+                                    ? <div className='pin-show-icon'
+                                        onClick={() => this.props.openModal({
+                                            modalType: 'editPin',
+                                            modalProps: { pin, board, pinBoard, boards }
+                                        })}>
+                                        <i className="fas fa-pen"></i>
+                                    </div>
+                                    : null
+                            }
+
                             <div className='pin-show-icon'>
                                 <i className="fas fa-ellipsis-h"></i>
                             </div>  
@@ -114,6 +131,7 @@ const msp = (state, ownProps) => {
         pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
         pins: state.entities.pins,
         boards: state.entities.boards,
+        currentUserId: state.session.id
     }
 };
 
