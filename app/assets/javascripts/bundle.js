@@ -3490,11 +3490,7 @@ function (_React$Component) {
   _createClass(PinShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
-      this.props.fetchBoards().then(function () {
-        return _this2.props.fetchPinBoard(_this2.props.match.params.pinBoardId);
-      });
+      this.props.fetchPinBoard(this.props.match.params.pinBoardId);
     }
   }, {
     key: "handleBack",
@@ -3537,7 +3533,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var _this$props2 = this.props,
           pins = _this$props2.pins,
@@ -3566,13 +3562,12 @@ function (_React$Component) {
       }, this.isOwner() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-icon",
         onClick: function onClick() {
-          return _this3.props.openModal({
+          return _this2.props.openModal({
             modalType: 'editPin',
             modalProps: {
               pin: pin,
               board: board,
-              pinBoard: pinBoard,
-              boards: boards
+              pinBoard: pinBoard
             }
           });
         }
@@ -4488,7 +4483,9 @@ document.addEventListener('DOMContentLoaded', function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _action_board_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../action/board_actions */ "./frontend/action/board_actions.js");
 /* harmony import */ var _action_pin_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../action/pin_actions */ "./frontend/action/pin_actions.js");
+/* harmony import */ var _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../action/pin_board_actions */ "./frontend/action/pin_board_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -4508,6 +4505,9 @@ var boardsReducer = function boardsReducer() {
       {
         return Object.assign({}, oldState, _defineProperty({}, action.board.id, action.board));
       }
+
+    case _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_PIN_BOARD"]:
+      return Object.assign({}, oldState, action.board);
 
     case _action_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_FEED"]:
       return Object.assign({}, action.boards);

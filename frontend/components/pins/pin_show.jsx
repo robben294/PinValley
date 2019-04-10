@@ -13,8 +13,7 @@ class PinShow extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchBoards()
-            .then(() => this.props.fetchPinBoard(this.props.match.params.pinBoardId));
+        this.props.fetchPinBoard(this.props.match.params.pinBoardId);
     }
 
     handleBack(e) {
@@ -66,7 +65,7 @@ class PinShow extends React.Component {
                                     ? <div className='pin-show-icon'
                                         onClick={() => this.props.openModal({
                                             modalType: 'editPin',
-                                            modalProps: { pin, board, pinBoard, boards }
+                                            modalProps: { pin, board, pinBoard }
                                         })}>
                                         <i className="fas fa-pen"></i>
                                     </div>

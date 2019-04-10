@@ -4,6 +4,7 @@ import {
     REMOVE_BOARD 
 } from '../action/board_actions';
 import { RECEIVE_FEED } from '../action/pin_actions';
+import { RECEIVE_PIN_BOARD } from '../action/pin_board_actions';
 
 const boardsReducer = (state = {}, action) => {
     const oldState = Object.freeze(state);
@@ -15,6 +16,8 @@ const boardsReducer = (state = {}, action) => {
         case RECEIVE_BOARD: {
             return Object.assign({}, oldState, { [action.board.id]: action.board });
         }
+        case RECEIVE_PIN_BOARD: 
+            return Object.assign({}, oldState, action.board);
         case RECEIVE_FEED:
             return Object.assign({}, action.boards);
         case REMOVE_BOARD: {
