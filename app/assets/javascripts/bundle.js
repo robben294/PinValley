@@ -1582,7 +1582,9 @@ function (_React$Component) {
           return null;
         }
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, wrappedPins);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pins"
+      }, wrappedPins);
     }
   }]);
 

@@ -28,7 +28,7 @@ class Feed extends React.Component {
             
         });
         return (
-            <div>
+            <div className="pins">
                 {wrappedPins}
             </div>
         )
