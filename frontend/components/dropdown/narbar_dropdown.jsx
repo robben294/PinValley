@@ -1,25 +1,34 @@
 import React from 'react';
 
-const Dropdown = ({ showDropdown,logout }) => {
-    return (
-        <div>
-            {
-                showDropdown
-                    ? (
-                        <div className="dropdown-content">
-                            <div className="arrow-up"></div>
-                            <div className="arrow-up-border"></div>
-                            <div className="dropdown-item" onClick={logout}>
-                                <div>Log out</div>
+class Dropdown extends React.Component {
+
+    handleLogout() {
+        this.props.closeDropdown();
+        this.props.logout();
+    }
+    
+    render() {
+        const { showDropdown } = this.props;
+        return (
+            <div>
+                {
+                    showDropdown
+                        ? (
+                            <div className="dropdown-content">
+                                <div className="arrow-up"></div>
+                                <div className="arrow-up-border"></div>
+                                <div className="dropdown-item" onClick={this.handleLogout.bind(this)}>
+                                    <div>Log out</div>
+                                </div>
                             </div>
-                        </div>
-                    )
-                    : (
-                        null
-                    )
-            }      
-        </div>
-    )
+                        )
+                        : (
+                            null
+                        )
+                }      
+            </div>
+        )
+    }
 } 
 
 export default Dropdown;

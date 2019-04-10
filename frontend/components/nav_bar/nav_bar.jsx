@@ -80,7 +80,10 @@ class Navbar extends React.Component {
                             onFocus={this.showDropdown}
                             onBlur={this.closeDropdown}>
                             <i id='navbar-option' className="fas fa-ellipsis-h"></i>
-                            <NavbarDropdown logout={logout} showDropdown={this.state.showDropdown}/>
+                            <NavbarDropdown 
+                                logout={logout} 
+                                showDropdown={this.state.showDropdown}
+                                closeDropdown={this.closeDropdown}/>
                         </div>
                     </div>
                 </div>
