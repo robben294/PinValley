@@ -8,6 +8,14 @@ export const createPin = (formData) => {
     });
 };
 
+export const createPinNotFomatted = (pin) => {
+    return $.ajax({
+        method: 'POST',
+        url: 'api/pins',
+        data: pin,
+    });
+};
+
 export const fetchPins = () => {
     return $.ajax({
         method: 'GET',

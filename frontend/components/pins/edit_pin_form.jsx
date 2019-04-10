@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { closeModal } from '../../action/modal_actions';
 import { updatePinBoard, deletePinBoard } from '../../action/pin_board_actions';
-import { createPin } from '../../action/pin_actions';
+import { createPinNotFomatted } from '../../action/pin_actions';
 
 class EditPinForm extends React.Component {
     constructor(props) {
@@ -51,23 +51,30 @@ class EditPinForm extends React.Component {
             board_id: pinBoard.board_id,
         };
 
-        // const new_in = {
-        //     description,
-        //     title,
-        //     website,
-        //     author_id: pin.author_id,
-        //     board_id: pinBoard.board_id,
-        //     photo: 
-        // };
+        const new_pin = {
+            pin: {
+                id: pinBoard.pin_id,
+                title,
+                website,
+            },
+            pin_board: {
+                description,
+                board_id: pinBoard.board_id,
+            }
+        };
+        if (this.needCreatePin()) {
+            this.props.createPin(new_pin)
+                .then(() => this.props.deletePinBoard(pinBoard.id))
+                .then(this.handleClose);
+            return;
+        }
 
         if (this.needUpdatePinBoard()) {
             this.props.updatePinBoard(new_pin_board)
                 .then(this.handleClose);
+            return;
         }
-        // if (this.needCreatePin()) {
-        //     this.props.createPin(this.state);
-        // }
-        // this.props.updatePin(this.state).then(() => this.props.updatePinBoard(this.state));
+
     }
 
     handleClose(e) {
@@ -181,7 +188,7 @@ const mdp = dispatch => {
         closeModal: () => dispatch(closeModal()),
         deletePinBoard: (pinBoardId) => dispatch(deletePinBoard(pinBoardId)),
         updatePinBoard: (pinBoard) => dispatch(updatePinBoard(pinBoard)),
-        createPin: (pin) => dispatch(createPin(pin)),
+        createPin: (pin) => dispatch(createPinNotFomatted(pin)),
     };
 };
 

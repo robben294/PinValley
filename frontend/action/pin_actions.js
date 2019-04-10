@@ -51,6 +51,10 @@ export const createPin = (pin) => dispatch => {
     return PinApiUtil.createPin(pin).then(pin => dispatch(receivePin(pin)));
 };
 
+export const createPinNotFomatted = (pin) => dispatch => {
+    return PinApiUtil.createPinNotFomatted(pin).then(pin => dispatch(receivePin(pin)));
+};
+
 export const updatePin = (pin) => dispatch => {
     return PinApiUtil.updatePin(pin).then(pin => dispatch(receivePin(pin)));
 };

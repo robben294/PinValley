@@ -210,7 +210,7 @@ var closeModal = function closeModal() {
 /*!****************************************!*\
   !*** ./frontend/action/pin_actions.js ***!
   \****************************************/
-/*! exports provided: RECEIVE_PIN, RECEIVE_PINS, RECEIVE_FEED, REMOVE_PIN, receivePins, receiveFeed, receivePin, removePin, fetchPins, fetchPin, fetchFeed, createPin, updatePin, deletePin */
+/*! exports provided: RECEIVE_PIN, RECEIVE_PINS, RECEIVE_FEED, REMOVE_PIN, receivePins, receiveFeed, receivePin, removePin, fetchPins, fetchPin, fetchFeed, createPin, createPinNotFomatted, updatePin, deletePin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -227,6 +227,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPin", function() { return fetchPin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFeed", function() { return fetchFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPin", function() { return createPin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPinNotFomatted", function() { return createPinNotFomatted; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePin", function() { return updatePin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePin", function() { return deletePin; });
 /* harmony import */ var _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/pin_api_util */ "./frontend/util/pin_api_util.js");
@@ -288,6 +289,13 @@ var fetchFeed = function fetchFeed() {
 var createPin = function createPin(pin) {
   return function (dispatch) {
     return _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__["createPin"](pin).then(function (pin) {
+      return dispatch(receivePin(pin));
+    });
+  };
+};
+var createPinNotFomatted = function createPinNotFomatted(pin) {
+  return function (dispatch) {
+    return _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__["createPinNotFomatted"](pin).then(function (pin) {
       return dispatch(receivePin(pin));
     });
   };
@@ -2926,6 +2934,8 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
       var pinBoard = this.props.pinBoard;
       var _this$state = this.state,
@@ -2937,22 +2947,30 @@ function (_React$Component) {
         id: pinBoard.id,
         pin_id: pinBoard.pin_id,
         board_id: pinBoard.board_id
-      }; // const new_in = {
-      //     description,
-      //     title,
-      //     website,
-      //     author_id: pin.author_id,
-      //     board_id: pinBoard.board_id,
-      //     photo: 
-      // };
+      };
+      var new_pin = {
+        pin: {
+          id: pinBoard.pin_id,
+          title: title,
+          website: website
+        },
+        pin_board: {
+          description: description,
+          board_id: pinBoard.board_id
+        }
+      };
+
+      if (this.needCreatePin()) {
+        this.props.createPin(new_pin).then(function () {
+          return _this3.props.deletePinBoard(pinBoard.id);
+        }).then(this.handleClose);
+        return;
+      }
 
       if (this.needUpdatePinBoard()) {
         this.props.updatePinBoard(new_pin_board).then(this.handleClose);
-      } // if (this.needCreatePin()) {
-      //     this.props.createPin(this.state);
-      // }
-      // this.props.updatePin(this.state).then(() => this.props.updatePinBoard(this.state));
-
+        return;
+      }
     }
   }, {
     key: "handleClose",
@@ -2962,12 +2980,12 @@ function (_React$Component) {
   }, {
     key: "handleDelete",
     value: function handleDelete(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.props.deletePinBoard(this.props.pinBoard.id).then(function () {
-        return _this3.props.history.push("/boards/".concat(_this3.props.board.id));
+        return _this4.props.history.push("/boards/".concat(_this4.props.board.id));
       }).then(function () {
-        return _this3.handleClose();
+        return _this4.handleClose();
       });
     }
   }, {
@@ -3067,7 +3085,7 @@ var mdp = function mdp(dispatch) {
       return dispatch(Object(_action_pin_board_actions__WEBPACK_IMPORTED_MODULE_4__["updatePinBoard"])(pinBoard));
     },
     createPin: function createPin(pin) {
-      return dispatch(Object(_action_pin_actions__WEBPACK_IMPORTED_MODULE_5__["createPin"])(pin));
+      return dispatch(Object(_action_pin_actions__WEBPACK_IMPORTED_MODULE_5__["createPinNotFomatted"])(pin));
     }
   };
 };
@@ -4868,12 +4886,13 @@ var deleteBoard = function deleteBoard(boardId) {
 /*!***************************************!*\
   !*** ./frontend/util/pin_api_util.js ***!
   \***************************************/
-/*! exports provided: createPin, fetchPins, fetchFeed, fetchPin, updatePin, deletePin */
+/*! exports provided: createPin, createPinNotFomatted, fetchPins, fetchFeed, fetchPin, updatePin, deletePin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPin", function() { return createPin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPinNotFomatted", function() { return createPinNotFomatted; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPins", function() { return fetchPins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFeed", function() { return fetchFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPin", function() { return fetchPin; });
@@ -4886,6 +4905,13 @@ var createPin = function createPin(formData) {
     data: formData,
     contentType: false,
     processData: false
+  });
+};
+var createPinNotFomatted = function createPinNotFomatted(pin) {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/pins',
+    data: pin
   });
 };
 var fetchPins = function fetchPins() {

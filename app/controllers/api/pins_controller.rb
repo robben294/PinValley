@@ -1,9 +1,21 @@
 class Api::PinsController < ApplicationController
     def create
-        @pin = current_user.authored_pins.new(pin_params)
-        @pin_board = @pin.pin_boards.new(pin_board_params) #Using pin's association to create a pin_board
-        #when save one of them, both of them being saved.
-        #Not passing current_user any more, and don't need to create pin_board from pinboard controller
+        debugger
+        # url = url_for(Pin.find(pin_params[:id]).photo)
+        # @pin.attach(io: File.open(url))
+        if pin_params[:id]
+            debugger
+            @pin = current_user.authored_pins.new(title: pin_params[:title], website: pin_params[:website])
+            @pin_board = @pin.pin_boards.new(pin_board_params)
+            @pin.photo = Pin.find(pin_params[:id]).photo
+            debugger
+            # when saving pin in editPin, we just need to create a new pin with original photo
+        else
+            @pin = current_user.authored_pins.new(pin_params) # create with current_user.id
+            @pin_board = @pin.pin_boards.new(pin_board_params) #Using pin's association to create a pin_board
+            #when save one of them, both of them being saved.
+            #Not passing current_user any more, and don't need to create pin_board from pinboard controller
+        end
         if @pin.save
             render :show
         else
@@ -45,7 +57,7 @@ class Api::PinsController < ApplicationController
 
     private
     def pin_params
-        params.require(:pin).permit(:photo, :website, :title)
+        params.require(:pin).permit(:id, :photo, :website, :title)
     end
 
     def pin_board_params
