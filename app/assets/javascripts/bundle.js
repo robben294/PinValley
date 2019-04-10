@@ -340,11 +340,13 @@ var RECEIVE_PIN_BOARD = 'RECEIVE_PIN_BOARD';
 var REMOVE_PIN_BOARD = 'REMOVE_PIN_BOARD';
 var receivePinBoard = function receivePinBoard(_ref) {
   var pinBoard = _ref.pinBoard,
-      pin = _ref.pin;
+      pin = _ref.pin,
+      board = _ref.board;
   return {
     type: RECEIVE_PIN_BOARD,
     pinBoard: pinBoard,
-    pin: pin
+    pin: pin,
+    board: board
   };
 };
 var removePinBoard = function removePinBoard(pinBoardId) {
@@ -355,22 +357,22 @@ var removePinBoard = function removePinBoard(pinBoardId) {
 };
 var createPinBoard = function createPinBoard(pinBoard) {
   return function (dispatch) {
-    return _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__["createPinBoard"](pinBoard).then(function (pinBoard) {
-      return dispatch(receivePinBoard(pinBoard));
+    return _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__["createPinBoard"](pinBoard).then(function (payload) {
+      return dispatch(receivePinBoard(payload));
     });
   };
 };
 var fetchPinBoard = function fetchPinBoard(pinBoardId) {
   return function (dispatch) {
-    return _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPinBoard"](pinBoardId).then(function (pinBoard) {
-      dispatch(receivePinBoard(pinBoard));
+    return _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPinBoard"](pinBoardId).then(function (payload) {
+      dispatch(receivePinBoard(payload));
     });
   };
 };
 var updatePinBoard = function updatePinBoard(pinBoard) {
   return function (dispatch) {
-    return _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__["updatePinBoard"](pinBoard).then(function (pinBoard) {
-      return dispatch(receivePinBoard(pinBoard));
+    return _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__["updatePinBoard"](pinBoard).then(function (payload) {
+      return dispatch(receivePinBoard(payload));
     });
   };
 };

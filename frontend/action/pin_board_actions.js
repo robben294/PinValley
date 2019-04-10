@@ -3,11 +3,12 @@ import * as PinBoardApiUtil from '../util/pin_board_api_util';
 export const RECEIVE_PIN_BOARD = 'RECEIVE_PIN_BOARD';
 export const REMOVE_PIN_BOARD = 'REMOVE_PIN_BOARD';
 
-export const receivePinBoard = ({pinBoard, pin}) => {
+export const receivePinBoard = ({pinBoard, pin, board}) => {
     return {
         type: RECEIVE_PIN_BOARD,
         pinBoard,
-        pin
+        pin,
+        board
     };
 };
 
@@ -19,19 +20,19 @@ export const removePinBoard = (pinBoardId) => {
 };
 
 export const createPinBoard = (pinBoard) => dispatch => {
-    return PinBoardApiUtil.createPinBoard(pinBoard).then(pinBoard => dispatch(receivePinBoard(pinBoard)));
+    return PinBoardApiUtil.createPinBoard(pinBoard).then(payload => dispatch(receivePinBoard(payload)));
 };
 
 export const fetchPinBoard = (pinBoardId) => dispatch => {
     return PinBoardApiUtil.fetchPinBoard(pinBoardId).then(
         
-        pinBoard => {
-        dispatch(receivePinBoard(pinBoard));
+        payload => {
+        dispatch(receivePinBoard(payload));
     });
 };
 
 export const updatePinBoard = (pinBoard) => dispatch => {
-    return PinBoardApiUtil.updatePinBoard(pinBoard).then((pinBoard) => dispatch(receivePinBoard(pinBoard)));
+    return PinBoardApiUtil.updatePinBoard(pinBoard).then((payload) => dispatch(receivePinBoard(payload)));
 };
 
 export const deletePinBoard = (pinBoardId) => dispatch => {
