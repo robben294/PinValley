@@ -9,7 +9,7 @@ class Api::BoardsController < ApplicationController
     end
 
     def show
-        @board = Board.find(params[:id])
+        @board = Board.includes(pins: { photo_attachment: :blob }).find(params[:id])
         if @board 
             render :show
         else
@@ -18,12 +18,12 @@ class Api::BoardsController < ApplicationController
     end
 
     def index
-        @boards = Board.where(creator_id: current_user.id).includes(:pin_boards, :pins)
+        @boards = Board.where(creator_id: current_user.id).includes(pins: { photo_attachment: :blob })
         render :index
     end
 
     def update
-        @board = Board.find(params[:id]).includes(:pins, :pin_boards)
+        @board = Board.find(params[:id]).includes(pins: { photo_attachment: :blob })
         if @board.update_attributes(board_params)
             render :show
         else

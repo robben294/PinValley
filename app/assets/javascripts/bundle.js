@@ -1767,6 +1767,11 @@ function (_React$Component) {
           pin = _this$props.pin,
           board = _this$props.board,
           pinBoard = _this$props.pinBoard;
+
+      if (!pin || !board || !pinBoard) {
+        return null;
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item",
         onClick: function onClick() {
@@ -4505,7 +4510,7 @@ var boardsReducer = function boardsReducer() {
       }
 
     case _action_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_FEED"]:
-      return Object.assign({}, oldState, action.boards);
+      return Object.assign({}, action.boards);
 
     case _action_board_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_BOARD"]:
       {
@@ -4691,8 +4696,10 @@ var pinsReducer = function pinsReducer() {
 
     case _action_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
     case _action_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARDS"]:
-    case _action_pin_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FEED"]:
       return Object.assign({}, oldState, action.pins);
+
+    case _action_pin_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FEED"]:
+      return Object.assign({}, action.pins);
 
     case _action_pin_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PIN"]:
       {

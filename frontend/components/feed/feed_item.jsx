@@ -22,6 +22,9 @@ class FeedItem extends React.Component {
 
     render() {
         const { pin, board, pinBoard } = this.props;
+        if (!pin || !board || !pinBoard) {
+            return null;
+        }
         return (
             <div className='pin-item' onClick={() => this.props.push(`/pinBoards/${pinBoard.id}`)}>
                 <div className='pin-cover'>

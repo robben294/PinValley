@@ -21,4 +21,7 @@ class Board < ApplicationRecord
         through: :pin_boards,
         source: :pin
 
+    has_many :pin_photos,
+        through: :pins,
+        source: :photo
 end
