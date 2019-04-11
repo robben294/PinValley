@@ -12,7 +12,7 @@ class PinShow extends React.Component {
         this.handleBack = this.handleBack.bind(this);
     }
 
-    componentDidMount() {
+    componentDidMount() {   
         this.props.fetchPinBoard(this.props.match.params.pinBoardId);
     }
 
@@ -47,7 +47,18 @@ class PinShow extends React.Component {
     render() {
         const { pins, pinBoard, boards } = this.props;
         if (!pinBoard || !pins || !boards) {
-            return null;
+            return (
+                <div id="circularG">
+                    <div id="circularG_1" className="circularG"></div>
+                    <div id="circularG_2" className="circularG"></div>
+                    <div id="circularG_3" className="circularG"></div>
+                    <div id="circularG_4" className="circularG"></div>
+                    <div id="circularG_5" className="circularG"></div>
+                    <div id="circularG_6" className="circularG"></div>
+                    <div id="circularG_7" className="circularG"></div>
+                    <div id="circularG_8" className="circularG"></div>
+                </div>
+            );
         }
         const pin = pins[pinBoard.pin_id];
         const board = boards[pinBoard.board_id];

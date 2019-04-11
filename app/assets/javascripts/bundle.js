@@ -660,7 +660,33 @@ function (_React$Component) {
       var _this = this;
 
       if (this.props.location.pathname === '/profile/edit') {
-        return null;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_1",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_2",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_3",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_4",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_5",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_6",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_7",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_8",
+          className: "circularG"
+        }));
       }
 
       var boards = this.props.boards.map(function (board) {
@@ -931,7 +957,33 @@ function (_React$Component) {
       var _this2 = this;
 
       if (!this.props.board) {
-        return null;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_1",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_2",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_3",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_4",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_5",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_6",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_7",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_8",
+          className: "circularG"
+        }));
       }
 
       var _ref = this.props.board || {},
@@ -1658,6 +1710,37 @@ function (_React$Component) {
           pins = _this$props.pins,
           pinBoards = _this$props.pinBoards,
           boards = _this$props.boards;
+
+      if (!pins || !pinBoards || !boards) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_1",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_2",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_3",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_4",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_5",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_6",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_7",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_8",
+          className: "circularG"
+        }));
+      }
+
       var wrappedPins = Object.values(pinBoards).map(function (pinBoard, idx) {
         if (pinBoard) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_feed_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -2019,7 +2102,33 @@ function (_React$Component) {
     value: function render() {
       var currentUser = this.props.currentUser || {}; // If we don't have a current_user, why is it going to render this component?
 
-      return null;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "circularG"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "circularG_1",
+        className: "circularG"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "circularG_2",
+        className: "circularG"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "circularG_3",
+        className: "circularG"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "circularG_4",
+        className: "circularG"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "circularG_5",
+        className: "circularG"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "circularG_6",
+        className: "circularG"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "circularG_7",
+        className: "circularG"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "circularG_8",
+        className: "circularG"
+      }));
     }
   }]);
 
@@ -3543,7 +3652,33 @@ function (_React$Component) {
           boards = _this$props2.boards;
 
       if (!pinBoard || !pins || !boards) {
-        return null;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_1",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_2",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_3",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_4",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_5",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_6",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_7",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_8",
+          className: "circularG"
+        }));
       }
 
       var pin = pins[pinBoard.pin_id];
@@ -3933,7 +4068,33 @@ function (_React$Component) {
       var currentUser = this.props.currentUser;
 
       if (!currentUser) {
-        return null;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_1",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_2",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_3",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_4",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_5",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_6",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_7",
+          className: "circularG"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "circularG_8",
+          className: "circularG"
+        }));
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
