@@ -3655,7 +3655,7 @@ function (_React$Component) {
           users = _this$props2.users;
       debugger;
 
-      if (!pinBoard || !pins || !boards || !users) {
+      if (!pinBoard || !pins || !boards || !users || !users[boards[pinBoard.board_id].creator_id]) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "circularG"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

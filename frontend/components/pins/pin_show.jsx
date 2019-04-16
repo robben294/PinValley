@@ -47,7 +47,7 @@ class PinShow extends React.Component {
     render() {
         const { pins, pinBoard, boards, users } = this.props;
         debugger
-        if (!pinBoard || !pins || !boards || !users ) {
+        if (!pinBoard || !pins || !boards || !users || !users[boards[pinBoard.board_id].creator_id]) {
             return (
                 <div id="circularG">
                     <div id="circularG_1" className="circularG"></div>
