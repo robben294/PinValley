@@ -46,7 +46,6 @@ class PinShow extends React.Component {
 
     render() {
         const { pins, pinBoard, boards, users } = this.props;
-        debugger
         if (!pinBoard || !pins || !boards || !users || !users[boards[pinBoard.board_id].creator_id]) {
             return (
                 <div id="circularG">
@@ -61,7 +60,6 @@ class PinShow extends React.Component {
                 </div>
             );
         }
-        debugger
         const pin = pins[pinBoard.pin_id];
         const board = boards[pinBoard.board_id];
         const user = users[board.creator_id];
@@ -128,14 +126,26 @@ class PinShow extends React.Component {
                                     </a>
                                 }
                                 <div className="pin-show-bottom">
-                                    <div className="pin-show-user">
-                                        {
-
-                                        }
-                                    <strong>{user.firstname} {user.lastname}</strong> saved to <strong>{board.title}</strong>
+                                    <div className="pin-show-circle">
+                                        {user.firstname[0]}
                                     </div>
-                                    <div className='pin-show-description'>
-                                        <a>{pinBoard.description}</a>
+                                    <div>
+                                        <div className="pin-show-user">
+                                            {
+                                                this.isOwner() 
+                                                ? 
+                                                <div>
+                                                    <strong>You</strong> saved to <strong>{board.title}</strong>
+                                                </div>
+                                                : 
+                                                <div>
+                                                    <strong>{user.firstname} {user.lastname}</strong> saved to <strong>{board.title}</strong>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div className='pin-show-description'>
+                                            <a>{pinBoard.description}</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

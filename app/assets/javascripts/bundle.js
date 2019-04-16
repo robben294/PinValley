@@ -3653,7 +3653,6 @@ function (_React$Component) {
           pinBoard = _this$props2.pinBoard,
           boards = _this$props2.boards,
           users = _this$props2.users;
-      debugger;
 
       if (!pinBoard || !pins || !boards || !users || !users[boards[pinBoard.board_id].creator_id]) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3685,7 +3684,6 @@ function (_React$Component) {
         }));
       }
 
-      debugger;
       var pin = pins[pinBoard.pin_id];
       var board = boards[pinBoard.board_id];
       var user = users[board.creator_id];
@@ -3753,10 +3751,12 @@ function (_React$Component) {
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-bottom"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-circle"
+      }, user.firstname[0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-user"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, user.firstname, " ", user.lastname), " saved to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, board.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.isOwner() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "You"), " saved to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, board.title)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, user.firstname, " ", user.lastname), " saved to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, board.title))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-description"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, pinBoard.description)))))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, pinBoard.description))))))));
     }
   }]);
 
