@@ -12,3 +12,9 @@ json.board do
         json.partial! 'api/boards/board', board: @pin_board.board
     end
 end
+
+json.user do
+    json.set! @pin_board.board.creator_id do
+        json.partial! 'api/users/user', user: @pin_board.board.creator
+    end
+end

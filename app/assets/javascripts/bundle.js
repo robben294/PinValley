@@ -341,12 +341,14 @@ var REMOVE_PIN_BOARD = 'REMOVE_PIN_BOARD';
 var receivePinBoard = function receivePinBoard(_ref) {
   var pinBoard = _ref.pinBoard,
       pin = _ref.pin,
-      board = _ref.board;
+      board = _ref.board,
+      user = _ref.user;
   return {
     type: RECEIVE_PIN_BOARD,
     pinBoard: pinBoard,
     pin: pin,
-    board: board
+    board: board,
+    user: user
   };
 };
 var removePinBoard = function removePinBoard(pinBoardId) {
@@ -3649,9 +3651,11 @@ function (_React$Component) {
       var _this$props2 = this.props,
           pins = _this$props2.pins,
           pinBoard = _this$props2.pinBoard,
-          boards = _this$props2.boards;
+          boards = _this$props2.boards,
+          users = _this$props2.users;
+      debugger;
 
-      if (!pinBoard || !pins || !boards) {
+      if (!pinBoard || !pins || !boards || !users) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "circularG"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3681,8 +3685,10 @@ function (_React$Component) {
         }));
       }
 
+      debugger;
       var pin = pins[pinBoard.pin_id];
       var board = boards[pinBoard.board_id];
+      var user = users[board.creator_id];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3744,9 +3750,13 @@ function (_React$Component) {
         className: "pin-show-img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: pin.photoUrl
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-bottom"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-user"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, user.firstname, " ", user.lastname), " saved to ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, board.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-description"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, pinBoard.description)))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, pinBoard.description)))))));
     }
   }]);
 
@@ -3758,6 +3768,7 @@ var msp = function msp(state, ownProps) {
     pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
     pins: state.entities.pins,
     boards: state.entities.boards,
+    users: state.entities.users,
     currentUserId: state.session.id
   };
 };
@@ -5016,7 +5027,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _action_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../action/user_actions */ "./frontend/action/user_actions.js");
 /* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
 /* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../action/pin_board_actions */ "./frontend/action/pin_board_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -5034,6 +5047,9 @@ var usersReducer = function usersReducer() {
 
     case _action_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, oldState, _defineProperty({}, action.user.id, action.user));
+
+    case _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_PIN_BOARD"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, oldState, action.user);
 
     case _action_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
       return {};

@@ -9,11 +9,15 @@
     font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.create-pin-back {
+.create-pin-back .fas {
     margin-top: 10px;
     margin-left: 10px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 30px;
+    color: black;
+    padding: 0px;
+    left: 40px;
+    top: 40px;
 }
 
 .pin-show-main {

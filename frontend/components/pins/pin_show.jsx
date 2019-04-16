@@ -28,7 +28,7 @@ class PinShow extends React.Component {
         const board = boards[pinBoard.board_id];
         const authorId = pin.author_id;
         const ownerId = board.creator_id;
-        return (currentUserId === authorId || currentUserId === ownerId) 
+        return (currentUserId === authorId || currentUserId === ownerId);
     }
 
     shortenWebsite(website) {
@@ -45,8 +45,9 @@ class PinShow extends React.Component {
     }
 
     render() {
-        const { pins, pinBoard, boards } = this.props;
-        if (!pinBoard || !pins || !boards) {
+        const { pins, pinBoard, boards, users } = this.props;
+        debugger
+        if (!pinBoard || !pins || !boards || !users ) {
             return (
                 <div id="circularG">
                     <div id="circularG_1" className="circularG"></div>
@@ -60,8 +61,10 @@ class PinShow extends React.Component {
                 </div>
             );
         }
+        debugger
         const pin = pins[pinBoard.pin_id];
         const board = boards[pinBoard.board_id];
+        const user = users[board.creator_id];
         return (
             <div className='pin-show-page'>
                 <div className='pin-show-back' onClick={this.handleBack}>
@@ -124,9 +127,17 @@ class PinShow extends React.Component {
                                             </div>
                                     </a>
                                 }
-                            </div>
-                            <div className='pin-show-description'>
-                                <a>{pinBoard.description}</a>
+                                <div className="pin-show-bottom">
+                                    <div className="pin-show-user">
+                                        {
+
+                                        }
+                                    <strong>{user.firstname} {user.lastname}</strong> saved to <strong>{board.title}</strong>
+                                    </div>
+                                    <div className='pin-show-description'>
+                                        <a>{pinBoard.description}</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -141,6 +152,7 @@ const msp = (state, ownProps) => {
         pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
         pins: state.entities.pins,
         boards: state.entities.boards,
+        users: state.entities.users,
         currentUserId: state.session.id
     }
 };

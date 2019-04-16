@@ -3,12 +3,13 @@ import * as PinBoardApiUtil from '../util/pin_board_api_util';
 export const RECEIVE_PIN_BOARD = 'RECEIVE_PIN_BOARD';
 export const REMOVE_PIN_BOARD = 'REMOVE_PIN_BOARD';
 
-export const receivePinBoard = ({pinBoard, pin, board}) => {
+export const receivePinBoard = ({pinBoard, pin, board, user}) => {
     return {
         type: RECEIVE_PIN_BOARD,
         pinBoard,
         pin,
-        board
+        board,
+        user
     };
 };
 
