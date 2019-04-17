@@ -23,7 +23,7 @@ class Api::BoardsController < ApplicationController
     end
 
     def update
-        @board = Board.find(params[:id]).includes(pins: { photo_attachment: :blob })
+        @board = Board.find(params[:id])
         if @board.update_attributes(board_params)
             render :show
         else
