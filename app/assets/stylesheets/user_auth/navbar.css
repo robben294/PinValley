@@ -6,6 +6,12 @@
     align-items: center;
     padding-bottom: 20px;
     padding-top: 10px;
+    background: white;
+    /* set the navbaer to fixed position */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
 }
 
 /* .navbar-main img {
@@ -21,6 +27,7 @@
 .navbar-right {
     display: flex;
     justify-content: space-around;
+    margin-right: 40px;
 }
 
 .navbar-right > div{

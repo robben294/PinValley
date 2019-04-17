@@ -60,13 +60,14 @@ class Profile extends React.Component {
             <div>
                 <div className='profile'>
                     <div className='profile-icon'>
-                        <div id="profile-dropdown" tabIndex='1' onFocus={this.showDropdown} onBlur={this.closeDropdown}>
-                            <i className="fas fa-plus"></i>
-                            <ProfileCreateDropdown 
-                                showDropdown={this.state.showDropdown}
-                                closeDropdown={this.closeDropdown}
-                                openModal={this.props.openModal}
-                                push={this.props.history.push}/>  
+                        <div id="profile-dropdown">
+                            <i className="fas fa-plus" tabIndex='1' onFocus={this.showDropdown} onBlur={this.closeDropdown}>
+                                <ProfileCreateDropdown 
+                                    showDropdown={this.state.showDropdown}
+                                    closeDropdown={this.closeDropdown}
+                                    openModal={this.props.openModal}
+                                    push={this.props.history.push}/>  
+                            </i>
                         </div>
                         <div onClick={this.redirectToEdit}>
                             <i className="fas fa-pen"></i>

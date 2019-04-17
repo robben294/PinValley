@@ -662,33 +662,7 @@ function (_React$Component) {
       var _this = this;
 
       if (this.props.location.pathname === '/profile/edit') {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "circularG"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "circularG_1",
-          className: "circularG"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "circularG_2",
-          className: "circularG"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "circularG_3",
-          className: "circularG"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "circularG_4",
-          className: "circularG"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "circularG_5",
-          className: "circularG"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "circularG_6",
-          className: "circularG"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "circularG_7",
-          className: "circularG"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "circularG_8",
-          className: "circularG"
-        }));
+        return null;
       }
 
       var boards = this.props.boards.map(function (board) {
@@ -1000,16 +974,16 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show-icons-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "board-show-plus-dropdown",
+        id: "board-show-plus-dropdown"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-plus",
         tabIndex: "1",
         onFocus: this.showDropdown,
         onBlur: this.closeDropdown
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-plus"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_board_show_plus_dropdown__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_board_show_plus_dropdown__WEBPACK_IMPORTED_MODULE_4__["default"], {
         showDropdown: this.state.showDropdown,
         board: this.props.board
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick() {
           return _this2.props.openModal({
             modalType: 'editBoard',
@@ -3722,7 +3696,7 @@ function (_React$Component) {
         className: "pin-show-nav-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-nav-choose-board"
-      }, board ? board.title : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-chevron-down"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-nav-save"
@@ -4113,18 +4087,18 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-icon"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "profile-dropdown",
+        id: "profile-dropdown"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-plus",
         tabIndex: "1",
         onFocus: this.showDropdown,
         onBlur: this.closeDropdown
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-plus"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_profile_create_dropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_profile_create_dropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
         showDropdown: this.state.showDropdown,
         closeDropdown: this.closeDropdown,
         openModal: this.props.openModal,
         push: this.props.history.push
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.redirectToEdit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pen"

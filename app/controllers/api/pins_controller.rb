@@ -1,6 +1,5 @@
 class Api::PinsController < ApplicationController
     def create
-        debugger
         # url = url_for(Pin.find(pin_params[:id]).photo)
         # @pin.attach(io: File.open(url), filename: 'nothing_special.jpg')
         if pin_params[:id]
@@ -9,10 +8,8 @@ class Api::PinsController < ApplicationController
             @pin_board = @pin.pin_boards.new(pin_board_params)
             url = url_for(Pin.find(pin_params[:id]).photo)
             file = EzDownload.open(url)
-            debugger
             @pin.photo.attach(io: file, filename: 'nothing_special.jpg')
             # @pin.photo = Pin.find(pin_params[:id]).photo
-            debugger
             # when saving pin in editPin, we just need to create a new pin with original photo
         else
             @pin = current_user.authored_pins.new(pin_params) # create with current_user.id
@@ -20,7 +17,6 @@ class Api::PinsController < ApplicationController
             #when save one of them, both of them being saved.
             #Not passing current_user any more, and don't need to create pin_board from pinboard controller
         end
-        debugger
         if @pin.save
             render :show
         else

@@ -64,14 +64,15 @@ class BoardShow extends React.Component {
             <div className='board-show'>
                 <div className='board-show-icons'>
                     <div className='board-show-icons-left'>
-                        <div id="board-show-plus-dropdown" 
-                            tabIndex='1' 
-                            onFocus={this.showDropdown} 
-                            onBlur={this.closeDropdown}>
-                            <i className="fas fa-plus"></i>
-                            <BoardShowPlusDropdown
-                                showDropdown={this.state.showDropdown} 
-                                board={this.props.board}/>
+                        <div id="board-show-plus-dropdown">
+                            <i className="fas fa-plus"
+                                tabIndex='1'
+                                onFocus={this.showDropdown}
+                                onBlur={this.closeDropdown}>
+                                <BoardShowPlusDropdown
+                                    showDropdown={this.state.showDropdown} 
+                                    board={this.props.board}/>
+                            </i>
                         </div>
                             <div onClick={() => this.props.openModal({
                                 modalType: 'editBoard',

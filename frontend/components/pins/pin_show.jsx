@@ -90,7 +90,7 @@ class PinShow extends React.Component {
                         </div>
                         <div className='pin-show-nav-right'>
                             <div className='pin-show-nav-choose-board'>
-                                { board ? board.title : null}
+                                {/* { board ? board.title : null} */}
                                 <i className="fas fa-chevron-down"></i>
                             </div>
                             <div className='pin-show-nav-save'>

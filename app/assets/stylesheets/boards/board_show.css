@@ -5,6 +5,8 @@
     width: 100%;
     margin: 0 auto;
     padding: 8px 12px;
+
+    margin-top: 70px;
 }
 
 .board-show-icons {
@@ -71,7 +73,7 @@
 }
 
 .board-show-pins-nav {
-    margin-top: 60px;
+    margin-top: 50px;
     display: inline-block;
     justify-content: flex-start;
     font-family: sans-serif;
@@ -153,6 +155,7 @@
     color: #333;
     font-weight: bold;
     border-radius: 8px;
+    font-size: 16px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto Oxygen-Sans, Ubuntu, Cantarell, “Fira Sans”, “Droid Sans”, "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
