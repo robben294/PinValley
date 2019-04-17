@@ -125,7 +125,9 @@
     min-width: 347px;
     padding: 4px;
     font-weight: 700;
+    color: #333333;
     background: rgb(240,240,240);
+    letter-spacing: -0.4px;
     border-radius: 8px;
     margin-top: 10px;
     text-decoration: none; 
@@ -134,6 +136,10 @@
 .pin-show-website:hover {
     background: #ddd;
     cursor: pointer;
+}
+
+.pin-show-website:visited {
+    color: default;
 }
 
 .pin-show-website .fas:hover {
