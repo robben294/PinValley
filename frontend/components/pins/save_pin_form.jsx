@@ -1,23 +1,16 @@
-// import React from 'react';
-// import { connect } from 'react-redux';
-// import { withRouter } from 'react-router-dom';
-// import { closeModal } from '../../action/modal_actions';
-// import { updatePinBoard, deletePinBoard } from '../../action/pin_board_actions';
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import { updatePinBoard, deletePinBoard } from '../../action/pin_board_actions';
+import { closeModal } from '../../action/modal_actions';
 // import { createPinNotFomatted } from '../../action/pin_actions';
 
-// class EditPinForm extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         const { pin, pinBoard, board } = this.props;
-//         this.state = {
-//             title: pin.title || "",
-//             website: pin.website,
-//             description: pinBoard.description,
-//         };
-//         this.handleClose = this.handleClose.bind(this);
-//         this.handleDelete = this.handleDelete.bind(this);
-//         this.handleSubmit = this.handleSubmit.bind(this);
-//     }
+class SavePinForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleClose = this.handleClose.bind(this);
+    }
 
 //     componentDidMount() {
 //         // this.props.fetchBoards();
@@ -69,9 +62,9 @@
 
 //     }
 
-//     handleClose(e) {
-//         this.props.closeModal();
-//     }
+    handleClose(e) {
+        this.props.closeModal();
+    }
 
 //     handleDelete(e) {
 //         this.props.deletePinBoard(this.props.pinBoard.id)
@@ -82,106 +75,76 @@
 //         return this.props.currentUserId === this.props.pin.author_id;
 //     }
 
-//     render() {
-//         return (
-//             <div className="edit-pin-form">
-//                 <div className='edit-pin-title'>
-//                     <div className='edit-pin-title-text'>Edit this Pin</div>
-//                     <div className='edit-pin-close' onClick={this.handleClose}>
-//                         <i className="fas fa-times"></i>
-//                     </div>
-//                 </div>
+    render() {
+        debugger
+        const { boards, pin } = this.props;
 
-//                 <div className='edit-pin-content'>
-//                     <div className='edit-pin-content-text'>
-//                         <div className='edit-pin-select-board'>
+        const wrappedBoards = Object.values(boards).map(board => {
+            return (
+                <div className='save-pin-board-title' onClick={this.hideBoards} key={board.id}>
+                    <span className='save-pin-board-title-text'>
+                        {board.title}
+                    </span>
+                    <div className='save-pin-board-title-select'>
+                        Save
+                    </div>
+                </div>
+            )
+        });
 
-//                         </div>
-//                         {
-//                             this.checkAuthor()
-//                                 ? <div className='edit-pin-name'>
-//                                     <div className='edit-pin-text'>
-//                                         Title
-//                                     </div>
-//                                     <input className='edit-pin-name-box'
-//                                         type="text"
-//                                         value={this.state.title || ""}
-//                                         onChange={this.handleInput('title')} />
-//                                 </div>
-//                                 : null
-//                         }
+        return (
+            <div className="save-pin-form">
+                <div className='save-pin-title'>
+                    <div className='save-pin-title-text'>Choose board</div>
+                    <div className='save-pin-close' onClick={this.handleClose}>
+                        <i className="fas fa-times"></i>
+                    </div>
+                </div>
 
-//                         <div className='edit-pin-description'>
-//                             <div className='edit-pin-text'>
-//                                 Description
-//                             </div>
-//                             <textarea className='edit-pin-description-box'
-//                                 type="text"
-//                                 value={this.state.description || ""}
-//                                 onChange={this.handleInput('description')}
-//                                 placeholder="Tell us about this Pin..." />
-//                         </div>
+                <div className='save-pin-content'>
 
-//                         {
-//                             this.checkAuthor()
-//                                 ? <div className='edit-pin-website'>
-//                                     <div className='edit-pin-text'>
-//                                         Website
-//                                 </div>
-//                                     <input className='edit-pin-website-box'
-//                                         type="text"
-//                                         value={this.state.website || ""}
-//                                         onChange={this.handleInput('website')} />
-//                                 </div>
-//                                 : null
-//                         }
+                    <div className='save-pin-img'>
+                        <img src={pin.photoUrl} />
+                    </div>
 
-//                     </div>
+                    <div>
+                        <div className='save-pin-content-text'>
+                            <div className='save-pin-select-board'>
+                                {wrappedBoards}
+                            </div>
+                        </div>
 
-//                     <div className='edit-pin-img'>
-//                         <img src={this.props.pin.photoUrl} />
-//                     </div>
+                        <div className='save-new-board-button' onClick={this.openCreateBoard}>
+                            <div>
+                                <i className="fas fa-plus-circle"></i>
+                            </div>
+                            <div className='save-new-board-button-text'>
+                                Create Board
+                            </div>
+                        </div>
+                    </div>
 
-//                 </div>
 
-//                 <div className='edit-pin-buttons'>
-//                     <div className='edit-pin-buttons-left'>
-//                         <div className='edit-pin-button edit-pin-delete-button'
-//                             onClick={this.handleDelete}>
-//                             Delete
-//                         </div>
-//                     </div>
+                </div>
 
-//                     <div className='edit-pin-buttons-right'>
-//                         <div className='edit-pin-button edit-pin-cancel-button'
-//                             onClick={this.handleClose}>
-//                             Cancel
-//                         </div>
-//                         <div
-//                             className='edit-pin-button edit-pin-save-button'
-//                             onClick={this.handleSubmit}>
-//                             Save
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         )
-//     }
-// }
+            </div>
+        )
+    }
+}
 
-// const msp = (state, ownProps) => {
-//     return {
-//         currentUserId: state.session.id,
-//     };
-// };
+const msp = (state, ownProps) => {
+    return {
 
-// const mdp = dispatch => {
-//     return {
-//         closeModal: () => dispatch(closeModal()),
-//         deletePinBoard: (pinBoardId) => dispatch(deletePinBoard(pinBoardId)),
-//         updatePinBoard: (pinBoard) => dispatch(updatePinBoard(pinBoard)),
-//         createPin: (pin) => dispatch(createPinNotFomatted(pin)),
-//     };
-// };
+    };
+};
 
-// export default withRouter(connect(msp, mdp)(EditPinForm));
+const mdp = dispatch => {
+    return {
+        closeModal: () => dispatch(closeModal()),
+        deletePinBoard: (pinBoardId) => dispatch(deletePinBoard(pinBoardId)),
+        updatePinBoard: (pinBoard) => dispatch(updatePinBoard(pinBoard)),
+        createPin: (pin) => dispatch(createPinNotFomatted(pin)),
+    };
+};
+
+export default withRouter(connect(msp, mdp)(SavePinForm));

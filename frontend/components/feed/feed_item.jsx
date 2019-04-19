@@ -21,7 +21,7 @@ class FeedItem extends React.Component {
     }
 
     render() {
-        const { pin, board, pinBoard } = this.props;
+        const { pin, board, pinBoard, boards, openModal } = this.props;
         if (!pin || !board || !pinBoard) {
             return null;
         }
@@ -31,11 +31,15 @@ class FeedItem extends React.Component {
                     <img src={pin.photoUrl} />
 
                     <div className='pin-save-container' onClick={e => e.stopPropagation()}>
-                        <div className='pin-save' >
+                        <div className='pin-save'>
                             <div className='pin-save-pin'>
                                 <i className="fas fa-thumbtack"></i>
                             </div>
-                            <div className='pin-save-text'>
+                            <div className='pin-save-text' 
+                                onClick={() => openModal({
+                                                modalType: 'savePin',
+                                                modalProps: { boards, pin },
+                                                })}>
                                 Save
                             </div>
                         </div>

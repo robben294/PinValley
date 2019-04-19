@@ -6,6 +6,7 @@ import SignupFormContainer from '../session/signup_form_container';
 import CreateBoardForm from '../boards/create_board_form';
 import EditBoardForm from '../boards/edit_board_form';
 import EditPinForm from '../pins/edit_pin_form';
+import SavePinForm from '../pins/save_pin_form';
 
 const Modal = ({ modal, closeModal }) => {
 
@@ -36,11 +37,17 @@ const Modal = ({ modal, closeModal }) => {
             component = <EditBoardForm board={modal.modalProps} />;
             backgroundClass = "boards-modal-background";
             break;
-        case 'editPin': 
+        case 'editPin':
             component = <EditPinForm 
                             pin={modal.modalProps.pin} 
                             board={modal.modalProps.board} 
                             pinBoard={modal.modalProps.pinBoard}/>;
+            backgroundClass = "boards-modal-background";
+            break;
+        case 'savePin':
+            component = <SavePinForm 
+                            boards={modal.modalProps.boards}
+                            pin={modal.modalProps.pin}/>
             backgroundClass = "boards-modal-background";
             break;
         default:

@@ -73,7 +73,7 @@
     font-weight: 700;
     min-height: 20px;
     border-radius: 8px;
-    padding: 10px 14px;
+    padding: 10px 14px 8px;
     margin-left: 8px;
     margin-right: 8px;
     cursor: pointer;
@@ -110,7 +110,7 @@
 
 .pin-cover:hover .pin-website {
     position: absolute;
-    max-width: 200px;
+    max-width: 161px;
     bottom: 22px;
     left: 16px;
     color: #333333;
@@ -131,6 +131,7 @@
 .pin-website span {
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .pin-website .fa-link {

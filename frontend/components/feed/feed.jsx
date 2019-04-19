@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchFeed } from '../../action/pin_actions';
+import { openModal } from '../../action/modal_actions';
 import FeedItem from './feed_item';
 
 class Feed extends React.Component {
@@ -34,6 +35,7 @@ class Feed extends React.Component {
                     pin={pins[pinBoard.pin_id]}
                     key={idx}
                     push={this.props.history.push}
+                    boards={boards}
                     openModal={this.props.openModal} />
                 )
             } else {
@@ -60,6 +62,7 @@ const msp = state => {
 const mdp = dispatch => {
     return {
         fetchFeed: () => dispatch(fetchFeed()),
+        openModal: (modal) => dispatch(openModal(modal)),
     };
 };
 export default connect(msp, mdp)(Feed);
