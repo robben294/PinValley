@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { updatePinBoard, deletePinBoard } from '../../action/pin_board_actions';
+import { createPinBoard } from '../../action/pin_board_actions';
 import { closeModal } from '../../action/modal_actions';
 import { fetchOnlyBoards } from '../../action/board_actions';
 
@@ -10,66 +10,27 @@ class SavePinForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleClose = this.handleClose.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchOnlyBoards();
     }
 
-//     handleInput(field) {
-//         return (e) => {
-//             this.setState({
-//                 [field]: e.target.value,
-//             });
-//         };
-//     }
-
-//     handleSubmit(e) {
-//         e.preventDefault();
-//         const { pinBoard } = this.props;
-//         const { title, description, website } = this.state;
-
-//         const new_pin_board = {
-//             description,
-//             id: pinBoard.id,
-//             pin_id: pinBoard.pin_id,
-//             board_id: pinBoard.board_id,
-//         };
-
-//         const new_pin = {
-//             pin: {
-//                 id: pinBoard.pin_id,
-//                 title,
-//                 website,
-//             },
-//             pin_board: {
-//                 description,
-//                 board_id: pinBoard.board_id,
-//             }
-//         };
-//         if (this.needCreatePin()) {
-//             this.props.createPin(new_pin)
-//                 .then(() => this.props.deletePinBoard(pinBoard.id))
-//                 .then(this.handleClose);
-//             return;
-//         }
-
-//         if (this.needUpdatePinBoard()) {
-//             this.props.updatePinBoard(new_pin_board)
-//                 .then(this.handleClose);
-//             return;
-//         }
-
-//     }
-
     handleClose(e) {
         this.props.closeModal();
     }
 
-//     handleDelete(e) {
-//         this.props.deletePinBoard(this.props.pinBoard.id)
-//             .then(() => this.props.history.push(`/boards/${this.props.board.id}`)).then(() => this.handleClose());
-//     }
+    handleSubmit(e) {
+        e.preventDefault();
+        const { pin, pinBoard } = this.props;
+        const newPinBoard = { 
+            board_id: e.target.id, 
+            pin_id: pin.id,
+            description: pinBoard.description,
+        };
+        this.props.createPinBoard(newPinBoard).then(this.handleClose);
+    }
 
 //     checkAuthor() {
 //         return this.props.currentUserId === this.props.pin.author_id;
@@ -84,7 +45,7 @@ class SavePinForm extends React.Component {
 
         const wrappedBoards = UserBoards.map(board => {
             return (
-                <div className='save-pin-board-title' key={board.id}>
+                <div className='save-pin-board-title' id={board.id} key={board.id} onClick={this.handleSubmit}>
                     <span className='save-pin-board-title-text'>
                         {board.title}
                     </span>
@@ -152,8 +113,8 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
     return {
         closeModal: () => dispatch(closeModal()),
-        updatePinBoard: (pinBoard) => dispatch(updatePinBoard(pinBoard)),
         fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
+        createPinBoard: (pinBoard) => dispatch(createPinBoard(pinBoard)),
     };
 };
 

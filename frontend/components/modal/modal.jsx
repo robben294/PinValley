@@ -46,7 +46,7 @@ const Modal = ({ modal, closeModal }) => {
             break;
         case 'savePin':
             component = <SavePinForm 
-                            boards={modal.modalProps.boards}
+                            pinBoard={modal.modalProps.pinBoard}
                             pin={modal.modalProps.pin}/>
             backgroundClass = "boards-modal-background";
             break;

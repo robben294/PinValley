@@ -2,7 +2,7 @@ export const createPinBoard = (pinBoard) => {
     return $.ajax({
         method: 'POST',
         url: 'api/pin_boards',
-        data: { pinBoard }
+        data: { pin_board: pinBoard }
     });
 };
 

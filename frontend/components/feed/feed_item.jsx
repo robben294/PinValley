@@ -34,7 +34,7 @@ class FeedItem extends React.Component {
                         <div className='pin-save'
                             onClick={() => openModal({
                                 modalType: 'savePin',
-                                modalProps: { pin },
+                                modalProps: { pin, pinBoard },
                             })}>
                             <div className='pin-save-pin'>
                                 <i className="fas fa-thumbtack"></i>
