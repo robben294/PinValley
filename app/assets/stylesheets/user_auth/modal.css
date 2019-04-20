@@ -8,6 +8,14 @@
     z-index: 10;
 }
 
+.boards-modal-background {
+    cursor: zoom-out;
+}
+
+.modal-child {
+    cursor: default;
+}
+
 /* .modal-child {
     position: absolute;
     top: 50%;
