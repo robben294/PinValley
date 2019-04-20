@@ -11,6 +11,7 @@ const pinsReducer = (state = {}, action) => {
     const oldState = Object.freeze(state);
     switch (action.type) {
         case RECEIVE_PINS:
+        case RECEIVE_BOARDS:
         {
             return Object.assign({}, action.pins);
         }
@@ -20,7 +21,6 @@ const pinsReducer = (state = {}, action) => {
             return Object.assign({}, oldState, action.pin);
         }
         case RECEIVE_BOARD: 
-        case RECEIVE_BOARDS:
             return Object.assign({}, oldState, action.pins);
         case RECEIVE_FEED: 
             return Object.assign({}, action.pins);

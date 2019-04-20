@@ -9,6 +9,7 @@ const pinBoardsReducer = (state = {}, action) => {
     const oldState = Object.freeze(state);
     switch (action.type) {
         case RECEIVE_BOARDS:
+            return Object.assign({}, action.pinBoards);
         case RECEIVE_BOARD:
         case RECEIVE_FEED:
         {

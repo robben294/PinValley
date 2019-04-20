@@ -22,7 +22,10 @@ class BoardIndexItem extends React.Component{
         return (
             <div className='board-item' onClick={this.redirectToBoardShow}>
                 <div className='board-cover'>
-                    {board.pin_board_ids && pinBoards[board.pin_board_ids[0]] ? 
+                    {board.pin_board_ids 
+                        && pinBoards[board.pin_board_ids[0]]
+                        && pins[pinBoards[board.pin_board_ids[0]].pin_id]
+                        ? 
                         <img src={pins[pinBoards[board.pin_board_ids[0]].pin_id].photoUrl} /> : null}
                 </div>
                 <div className='board-item-header'>

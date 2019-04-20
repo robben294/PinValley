@@ -35,7 +35,6 @@ class Feed extends React.Component {
                     pin={pins[pinBoard.pin_id]}
                     key={idx}
                     push={this.props.history.push}
-                    boards={boards}
                     openModal={this.props.openModal} />
                 )
             } else {

@@ -31,15 +31,15 @@ class FeedItem extends React.Component {
                     <img src={pin.photoUrl} />
 
                     <div className='pin-save-container' onClick={e => e.stopPropagation()}>
-                        <div className='pin-save'>
+                        <div className='pin-save'
+                            onClick={() => openModal({
+                                modalType: 'savePin',
+                                modalProps: { pin },
+                            })}>
                             <div className='pin-save-pin'>
                                 <i className="fas fa-thumbtack"></i>
                             </div>
-                            <div className='pin-save-text' 
-                                onClick={() => openModal({
-                                                modalType: 'savePin',
-                                                modalProps: { boards, pin },
-                                                })}>
+                            <div className='pin-save-text' >
                                 Save
                             </div>
                         </div>
