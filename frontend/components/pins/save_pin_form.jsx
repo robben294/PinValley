@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { updatePinBoard, deletePinBoard } from '../../action/pin_board_actions';
 import { closeModal } from '../../action/modal_actions';
-// import { createPinNotFomatted } from '../../action/pin_actions';
+import { fetchOnlyBoards } from '../../action/board_actions';
 
 class SavePinForm extends React.Component {
     constructor(props) {
@@ -12,9 +12,9 @@ class SavePinForm extends React.Component {
         this.handleClose = this.handleClose.bind(this);
     }
 
-//     componentDidMount() {
-//         // this.props.fetchBoards();
-//     }
+    componentDidMount() {
+        this.props.fetchOnlyBoards();
+    }
 
 //     handleInput(field) {
 //         return (e) => {
@@ -76,12 +76,15 @@ class SavePinForm extends React.Component {
 //     }
 
     render() {
-        debugger
-        const { boards, pin } = this.props;
+        const { boards, pin, currentUserId } = this.props;
 
-        const wrappedBoards = Object.values(boards).map(board => {
+        const UserBoards = Object.values(boards).filter(board => {
+            return board.creator_id === currentUserId;
+        });
+
+        const wrappedBoards = UserBoards.map(board => {
             return (
-                <div className='save-pin-board-title' onClick={this.hideBoards} key={board.id}>
+                <div className='save-pin-board-title' key={board.id}>
                     <span className='save-pin-board-title-text'>
                         {board.title}
                     </span>
@@ -134,16 +137,16 @@ class SavePinForm extends React.Component {
 
 const msp = (state, ownProps) => {
     return {
-
+        boards: state.entities.boards,
+        currentUserId: state.session.id,
     };
 };
 
 const mdp = dispatch => {
     return {
         closeModal: () => dispatch(closeModal()),
-        deletePinBoard: (pinBoardId) => dispatch(deletePinBoard(pinBoardId)),
         updatePinBoard: (pinBoard) => dispatch(updatePinBoard(pinBoard)),
-        createPin: (pin) => dispatch(createPinNotFomatted(pin)),
+        fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
     };
 };
 

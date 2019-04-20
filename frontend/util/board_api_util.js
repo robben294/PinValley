@@ -34,3 +34,10 @@ export const deleteBoard = (boardId) => {
         url: `api/boards/${boardId}`,
     });
 };
+
+export const fetchOnlyBoards = () => {
+    return $.ajax({
+        method: 'GET',
+        url: `api/only_boards`,
+    });
+};
