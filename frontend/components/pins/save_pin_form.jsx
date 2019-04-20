@@ -88,8 +88,15 @@ class SavePinForm extends React.Component {
                     <span className='save-pin-board-title-text'>
                         {board.title}
                     </span>
-                    <div className='save-pin-board-title-select'>
-                        Save
+                    <div className='save-pin-container'>
+                        <div className='save-pin-board-title-select'>
+                            <div className='pin-save-pin'>
+                                <i className="fas fa-thumbtack"></i>
+                            </div>
+                            <div className='pin-board-save-text' >
+                                Save
+                            </div>
+                        </div>
                     </div>
                 </div>
             )
@@ -110,7 +117,7 @@ class SavePinForm extends React.Component {
                         <img src={pin.photoUrl} />
                     </div>
 
-                    <div>
+                    <div className='save-pin-main'>
                         <div className='save-pin-content-text'>
                             <div className='save-pin-select-board'>
                                 {wrappedBoards}

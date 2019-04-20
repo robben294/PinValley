@@ -1,0 +1,157 @@
+.save-pin-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: white;
+    display: flex;
+    flex-direction: column;
+    max-width: 804px;
+    width: 100%;
+    color: rgb(33, 25, 34);
+    font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+.save-pin-title {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    border-bottom: 0.1px rgb(242, 242, 242) solid;
+}
+
+.save-pin-title-text {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 18px 16px;
+}
+
+.save-pin-close {
+    position: absolute;
+    right: 10px;
+    padding: 8px;
+    margin: 0;
+}
+
+.save-pin-close i.fas:hover{
+    background: white;
+}
+
+.save-pin-close .fas {
+    font-size: 30px;
+}
+
+.save-pin-close .fas:hover{
+    background: rgb(240, 240, 240);
+}
+
+.save-pin-content {
+    display: flex;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.save-pin-img {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding: 12px 16px;
+    align-items: center;
+
+}
+
+.save-pin-img > img {
+    width: 236px;
+    border-radius: 8px;
+}
+
+.save-pin-main {
+    border-left: 0.1px rgb(242, 242, 242) solid;
+    width: 60%;
+}
+
+.save-pin-content-text {
+    margin-top: 10px;
+}
+
+
+.save-pin-board-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 412px;
+    height: 36px;
+    padding: 8px 24px;
+    vertical-align: center;
+}
+
+.save-pin-board-title:hover {
+    background: rgb(240,240,240);
+    cursor: pointer;
+}
+
+.save-pin-container {
+    display: none;
+}
+
+.save-pin-board-title-select{
+    display: flex;
+    background-color: #E60032;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-left: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+
+}
+
+.save-pin-board-title:hover .save-pin-container{
+    display: inline;
+}
+
+.save-pin-board-title-text {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.pin-board-save-text {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.save-pin-board-title-select .fas {
+    font-size: 14px;
+}
+
+.save-pin-board-title-select .fas:hover {
+    background: none;
+}
+
+.save-new-board-button {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    padding-left: 12px;
+    border-top: 0.1px rgb(242, 242, 242) solid;
+}
+
+.save-new-board-button:hover {
+    background: rgb(240,240,240);
+    cursor: pointer;
+}
+
+.save-new-board-button .fas {
+    padding: 0;
+    color: rgb(230, 0, 35);
+    font-size: 32px;
+    margin-right: 10px;
+}
+
+.save-new-board-button .fas:hover {
+    background: none;
+}
