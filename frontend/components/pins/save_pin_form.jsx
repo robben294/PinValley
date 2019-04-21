@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { createPinBoard } from '../../action/pin_board_actions';
 import { closeModal } from '../../action/modal_actions';
-import { fetchOnlyBoards } from '../../action/board_actions';
+// import { fetchOnlyBoards } from '../../action/board_actions';
 
 class SavePinForm extends React.Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class SavePinForm extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchOnlyBoards();
+        // this.props.fetchOnlyBoards();
     }
 
     handleClose(e) {
@@ -105,7 +105,7 @@ class SavePinForm extends React.Component {
 
 const msp = (state, ownProps) => {
     return {
-        boards: state.entities.boards,
+        // boards: state.entities.boards,
         currentUserId: state.session.id,
     };
 };
@@ -113,7 +113,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
     return {
         closeModal: () => dispatch(closeModal()),
-        fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
+        // fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
         createPinBoard: (pinBoard) => dispatch(createPinBoard(pinBoard)),
     };
 };

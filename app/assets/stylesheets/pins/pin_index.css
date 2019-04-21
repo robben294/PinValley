@@ -23,7 +23,11 @@
 .pin-cover:hover {
     background-color: rgb(240,240,240);
     cursor: zoom-in;
-    transition: background-color 0.1s ease 0.01s;
+    /* transition: background-color 0.1s ease 0.01s; */
+    -webkit-transition: 0.2s ease-in-out;
+    -webkit-transform: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    transform: 0.2s ease-in-out;
 }
 
 .pin-item {

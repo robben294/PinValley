@@ -41,7 +41,11 @@
     cursor: pointer;
     border: none;
     opacity: 1;
-    transition: background-color 0.3s ease 0.01s;
+    /* transition: background-color 0.3s ease 0.01s; */
+    -webkit-transition: 0.2s ease-in-out;
+    -webkit-transform: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    transform: 0.2s ease-in-out;
 }
 
 .board-item-header {

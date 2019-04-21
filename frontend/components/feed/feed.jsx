@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import { fetchFeed } from '../../action/pin_actions';
 import { openModal } from '../../action/modal_actions';
 import FeedItem from './feed_item';
+import { fetchOnlyBoards } from '../../action/board_actions';
 
 class Feed extends React.Component {
 
     componentDidMount() {
-        this.props.fetchFeed();
+        this.props.fetchFeed().then(() => this.props.fetchOnlyBoards());
     }
 
     render() {
@@ -32,6 +33,7 @@ class Feed extends React.Component {
             return (
                 <FeedItem pinBoard={pinBoard}
                     board={boards[pinBoard.board_id]}
+                    boards={boards}
                     pin={pins[pinBoard.pin_id]}
                     key={idx}
                     push={this.props.history.push}
@@ -62,6 +64,7 @@ const mdp = dispatch => {
     return {
         fetchFeed: () => dispatch(fetchFeed()),
         openModal: (modal) => dispatch(openModal(modal)),
+        fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
     };
 };
 export default connect(msp, mdp)(Feed);

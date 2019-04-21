@@ -1656,6 +1656,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _action_pin_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../action/pin_actions */ "./frontend/action/pin_actions.js");
 /* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
 /* harmony import */ var _feed_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./feed_item */ "./frontend/components/feed/feed_item.jsx");
+/* harmony import */ var _action_board_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../action/board_actions */ "./frontend/action/board_actions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1680,6 +1681,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Feed =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1694,12 +1696,16 @@ function (_React$Component) {
   _createClass(Feed, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchFeed();
+      var _this = this;
+
+      this.props.fetchFeed().then(function () {
+        return _this.props.fetchOnlyBoards();
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       var _this$props = this.props,
           pins = _this$props.pins,
@@ -1741,10 +1747,11 @@ function (_React$Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_feed_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
             pinBoard: pinBoard,
             board: boards[pinBoard.board_id],
+            boards: boards,
             pin: pins[pinBoard.pin_id],
             key: idx,
-            push: _this.props.history.push,
-            openModal: _this.props.openModal
+            push: _this2.props.history.push,
+            openModal: _this2.props.openModal
           });
         } else {
           return null;
@@ -1774,6 +1781,9 @@ var mdp = function mdp(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
+    },
+    fetchOnlyBoards: function fetchOnlyBoards() {
+      return dispatch(Object(_action_board_actions__WEBPACK_IMPORTED_MODULE_5__["fetchOnlyBoards"])());
     }
   };
 };
@@ -1878,7 +1888,8 @@ function (_React$Component) {
             modalType: 'savePin',
             modalProps: {
               pin: pin,
-              pinBoard: pinBoard
+              pinBoard: pinBoard,
+              boards: boards
             }
           });
         }
@@ -2329,7 +2340,8 @@ var Modal = function Modal(_ref) {
     case 'savePin':
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_save_pin_form__WEBPACK_IMPORTED_MODULE_8__["default"], {
         pinBoard: modal.modalProps.pinBoard,
-        pin: modal.modalProps.pin
+        pin: modal.modalProps.pin,
+        boards: modal.modalProps.boards
       });
       backgroundClass = "boards-modal-background";
       break;
@@ -3824,7 +3836,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../action/pin_board_actions */ "./frontend/action/pin_board_actions.js");
 /* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
-/* harmony import */ var _action_board_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../action/board_actions */ "./frontend/action/board_actions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3847,8 +3858,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
-
+ // import { fetchOnlyBoards } from '../../action/board_actions';
 
 var SavePinForm =
 /*#__PURE__*/
@@ -3868,8 +3878,7 @@ function (_React$Component) {
 
   _createClass(SavePinForm, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchOnlyBoards();
+    value: function componentDidMount() {// this.props.fetchOnlyBoards();
     }
   }, {
     key: "handleClose",
@@ -3964,7 +3973,7 @@ function (_React$Component) {
 
 var msp = function msp(state, ownProps) {
   return {
-    boards: state.entities.boards,
+    // boards: state.entities.boards,
     currentUserId: state.session.id
   };
 };
@@ -3974,9 +3983,7 @@ var mdp = function mdp(dispatch) {
     closeModal: function closeModal() {
       return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
     },
-    fetchOnlyBoards: function fetchOnlyBoards() {
-      return dispatch(Object(_action_board_actions__WEBPACK_IMPORTED_MODULE_5__["fetchOnlyBoards"])());
-    },
+    // fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
     createPinBoard: function createPinBoard(pinBoard) {
       return dispatch(Object(_action_pin_board_actions__WEBPACK_IMPORTED_MODULE_3__["createPinBoard"])(pinBoard));
     }
@@ -5012,7 +5019,7 @@ var pinBoardsReducer = function pinBoardsReducer() {
     case _action_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
     case _action_pin_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_FEED"]:
       {
-        return Object.assign({}, oldState, action.pinBoards);
+        return Object.assign({}, action.pinBoards);
       }
 
     case _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PIN_BOARD"]:

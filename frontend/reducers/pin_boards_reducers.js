@@ -13,7 +13,7 @@ const pinBoardsReducer = (state = {}, action) => {
         case RECEIVE_BOARD:
         case RECEIVE_FEED:
         {
-            return Object.assign({}, oldState, action.pinBoards);
+            return Object.assign({}, action.pinBoards);
         }
         case RECEIVE_PIN_BOARD:
         {
