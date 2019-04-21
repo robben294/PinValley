@@ -338,7 +338,7 @@ var deletePin = function deletePin(pinId) {
 /*!**********************************************!*\
   !*** ./frontend/action/pin_board_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_PIN_BOARD, REMOVE_PIN_BOARD, receivePinBoard, removePinBoard, createPinBoard, fetchPinBoard, updatePinBoard, deletePinBoard */
+/*! exports provided: RECEIVE_PIN_BOARD, REMOVE_PIN_BOARD, receivePinBoard, removePinBoard, createPinBoard, createFeedPinBoard, fetchPinBoard, updatePinBoard, deletePinBoard */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -348,6 +348,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePinBoard", function() { return receivePinBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removePinBoard", function() { return removePinBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPinBoard", function() { return createPinBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFeedPinBoard", function() { return createFeedPinBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPinBoard", function() { return fetchPinBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePinBoard", function() { return updatePinBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePinBoard", function() { return deletePinBoard; });
@@ -379,6 +380,11 @@ var createPinBoard = function createPinBoard(pinBoard) {
     return _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__["createPinBoard"](pinBoard).then(function (payload) {
       return dispatch(receivePinBoard(payload));
     });
+  };
+};
+var createFeedPinBoard = function createFeedPinBoard(pinBoard) {
+  return function (dispatch) {
+    return _util_pin_board_api_util__WEBPACK_IMPORTED_MODULE_0__["createPinBoard"](pinBoard);
   };
 };
 var fetchPinBoard = function fetchPinBoard(pinBoardId) {
@@ -3897,7 +3903,7 @@ function (_React$Component) {
         pin_id: pin.id,
         description: pinBoard.description
       };
-      this.props.createPinBoard(newPinBoard).then(this.handleClose);
+      this.props.createFeedPinBoard(newPinBoard).then(this.handleClose);
     } //     checkAuthor() {
     //         return this.props.currentUserId === this.props.pin.author_id;
     //     }
@@ -3984,8 +3990,8 @@ var mdp = function mdp(dispatch) {
       return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
     },
     // fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
-    createPinBoard: function createPinBoard(pinBoard) {
-      return dispatch(Object(_action_pin_board_actions__WEBPACK_IMPORTED_MODULE_3__["createPinBoard"])(pinBoard));
+    createFeedPinBoard: function createFeedPinBoard(pinBoard) {
+      return dispatch(Object(_action_pin_board_actions__WEBPACK_IMPORTED_MODULE_3__["createFeedPinBoard"])(pinBoard));
     }
   };
 };

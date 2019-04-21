@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { createPinBoard } from '../../action/pin_board_actions';
+import { createFeedPinBoard } from '../../action/pin_board_actions';
 import { closeModal } from '../../action/modal_actions';
 // import { fetchOnlyBoards } from '../../action/board_actions';
 
@@ -29,7 +29,7 @@ class SavePinForm extends React.Component {
             pin_id: pin.id,
             description: pinBoard.description,
         };
-        this.props.createPinBoard(newPinBoard).then(this.handleClose);
+        this.props.createFeedPinBoard(newPinBoard).then(this.handleClose);
     }
 
 //     checkAuthor() {
@@ -114,7 +114,7 @@ const mdp = dispatch => {
     return {
         closeModal: () => dispatch(closeModal()),
         // fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
-        createPinBoard: (pinBoard) => dispatch(createPinBoard(pinBoard)),
+        createFeedPinBoard: (pinBoard) => dispatch(createFeedPinBoard(pinBoard)),
     };
 };
 

@@ -24,6 +24,10 @@ export const createPinBoard = (pinBoard) => dispatch => {
     return PinBoardApiUtil.createPinBoard(pinBoard).then(payload => dispatch(receivePinBoard(payload)));
 };
 
+export const createFeedPinBoard = (pinBoard) => dispatch => {
+    return PinBoardApiUtil.createPinBoard(pinBoard);
+};
+
 export const fetchPinBoard = (pinBoardId) => dispatch => {
     return PinBoardApiUtil.fetchPinBoard(pinBoardId).then(
         
