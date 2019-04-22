@@ -22,7 +22,7 @@ class Feed extends React.Component {
     }
 
     handleFetchMoreFeed(e) {
-        this.setState({page: this.state.page += 1});
+        this.setState({page: this.state.page + 1});
         this.props.fetchMoreFeed(this.state.page);
     }
 

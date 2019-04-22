@@ -1743,7 +1743,7 @@ function (_React$Component) {
     key: "handleFetchMoreFeed",
     value: function handleFetchMoreFeed(e) {
       this.setState({
-        page: this.state.page += 1
+        page: this.state.page + 1
       });
       this.props.fetchMoreFeed(this.state.page);
     }
