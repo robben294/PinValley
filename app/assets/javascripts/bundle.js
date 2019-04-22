@@ -1742,6 +1742,7 @@ function (_React$Component) {
   }, {
     key: "handleFetchMoreFeed",
     value: function handleFetchMoreFeed(e) {
+      console.log('enter');
       this.setState({
         page: this.state.page + 1
       });
@@ -1805,7 +1806,10 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pins"
       }, wrappedPins, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
-        onEnter: this.handleFetchMoreFeed
+        onEnter: this.handleFetchMoreFeed,
+        onLeave: function onLeave() {
+          return console.log('leave');
+        }
       })));
     }
   }]);
@@ -4625,7 +4629,7 @@ function (_React$Component) {
       e.preventDefault(); // e.stopPropagation();
 
       this.setState({
-        email: 'Guest@gmail.com',
+        email: 'guest@gmail.com',
         password: '111111'
       }, function () {
         var user = Object.assign({}, _this2.state);

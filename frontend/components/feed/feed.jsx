@@ -22,6 +22,7 @@ class Feed extends React.Component {
     }
 
     handleFetchMoreFeed(e) {
+        console.log('enter');
         this.setState({page: this.state.page + 1});
         this.props.fetchMoreFeed(this.state.page);
     }
@@ -64,7 +65,14 @@ class Feed extends React.Component {
                 <div>
                     <Waypoint
                         onEnter={this.handleFetchMoreFeed}
-                    />
+                        
+                        onLeave={() => console.log('leave')}
+                    >
+                        {/* <div>
+                            Loading...
+                            <br/>
+                        </div> */}
+                    </Waypoint>
                 </div>
             </div>
         )
