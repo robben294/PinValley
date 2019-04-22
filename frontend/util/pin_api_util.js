@@ -30,6 +30,14 @@ export const fetchFeed = () => {
     });
 };
 
+export const fetchMoreFeed = (page) => {
+    return $.ajax({
+        method: 'GET',
+        url: 'api/more_feed',
+        data: {page},
+    });
+};
+
 export const fetchPin = (pinId) => {
     return $.ajax({
         method: 'GET',

@@ -3,6 +3,7 @@ import * as PinApiUtil from '../util/pin_api_util';
 export const RECEIVE_PIN = 'RECEIVE_PIN';
 export const RECEIVE_PINS = 'RECEIVE_PINS';
 export const RECEIVE_FEED = 'RECEIVE_FEED';
+export const RECEIVE_MORE_FEED = 'RECEIVE_MORE_FEED';
 export const REMOVE_PIN = 'REMOVE_PIN';
 
 export const receivePins = (pins) => {
@@ -15,6 +16,15 @@ export const receivePins = (pins) => {
 export const receiveFeed = ({pins, pinBoards, boards}) => {
     return {
         type: RECEIVE_FEED,
+        pins,
+        pinBoards,
+        boards,
+    };
+};
+
+export const receiveMoreFeed = ({pins, pinBoards, boards}) => {
+    return {
+        type: RECEIVE_MORE_FEED,
         pins,
         pinBoards,
         boards,
@@ -45,6 +55,10 @@ export const fetchPin = (pinId) => dispatch => {
 
 export const fetchFeed = () => dispatch => {
     return PinApiUtil.fetchFeed().then((payload) => dispatch(receiveFeed(payload)));
+};
+
+export const fetchMoreFeed = (page) => dispatch => {
+    return PinApiUtil.fetchMoreFeed(page).then((payload) => dispatch(receiveMoreFeed(payload)));
 };
 
 export const createPin = (pin) => dispatch => {

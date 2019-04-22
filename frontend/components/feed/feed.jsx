@@ -1,15 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Waypoint } from 'react-waypoint';
 
-import { fetchFeed } from '../../action/pin_actions';
+import { fetchFeed, fetchMoreFeed } from '../../action/pin_actions';
 import { openModal } from '../../action/modal_actions';
 import FeedItem from './feed_item';
 import { fetchOnlyBoards } from '../../action/board_actions';
 
 class Feed extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            page: 1,
+        };
+        this.handleFetchMoreFeed = this.handleFetchMoreFeed.bind(this);
+    }
+
     componentDidMount() {
         this.props.fetchFeed().then(() => this.props.fetchOnlyBoards());
+    }
+
+    handleFetchMoreFeed(e) {
+        this.setState({page: this.state.page += 1});
+        this.props.fetchMoreFeed(this.state.page);
     }
 
     render() {
@@ -47,6 +61,11 @@ class Feed extends React.Component {
         return (
             <div className="pins">
                 {wrappedPins}
+                <div>
+                    <Waypoint
+                        onEnter={this.handleFetchMoreFeed}
+                    />
+                </div>
             </div>
         )
     }
@@ -65,6 +84,7 @@ const mdp = dispatch => {
         fetchFeed: () => dispatch(fetchFeed()),
         openModal: (modal) => dispatch(openModal(modal)),
         fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
+        fetchMoreFeed: (page) => dispatch(fetchMoreFeed(page)),
     };
 };
 export default connect(msp, mdp)(Feed);
