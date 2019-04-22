@@ -1,24 +1,14 @@
-# README
+# PinValley
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+PinValley is a faithful clone of Pinterest that allow users to share images and the corresponding website, create boards, and save other users' pins.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+* User accounts with secure authentication
+* User profiles with access to all of their content
+* User profiles edit
+* Board and Pin create, edit and save
+* Home feed with infinite scrolling
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Infinite Scrolling
+ This lowers backend querying. It also reduces the bandwidth speed requirements, when compared to rendering a large number of pins simultaneously. Below is a simplified version of its implementation.
