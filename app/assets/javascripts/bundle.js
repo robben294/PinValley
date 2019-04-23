@@ -629,9 +629,6 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_15__["ProtectedRoute"], {
     path: "/pin/new",
     component: _pins_create_pin_form__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_15__["ProtectedRoute"], {
-    path: "/pinBoards/:pinBoardId",
-    component: _pins_pin_show__WEBPACK_IMPORTED_MODULE_11__["default"]
   })));
 };
 
@@ -1867,9 +1864,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1883,9 +1880,13 @@ function (_React$Component) {
   _inherits(FeedItem, _React$Component);
 
   function FeedItem(props) {
+    var _this;
+
     _classCallCheck(this, FeedItem);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(FeedItem).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(FeedItem).call(this, props));
+    _this.handleOpenPin = _this.handleOpenPin.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(FeedItem, [{
@@ -1906,16 +1907,29 @@ function (_React$Component) {
       return website;
     }
   }, {
+    key: "handleOpenPin",
+    value: function handleOpenPin(e) {
+      e.preventDefault();
+      var _this$props = this.props,
+          pinBoard = _this$props.pinBoard,
+          openModal = _this$props.openModal; // this.props.push(`/pinBoards/${pinBoard.id}`);
+
+      openModal({
+        modalType: 'showPin',
+        modalProps: {
+          pinBoard: pinBoard
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
-
-      var _this$props = this.props,
-          pin = _this$props.pin,
-          board = _this$props.board,
-          pinBoard = _this$props.pinBoard,
-          boards = _this$props.boards,
-          openModal = _this$props.openModal;
+      var _this$props2 = this.props,
+          pin = _this$props2.pin,
+          board = _this$props2.board,
+          pinBoard = _this$props2.pinBoard,
+          boards = _this$props2.boards,
+          openModal = _this$props2.openModal;
 
       if (!pin || !board || !pinBoard) {
         return null;
@@ -1923,9 +1937,7 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item",
-        onClick: function onClick() {
-          return _this.props.push("/pinBoards/".concat(pinBoard.id));
-        }
+        onClick: this.handleOpenPin
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-cover"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -2329,6 +2341,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _boards_edit_board_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../boards/edit_board_form */ "./frontend/components/boards/edit_board_form.jsx");
 /* harmony import */ var _pins_edit_pin_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pins/edit_pin_form */ "./frontend/components/pins/edit_pin_form.jsx");
 /* harmony import */ var _pins_save_pin_form__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pins/save_pin_form */ "./frontend/components/pins/save_pin_form.jsx");
+/* harmony import */ var _pins_pin_show__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pins/pin_show */ "./frontend/components/pins/pin_show.jsx");
+
 
 
 
@@ -2396,6 +2410,13 @@ var Modal = function Modal(_ref) {
         pinBoard: modal.modalProps.pinBoard,
         pin: modal.modalProps.pin,
         boards: modal.modalProps.boards
+      });
+      backgroundClass = "boards-modal-background";
+      break;
+
+    case 'showPin':
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_pin_show__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        pinBoard: modal.modalProps.pinBoard
       });
       backgroundClass = "boards-modal-background";
       break;
@@ -3686,12 +3707,12 @@ function (_React$Component) {
   _createClass(PinShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchPinBoard(this.props.match.params.pinBoardId);
+      this.props.fetchPinBoard(this.props.pinBoard.id);
     }
   }, {
     key: "handleBack",
     value: function handleBack(e) {
-      this.props.history.goBack();
+      this.props.closeModal();
     }
   }, {
     key: "isOwner",
@@ -3848,7 +3869,8 @@ function (_React$Component) {
 
 var msp = function msp(state, ownProps) {
   return {
-    pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
+    // pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
+    // pinBoard: state.entities.pinBoards[ownProps.location.pathname.split('/')[ownProps.location.pathname.split('/').length - 1]],
     pins: state.entities.pins,
     boards: state.entities.boards,
     users: state.entities.users,
@@ -3866,6 +3888,9 @@ var mdp = function mdp(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])(modal));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_5__["closeModal"])());
     }
   };
 };

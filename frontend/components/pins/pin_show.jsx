@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { fetchBoards } from '../../action/board_actions';
 import { fetchPinBoard } from '../../action/pin_board_actions';
-import { openModal } from '../../action/modal_actions';
+import { openModal, closeModal } from '../../action/modal_actions';
 
 class PinShow extends React.Component {
     constructor(props) {
@@ -13,11 +13,11 @@ class PinShow extends React.Component {
     }
 
     componentDidMount() {   
-        this.props.fetchPinBoard(this.props.match.params.pinBoardId);
+        this.props.fetchPinBoard(this.props.pinBoard.id);
     }
 
     handleBack(e) {
-        this.props.history.goBack();
+        this.props.closeModal();
     }
 
     isOwner() {
@@ -159,7 +159,8 @@ class PinShow extends React.Component {
 
 const msp = (state, ownProps) => {
     return { 
-        pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
+        // pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
+        // pinBoard: state.entities.pinBoards[ownProps.location.pathname.split('/')[ownProps.location.pathname.split('/').length - 1]],
         pins: state.entities.pins,
         boards: state.entities.boards,
         users: state.entities.users,
@@ -171,6 +172,7 @@ const mdp = dispatch => ({
     fetchPinBoard: (pinBoardId) => dispatch(fetchPinBoard(pinBoardId)),
     fetchBoards: () => dispatch(fetchBoards()),
     openModal: (modal) => dispatch(openModal(modal)),
+    closeModal: () => dispatch(closeModal()),
 });
 
 export default withRouter(connect(msp, mdp)(PinShow));

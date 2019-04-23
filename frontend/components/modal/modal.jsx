@@ -7,6 +7,7 @@ import CreateBoardForm from '../boards/create_board_form';
 import EditBoardForm from '../boards/edit_board_form';
 import EditPinForm from '../pins/edit_pin_form';
 import SavePinForm from '../pins/save_pin_form';
+import PinShow from '../pins/pin_show';
 
 const Modal = ({ modal, closeModal }) => {
 
@@ -49,6 +50,11 @@ const Modal = ({ modal, closeModal }) => {
                             pinBoard={modal.modalProps.pinBoard}
                             pin={modal.modalProps.pin}
                             boards={modal.modalProps.boards}/>
+            backgroundClass = "boards-modal-background";
+            break;
+        case 'showPin' :
+            component = <PinShow 
+                            pinBoard={modal.modalProps.pinBoard}/>
             backgroundClass = "boards-modal-background";
             break;
         default:

@@ -32,7 +32,7 @@ const App = () => {
             <ProtectedRoute path='/profile/Pins/' component={BoardPinIndex} />
             <ProtectedRoute path='/profile' component={BoardIndex} />
             <ProtectedRoute path='/pin/new' component={CreatePinForm} />
-            <ProtectedRoute path='/pinBoards/:pinBoardId' component={PinShow} />
+            {/* <ProtectedRoute path='/pinBoards/:pinBoardId' component={PinShow} /> */}
         </Switch>
     </div>
 )};

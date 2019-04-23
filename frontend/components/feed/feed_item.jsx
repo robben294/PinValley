@@ -5,6 +5,7 @@ class FeedItem extends React.Component {
 
     constructor(props) {
         super(props);
+        this.handleOpenPin = this.handleOpenPin.bind(this);
     }
 
     shortenWebsite(website) {
@@ -19,6 +20,16 @@ class FeedItem extends React.Component {
         }
         return website;
     }
+    
+    handleOpenPin(e) {
+        e.preventDefault();
+        const {pinBoard, openModal} = this.props;
+        // this.props.push(`/pinBoards/${pinBoard.id}`);
+        openModal({
+            modalType: 'showPin',
+            modalProps: { pinBoard }
+        });
+    }
 
     render() {
         const { pin, board, pinBoard, boards, openModal } = this.props;
@@ -26,7 +37,7 @@ class FeedItem extends React.Component {
             return null;
         }
         return (
-            <div className='pin-item' onClick={() => this.props.push(`/pinBoards/${pinBoard.id}`)}>
+            <div className='pin-item' onClick={this.handleOpenPin}>
                 <div className='pin-cover'>
                     <img src={pin.photoUrl} />
 
