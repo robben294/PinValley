@@ -2,6 +2,7 @@ import React from 'react';
 import NavbarDropdown from '../dropdown/narbar_dropdown';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {closeModal} from '../../action/modal_actions';
 
 
 class Navbar extends React.Component {
@@ -26,6 +27,9 @@ class Navbar extends React.Component {
 
     renderRedirect(path) {
         return (e) => {
+            if (this.props.match.path === '/') {
+                this.props.closeModal();
+            }
             if (this.props.match.path !== `/${path}`){
                 this.props.history.push(`/${path}`);
             }
@@ -104,6 +108,7 @@ const msp = state => {
 
 const mdp = dispatch => ({
     logout: () => dispatch(logout()),
+    closeModal: () => dispatch(closeModal()),
 });
 
 export default withRouter(connect(msp, mdp)(Navbar));

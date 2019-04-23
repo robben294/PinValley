@@ -2477,6 +2477,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/lib/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2494,6 +2495,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2532,6 +2534,10 @@ function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
+        if (_this2.props.match.path === '/') {
+          _this2.props.closeModal();
+        }
+
         if (_this2.props.match.path !== "/".concat(path)) {
           _this2.props.history.push("/".concat(path));
         }
@@ -2625,7 +2631,10 @@ var mdp = function mdp(dispatch) {
       return logout;
     }(function () {
       return dispatch(logout());
-    })
+    }),
+    closeModal: function closeModal() {
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
+    }
   };
 };
 
@@ -3718,6 +3727,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PinShow).call(this, props));
     _this.handleBack = _this.handleBack.bind(_assertThisInitialized(_this));
+    _this.handleEdit = _this.handleEdit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3732,15 +3742,34 @@ function (_React$Component) {
       this.props.closeModal();
     }
   }, {
+    key: "handleEdit",
+    value: function handleEdit(e) {
+      e.stopPropagation();
+      var _this$props = this.props,
+          pins = _this$props.pins,
+          pinBoard = _this$props.pinBoard,
+          boards = _this$props.boards;
+      var pin = pins[pinBoard.pin_id];
+      var board = boards[pinBoard.board_id];
+      this.props.openModal({
+        modalType: 'editPin',
+        modalProps: {
+          pin: pin,
+          board: board,
+          pinBoard: pinBoard
+        }
+      });
+    }
+  }, {
     key: "isOwner",
     value: function isOwner() {
       //checking the owner of the pin
       //if currentUser is the owner, currentUser has authority to edit
-      var _this$props = this.props,
-          currentUserId = _this$props.currentUserId,
-          pinBoard = _this$props.pinBoard,
-          pins = _this$props.pins,
-          boards = _this$props.boards;
+      var _this$props2 = this.props,
+          currentUserId = _this$props2.currentUserId,
+          pinBoard = _this$props2.pinBoard,
+          pins = _this$props2.pins,
+          boards = _this$props2.boards;
       var pin = pins[pinBoard.pin_id];
       var board = boards[pinBoard.board_id];
       var authorId = pin.author_id;
@@ -3767,13 +3796,11 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      var _this$props2 = this.props,
-          pins = _this$props2.pins,
-          pinBoard = _this$props2.pinBoard,
-          boards = _this$props2.boards,
-          users = _this$props2.users;
+      var _this$props3 = this.props,
+          pins = _this$props3.pins,
+          pinBoard = _this$props3.pinBoard,
+          boards = _this$props3.boards,
+          users = _this$props3.users;
 
       if (!pinBoard || !pins || !boards || !users || !users[boards[pinBoard.board_id].creator_id]) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3823,16 +3850,7 @@ function (_React$Component) {
         className: "pin-show-icons"
       }, this.isOwner() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-icon",
-        onClick: function onClick() {
-          return _this2.props.openModal({
-            modalType: 'editPin',
-            modalProps: {
-              pin: pin,
-              board: board,
-              pinBoard: pinBoard
-            }
-          });
-        }
+        onClick: this.handleEdit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pen"
       })) : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5072,7 +5090,7 @@ var _defaultState = null;
 var modalReducer = function modalReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _defaultState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
+  var oldState = Object.freeze(state);
 
   switch (action.type) {
     case _action_modal_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_MODAL"]:

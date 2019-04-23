@@ -10,6 +10,7 @@ class PinShow extends React.Component {
     constructor(props) {
         super(props);
         this.handleBack = this.handleBack.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
 
     componentDidMount() {   
@@ -18,6 +19,17 @@ class PinShow extends React.Component {
 
     handleBack(e) {
         this.props.closeModal();
+    }
+
+    handleEdit(e) {
+        e.stopPropagation();
+        const { pins, pinBoard, boards } = this.props;
+        const pin = pins[pinBoard.pin_id];
+        const board = boards[pinBoard.board_id];
+        this.props.openModal({
+            modalType: 'editPin',
+            modalProps: { pin, board, pinBoard }
+        });
     }
 
     isOwner() {
@@ -75,10 +87,7 @@ class PinShow extends React.Component {
                             {
                                 this.isOwner() 
                                     ? <div className='pin-show-icon'
-                                        onClick={() => this.props.openModal({
-                                            modalType: 'editPin',
-                                            modalProps: { pin, board, pinBoard }
-                                        })}>
+                                        onClick={this.handleEdit}>
                                         <i className="fas fa-pen"></i>
                                     </div>
                                     : null

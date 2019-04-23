@@ -3,7 +3,7 @@ import { OPEN_MODAL, CLOSE_MODAL } from '../action/modal_actions';
 const _defaultState = null;
 
 const modalReducer = (state = _defaultState, action) => {
-    Object.freeze(state);
+    const oldState = Object.freeze(state);
     switch(action.type) {
         case OPEN_MODAL:
             return action.modal;
