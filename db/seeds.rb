@@ -9,7 +9,8 @@
 require 'open-uri'
 User.delete_all
 Board.delete_all
-
+Pin.delete_all
+PinBoard.delete_all
 
 User.create([
     {email: 'bjluo@bu.edu', password: '123456', firstname: 'Binjie', lastname: 'Luo', location: "Boston"},
@@ -246,5 +247,214 @@ pin20.save!
 PinBoard.create(pin_id: pin20.id, 
     board_id: board.id, 
     description: "A hiker’s paradise, Glacier National Park provides an exceptional backcountry experience, the perfect summer vacation for families and adventurers.")
+
+
+pin21 = Pin.new({title: "GRAND CANYON NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/grand-canyon-national-park"})
+grandcanyon = open('https://s3.amazonaws.com/pin-valley-seeds/grandcanyon.png')
+pin21.photo.attach(io: grandcanyon, filename: 'grandcanyon.png')
+pin21.save!
+PinBoard.create(pin_id: pin21.id, 
+    board_id: board.id, 
+    description: "Offering rim to rim hiking, donkey rides, and whitewater rafting, Grand Canyon National Park is a hugely popular national park destination.")
+
+
+pin22 = Pin.new({title: "GRAND TETON NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/grand-teton-national-park"})
+grandteton = open('https://s3.amazonaws.com/pin-valley-seeds/grandteton.png')
+pin22.photo.attach(io: grandteton, filename: 'grandteton.png')
+pin22.save!
+PinBoard.create(pin_id: pin22.id, 
+    board_id: board.id, 
+    description: "Located only 10 miles from Yellowstone National Park, Grand Teton National Park is a stunning national park in Wyoming.")
+
+
+pin23 = Pin.new({title: "GREAT BASIN NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/great-basin-national-park"})
+greatbasin = open('https://s3.amazonaws.com/pin-valley-seeds/greatbasin.png')
+pin23.photo.attach(io: greatbasin, filename: 'greatbasin.png')
+pin23.save!
+PinBoard.create(pin_id: pin23.id, 
+    board_id: board.id, 
+    description: "This national park is home to ancient bristlecone pine trees, abundant wildlife, lakes and streams, and limestone caverns, including the stunning Lehman Caves.")
+
+
+pin24 = Pin.new({title: "GREAT SAND DUNES NATIONAL PARK AND PRESERVE", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/great-sand-dunes-national-park-and-preserve"})
+greatsanddunes = open('https://s3.amazonaws.com/pin-valley-seeds/greatsanddunes.png')
+pin24.photo.attach(io: greatsanddunes, filename: 'greatsanddunes.png')
+pin24.save!
+PinBoard.create(pin_id: pin24.id, 
+    board_id: board.id, 
+    description: "Nestled in southern Colorado, this park features North America's tallest dunes, which rise over 750 feet high against the rugged Sangre de Cristo Mountains.")
+
+
+pin25 = Pin.new({title: "GREAT SMOKY MOUNTAINS NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/glacier-national-park"})
+greatsmoky = open('https://s3.amazonaws.com/pin-valley-seeds/greatsmoky.png')
+pin25.photo.attach(io: greatsmoky, filename: 'greatsmoky.png')
+pin25.save!
+PinBoard.create(pin_id: pin25.id, 
+    board_id: board.id, 
+    description: "ANCIENT MOUNTAINS, ANCIENT WONDERS")
+
+
+pin26 = Pin.new({title: "GUADALUPE MOUNTAINS NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/guadalupe-mountains-national-park"})
+guadalupemountains = open('https://s3.amazonaws.com/pin-valley-seeds/guadalupemountains.png')
+pin26.photo.attach(io: guadalupemountains, filename: 'guadalupemountains.png')
+pin26.save!
+PinBoard.create(pin_id: pin26.id, 
+    board_id: board.id, 
+    description: "Guadalupe Mountains National Park includes the world's finest fossilized reef, unique flora and fauna, and West Texas' only legally designated wilderness.")
+
+
+pin27 = Pin.new({title: "HALEAKALĀ NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/haleakala-national-park"})
+haleakala = open('https://s3.amazonaws.com/pin-valley-seeds/haleakala.png')
+pin27.photo.attach(io: haleakala, filename: 'haleakala.png')
+pin27.save!
+PinBoard.create(pin_id: pin27.id, 
+    board_id: board.id, 
+    description: "Haleakalā National Park, a national park on the Hawai'ian island of Maui, is a superb example of the Hawai'ian Islands' native ecosystems.")
+
+
+pin28 = Pin.new({title: "HAWAI'I VOLCANOES NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/hawaii-volcanoes-national-park"})
+hawaiivolcanoes = open('https://s3.amazonaws.com/pin-valley-seeds/hawaiivolcanoes.png')
+pin28.photo.attach(io: hawaiivolcanoes, filename: 'hawaiivolcanoes.png')
+pin28.save!
+PinBoard.create(pin_id: pin28.id, 
+    board_id: board.id, 
+    description: "SACRED CAULDRON")
+
+
+pin29 = Pin.new({title: "HOT SPRINGS NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/hot-springs-national-park"})
+hotsprings = open('https://s3.amazonaws.com/pin-valley-seeds/hotsprings.png')
+pin29.photo.attach(io: hotsprings, filename: 'hotsprings.png')
+pin29.save!
+PinBoard.create(pin_id: pin29.id, 
+    board_id: board.id, 
+    description: "Hot Springs National Park, a popular vacationing spot, contains 40 hot springs where visitors can use soothing waters to heal and relax.")
+
+
+pin30 = Pin.new({title: "INDIANA DUNES NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/indiana-dunes-national-park"})
+indianadunes = open('https://s3.amazonaws.com/pin-valley-seeds/indianadunes.png')
+pin30.photo.attach(io: indianadunes, filename: 'indianadunes.png')
+pin30.save!
+PinBoard.create(pin_id: pin30.id, 
+    board_id: board.id, 
+    description: "At the Indiana Dunes National Park, visitors can explore 15,000 acres of natural terrain including hiking through forests.")
+
+
+pin31 = Pin.new({title: "ISLE ROYALE NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/isle-royale-national-park"})
+isleroyale = open('https://s3.amazonaws.com/pin-valley-seeds/isleroyale.png')
+pin31.photo.attach(io: isleroyale, filename: 'isleroyale.png')
+pin31.save!
+PinBoard.create(pin_id: pin31.id, 
+    board_id: board.id, 
+    description: "Isle Royale National Park in Lake Superior off the shore of Michigan encompasses 850 square miles of natural wilderness, spacious lands, and aquatic life.")
+
+
+pin32 = Pin.new({title: "JOSHUA TREE NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/joshua-tree-national-park"})
+joshuatree = open('https://s3.amazonaws.com/pin-valley-seeds/joshuatree.png')
+pin32.photo.attach(io: joshuatree, filename: 'joshuatree.png')
+pin32.save!
+PinBoard.create(pin_id: pin32.id, 
+    board_id: board.id, 
+    description: "THE OUTER LIMITS OF REALITY")
+
+
+pin33 = Pin.new({title: "KATMAI NATIONAL PARK AND PRESERVE", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/katmai-national-park-and-preserve"})
+katmai = open('https://s3.amazonaws.com/pin-valley-seeds/katmai.png')
+pin33.photo.attach(io: katmai, filename: 'katmai.png')
+pin33.save!
+PinBoard.create(pin_id: pin33.id, 
+    board_id: board.id, 
+    description: "Katmai National Park and Preserve in Alaska is home to spectacular and unique volcanoes, and wildlife including fish, flowers, and bears.")
+
+
+pin34 = Pin.new({title: "KENAI FJORDS NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/kenai-fjords-national-park"})
+kenaifjords = open('https://s3.amazonaws.com/pin-valley-seeds/kenaifjords.png')
+pin34.photo.attach(io: kenaifjords, filename: 'kenaifjords.png')
+pin34.save!
+PinBoard.create(pin_id: pin34.id, 
+    board_id: board.id, 
+    description: "Experience the glacial hiking trails at Kenai Fjords National Park, where this rugged landscape promises a life-changing experience for visitors.")
+
+
+pin35 = Pin.new({title: "KOBUK VALLEY NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/kobuk-valley-national-park"})
+kobukvalley = open('https://s3.amazonaws.com/pin-valley-seeds/kobukvalley.png')
+pin35.photo.attach(io: kobukvalley, filename: 'kobukvalley.png')
+pin35.save!
+PinBoard.create(pin_id: pin35.id, 
+    board_id: board.id, 
+    description: "Follow the tracks of nearly a half-million caribou who migrate through the Great Kobuk Sand Dunes twice a year. Travel with the wildlife along the Kobuk River.")
+
+
+pin36 = Pin.new({title: "LAKE CLARK NATIONAL PARK AND PRESERVE", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/lake-clark-national-park-and-preserve"})
+lakeclark = open('https://s3.amazonaws.com/pin-valley-seeds/lakeclark.png')
+pin36.photo.attach(io: lakeclark, filename: 'lakeclark.png')
+pin36.save!
+PinBoard.create(pin_id: pin36.id, 
+    board_id: board.id, 
+    description: "See the spectacular scenery of mountains, glaciers and volcanoes that stretch from the shores of Cook Inlet to the tundra-covered hills.")
+
+
+pin37 = Pin.new({title: "LASSEN VOLCANIC NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/lassen-volcanic-national-park"})
+lassenvolcanic = open('https://s3.amazonaws.com/pin-valley-seeds/lassenvolcanic.png')
+pin37.photo.attach(io: lassenvolcanic, filename: 'lassenvolcanic.png')
+pin37.save!
+PinBoard.create(pin_id: pin37.id, 
+    board_id: board.id, 
+    description: "Nestled in the peaceful forests and wilderness of Northern California is Lassen Volcanic National Park, home to hissing fumaroles and boiling mud pots.")
+
+
+pin38 = Pin.new({title: "MAMMOTH CAVE NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/mammoth-cave-national-park"})
+mammothcave = open('https://s3.amazonaws.com/pin-valley-seeds/mammothcave.png')
+pin38.photo.attach(io: mammothcave, filename: 'mammothcave.png')
+pin38.save!
+PinBoard.create(pin_id: pin38.id, 
+    board_id: board.id, 
+    description: "A UNIVERSE BENEATH")
+
+    
+pin39 = Pin.new({title: "MESA VERDE NATIONAL PARK", 
+    author_id: master.id, 
+    website: "https://www.nationalparks.org/explore-parks/mesa-verde-national-park"})
+mesaverde = open('https://s3.amazonaws.com/pin-valley-seeds/mesaverde.png')
+pin39.photo.attach(io: mesaverde, filename: 'mesaverde.png')
+pin39.save!
+PinBoard.create(pin_id: pin39.id, 
+    board_id: board.id, 
+    description: "A UNIVERSE BENEATH")
 
 
