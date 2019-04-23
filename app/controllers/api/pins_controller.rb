@@ -1,14 +1,26 @@
+
 class Api::PinsController < ApplicationController
     def create
         # url = url_for(Pin.find(pin_params[:id]).photo)
         # @pin.attach(io: File.open(url), filename: 'nothing_special.jpg')
+        # file = EzDownload.open(url)
+        # @pin.photo.attach(io: file, filename: 'nothing_special.jpg')
         if pin_params[:id]
             
             @pin = current_user.authored_pins.new(title: pin_params[:title], website: pin_params[:website])
             @pin_board = @pin.pin_boards.new(pin_board_params)
-            url = url_for(Pin.find(pin_params[:id]).photo)
-            file = EzDownload.open(url)
-            @pin.photo.attach(io: file, filename: 'nothing_special.jpg')
+            original = Pin.find(pin_params[:id])
+
+            ActiveStorage::Downloading.download_blob_to_tempfile(original.photo) do |tempfile|
+                @pin.photo.attach({
+                    io: tempfile, 
+                    filename: original.photo.blob.filename, 
+                    content_type: original.photo.blob.content_type 
+                })
+            end
+            
+            # @pin.attach(io: File.open(url), filename: 'nothing_special.jpg')
+
             # @pin.photo = Pin.find(pin_params[:id]).photo
             # when saving pin in editPin, we just need to create a new pin with original photo
         else
