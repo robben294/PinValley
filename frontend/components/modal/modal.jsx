@@ -55,7 +55,7 @@ const Modal = ({ modal, closeModal }) => {
         case 'showPin' :
             component = <PinShow 
                             pinBoard={modal.modalProps.pinBoard}/>
-            backgroundClass = "boards-modal-background";
+            backgroundClass = "pin-show-modal-background";
             break;
         default:
             return null;

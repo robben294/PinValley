@@ -12,6 +12,11 @@
     cursor: zoom-out;
 }
 
+.pin-show-modal-background {
+    background: linear-gradient(to bottom, rgb(240,240,240), white);
+    cursor: zoom-out;
+}
+
 .modal-child {
     cursor: default;
 }

@@ -1,5 +1,5 @@
 .pin-show-page {
-    display:flex;
+    // display:flex;
     // background: linear-gradient(to bottom, rgb(240,240,240), white);
     // /* min-height: 100vh; */
     // width: 100%;
@@ -7,7 +7,8 @@
     // letter-spacing: -0.4px;
     // -webkit-font-smoothing: antialiased;
     // font-family: -apple-system, system-ui, "Segoe UI", "Roboto Oxygen-Sans", Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
     margin-top: 70px;
 }
 

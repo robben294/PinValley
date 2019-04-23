@@ -2418,7 +2418,7 @@ var Modal = function Modal(_ref) {
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_pin_show__WEBPACK_IMPORTED_MODULE_9__["default"], {
         pinBoard: modal.modalProps.pinBoard
       });
-      backgroundClass = "boards-modal-background";
+      backgroundClass = "pin-show-modal-background";
       break;
 
     default:
@@ -3540,9 +3540,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -3556,9 +3556,13 @@ function (_React$Component) {
   _inherits(PinIndexItem, _React$Component);
 
   function PinIndexItem(props) {
+    var _this;
+
     _classCallCheck(this, PinIndexItem);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(PinIndexItem).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PinIndexItem).call(this, props));
+    _this.handleOpenPin = _this.handleOpenPin.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(PinIndexItem, [{
@@ -3579,19 +3583,32 @@ function (_React$Component) {
       return website;
     }
   }, {
+    key: "handleOpenPin",
+    value: function handleOpenPin(e) {
+      e.preventDefault();
+      var _this$props = this.props,
+          pinBoard = _this$props.pinBoard,
+          openModal = _this$props.openModal; // this.props.push(`/pinBoards/${pinBoard.id}`);
+
+      openModal({
+        modalType: 'showPin',
+        modalProps: {
+          pinBoard: pinBoard
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
-      var _this$props = this.props,
-          pin = _this$props.pin,
-          board = _this$props.board,
-          pinBoard = _this$props.pinBoard;
+      var _this$props2 = this.props,
+          pin = _this$props2.pin,
+          board = _this$props2.board,
+          pinBoard = _this$props2.pinBoard;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item",
-        onClick: function onClick() {
-          return _this.props.push("/pinBoards/".concat(pinBoard.id));
-        }
+        onClick: this.handleOpenPin
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-cover"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -3602,7 +3619,7 @@ function (_React$Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick() {
-          return _this.props.openModal({
+          return _this2.props.openModal({
             modalType: 'editPin',
             modalProps: {
               pin: pin,
