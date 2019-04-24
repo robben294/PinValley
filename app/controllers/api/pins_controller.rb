@@ -1,4 +1,4 @@
-
+include ActiveStorage::Downloading
 class Api::PinsController < ApplicationController
     def create
         # url = url_for(Pin.find(pin_params[:id]).photo)
@@ -11,7 +11,7 @@ class Api::PinsController < ApplicationController
             @pin_board = @pin.pin_boards.new(pin_board_params)
             original = Pin.find(pin_params[:id])
 
-            ActiveStorage::Downloading.download_blob_to_tempfile(original.photo) do |tempfile|
+            original.photo.download_blob_to_tempfile do |tempfile|
                 @pin.photo.attach({
                     io: tempfile, 
                     filename: original.photo.blob.filename, 
