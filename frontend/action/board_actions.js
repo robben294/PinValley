@@ -4,6 +4,7 @@ export const RECEIVE_BOARD = 'RECEIVE_BOARD';
 export const RECEIVE_BOARDS = 'RECEIVE_BOARDS';
 export const REMOVE_BOARD = 'REMOVE_BOARD';
 export const RECEIVE_ONLY_BOARDS = 'RECEIVE_ONLY_BOARDS';
+export const RECEIVE_ONLY_BOARD = ' RECEIVE_ONLY_BOARD';
 
 export const receiveBoards = ({boards, pins, pinBoards}) => {
     return {
@@ -30,6 +31,13 @@ export const receiveOnlyBoards = (boards) => {
     };
 };
 
+export const receiveOnlyBoard = ({board}) => {
+    return {
+        type: RECEIVE_ONLY_BOARD,
+        board,
+    };
+};
+
 export const removeBoard = (boardId) => {
     return {
         type: REMOVE_BOARD,
@@ -47,6 +55,10 @@ export const fetchBoard = (boardId) => dispatch => {
 
 export const createBoard = (board) => dispatch => {
     return BoardApiUtil.createBoard(board).then(board => dispatch(receiveBoard(board)));
+};
+
+export const createFeedBoard = (board) => dispatch => {
+    return BoardApiUtil.createBoard(board).then(payload => dispatch(receiveOnlyBoard(payload)));
 };
 
 export const updateBoard = (board) => dispatch => {

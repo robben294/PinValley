@@ -90,7 +90,7 @@
 /*!******************************************!*\
   !*** ./frontend/action/board_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_BOARD, RECEIVE_BOARDS, REMOVE_BOARD, RECEIVE_ONLY_BOARDS, receiveBoards, receiveBoard, receiveOnlyBoards, removeBoard, fetchBoards, fetchBoard, createBoard, updateBoard, deleteBoard, fetchOnlyBoards */
+/*! exports provided: RECEIVE_BOARD, RECEIVE_BOARDS, REMOVE_BOARD, RECEIVE_ONLY_BOARDS, RECEIVE_ONLY_BOARD, receiveBoards, receiveBoard, receiveOnlyBoards, receiveOnlyBoard, removeBoard, fetchBoards, fetchBoard, createBoard, createFeedBoard, updateBoard, deleteBoard, fetchOnlyBoards */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,13 +99,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BOARDS", function() { return RECEIVE_BOARDS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_BOARD", function() { return REMOVE_BOARD; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ONLY_BOARDS", function() { return RECEIVE_ONLY_BOARDS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ONLY_BOARD", function() { return RECEIVE_ONLY_BOARD; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveBoards", function() { return receiveBoards; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveBoard", function() { return receiveBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveOnlyBoards", function() { return receiveOnlyBoards; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveOnlyBoard", function() { return receiveOnlyBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeBoard", function() { return removeBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoards", function() { return fetchBoards; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoard", function() { return fetchBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBoard", function() { return createBoard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFeedBoard", function() { return createFeedBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBoard", function() { return updateBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBoard", function() { return deleteBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchOnlyBoards", function() { return fetchOnlyBoards; });
@@ -115,6 +118,7 @@ var RECEIVE_BOARD = 'RECEIVE_BOARD';
 var RECEIVE_BOARDS = 'RECEIVE_BOARDS';
 var REMOVE_BOARD = 'REMOVE_BOARD';
 var RECEIVE_ONLY_BOARDS = 'RECEIVE_ONLY_BOARDS';
+var RECEIVE_ONLY_BOARD = ' RECEIVE_ONLY_BOARD';
 var receiveBoards = function receiveBoards(_ref) {
   var boards = _ref.boards,
       pins = _ref.pins,
@@ -143,6 +147,13 @@ var receiveOnlyBoards = function receiveOnlyBoards(boards) {
     boards: boards
   };
 };
+var receiveOnlyBoard = function receiveOnlyBoard(_ref3) {
+  var board = _ref3.board;
+  return {
+    type: RECEIVE_ONLY_BOARD,
+    board: board
+  };
+};
 var removeBoard = function removeBoard(boardId) {
   return {
     type: REMOVE_BOARD,
@@ -167,6 +178,13 @@ var createBoard = function createBoard(board) {
   return function (dispatch) {
     return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["createBoard"](board).then(function (board) {
       return dispatch(receiveBoard(board));
+    });
+  };
+};
+var createFeedBoard = function createFeedBoard(board) {
+  return function (dispatch) {
+    return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["createBoard"](board).then(function (payload) {
+      return dispatch(receiveOnlyBoard(payload));
     });
   };
 };
@@ -3959,8 +3977,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../action/pin_board_actions */ "./frontend/action/pin_board_actions.js");
-/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
+/* harmony import */ var _action_board_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../action/board_actions */ "./frontend/action/board_actions.js");
+/* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../action/modal_actions */ "./frontend/action/modal_actions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3982,6 +4003,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
  // import { fetchOnlyBoards } from '../../action/board_actions';
 
 var SavePinForm =
@@ -3995,8 +4017,16 @@ function (_React$Component) {
     _classCallCheck(this, SavePinForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SavePinForm).call(this, props));
+    _this.state = {
+      createBoard: false,
+      board_title: '',
+      boardId: null
+    };
     _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.openCreateBoard = _this.openCreateBoard.bind(_assertThisInitialized(_this));
+    _this.handleCreateBoard = _this.handleCreateBoard.bind(_assertThisInitialized(_this));
+    _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -4005,19 +4035,59 @@ function (_React$Component) {
     value: function componentDidMount() {// this.props.fetchOnlyBoards();
     }
   }, {
+    key: "openCreateBoard",
+    value: function openCreateBoard(e) {
+      this.setState({
+        createBoard: true
+      });
+      this.setState({
+        renderBoards: false
+      });
+    }
+  }, {
+    key: "handleCreateBoard",
+    value: function handleCreateBoard(e) {
+      var _this2 = this;
+
+      this.props.createFeedBoard({
+        title: this.state.board_title
+      }).then(function (response) {
+        _this2.setState({
+          boardId: response.board.id
+        });
+      }).then(function (response) {
+        _this2.handleSubmit();
+      });
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(field) {
+      var _this3 = this;
+
+      return function (e) {
+        _this3.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
     key: "handleClose",
     value: function handleClose(e) {
       this.props.closeModal();
     }
   }, {
+    key: "handleCancel",
+    value: function handleCancel(e) {
+      this.setState({
+        createBoard: false
+      });
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
       var _this$props = this.props,
           pin = _this$props.pin,
           pinBoard = _this$props.pinBoard;
       var newPinBoard = {
-        board_id: e.currentTarget.id,
+        board_id: this.state.boardId || e.currentTarget.id,
         pin_id: pin.id,
         description: pinBoard.description
       };
@@ -4029,7 +4099,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       var _this$props2 = this.props,
           boards = _this$props2.boards,
@@ -4043,7 +4113,7 @@ function (_React$Component) {
           className: "save-pin-board-title",
           id: board.id,
           key: board.id,
-          onClick: _this2.handleSubmit
+          onClick: _this4.handleSubmit
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "save-pin-board-title-text"
         }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4058,13 +4128,56 @@ function (_React$Component) {
           className: "pin-board-save-text"
         }, "Save"))));
       });
+      var boardForm;
+
+      if (this.state.createBoard) {
+        boardForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "create-board-form-pin"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "create-board-content-pin"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "create-board-name-pin"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "create-board-text-pin"
+        }, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "create-board-name-box-pin",
+          type: "text",
+          value: this.state.board_title,
+          onChange: this.handleInput('board_title'),
+          placeholder: "Like \"Places to Go\" or \"Recipes to Make\""
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "create-board-buttons-pin"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "create-board-button-pin create-board-cancel-button-pin",
+          onClick: this.handleCancel
+        }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "".concat(this.state.board_title !== "" ? 'active' : 'inactive', " create-board-button-pin"),
+          onClick: this.state.board_title !== "" ? this.handleCreateBoard : null
+        }, "Create"))));
+      } else {
+        boardForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "save-pin-main"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "save-pin-content-text"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "save-pin-select-board"
+        }, wrappedBoards)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "save-new-board-button",
+          onClick: this.openCreateBoard
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-plus-circle"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "save-new-board-button-text"
+        }, "Create Board")));
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "save-pin-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "save-pin-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "save-pin-title-text"
-      }, "Choose board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.state.createBoard ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Create Board") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Choose board")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "save-pin-close",
         onClick: this.handleClose
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -4075,20 +4188,7 @@ function (_React$Component) {
         className: "save-pin-img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: pin.photoUrl
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "save-pin-main"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "save-pin-content-text"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "save-pin-select-board"
-      }, wrappedBoards)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "save-new-board-button",
-        onClick: this.openCreateBoard
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-plus-circle"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "save-new-board-button-text"
-      }, "Create Board")))));
+      })), boardForm));
     }
   }]);
 
@@ -4105,9 +4205,12 @@ var msp = function msp(state, ownProps) {
 var mdp = function mdp(dispatch) {
   return {
     closeModal: function closeModal() {
-      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
+      return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_5__["closeModal"])());
     },
     // fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
+    createFeedBoard: function createFeedBoard(board) {
+      return dispatch(Object(_action_board_actions__WEBPACK_IMPORTED_MODULE_4__["createFeedBoard"])(board));
+    },
     createFeedPinBoard: function createFeedPinBoard(pinBoard) {
       return dispatch(Object(_action_pin_board_actions__WEBPACK_IMPORTED_MODULE_3__["createFeedPinBoard"])(pinBoard));
     }
@@ -5003,6 +5106,7 @@ var boardsReducer = function boardsReducer() {
       }
 
     case _action_board_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOARD"]:
+    case _action_board_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ONLY_BOARD"]:
       {
         return Object.assign({}, oldState, _defineProperty({}, action.board.id, action.board));
       }
@@ -5091,7 +5195,7 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_1__["combineReducers"]
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _action_modal_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../action/modal_actions */ "./frontend/action/modal_actions.js");
 
-var _defaultState = null;
+var _defaultState = [];
 
 var modalReducer = function modalReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _defaultState;
