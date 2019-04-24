@@ -1732,23 +1732,30 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.fetchFeed().then(function () {
-        return _this2.props.fetchOnlyBoards();
+      this.props.fetchOnlyBoards().then(function () {
+        return _this2.props.fetchFeed();
+      }).then(function (respond) {
+        _this2.setState({
+          page: _this2.state.page + Object.values(respond.pins).length / 5 - 1
+        });
       });
     }
   }, {
     key: "handleFetchMoreFeed",
     value: function handleFetchMoreFeed(e) {
-      console.log('enter');
-      this.setState({
-        page: this.state.page + 1
+      var _this3 = this;
+
+      this.props.fetchMoreFeed(this.state.page).then(function () {
+        return _this3.setState({
+          page: _this3.state.page + 1
+        });
       });
-      this.props.fetchMoreFeed(this.state.page);
+      console.log(this.state.page);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var _this$props = this.props,
           pins = _this$props.pins,
@@ -1786,6 +1793,7 @@ function (_React$Component) {
       }
 
       var wrappedPins = Object.values(pinBoards).map(function (pinBoard, idx) {
+        // console.log(idx >= Object.values(pinBoards).length - 10)
         if (pinBoard) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_feed_item__WEBPACK_IMPORTED_MODULE_5__["default"], {
             pinBoard: pinBoard,
@@ -1793,8 +1801,8 @@ function (_React$Component) {
             boards: boards,
             pin: pins[pinBoard.pin_id],
             key: idx,
-            push: _this3.props.history.push,
-            openModal: _this3.props.openModal
+            push: _this4.props.history.push,
+            openModal: _this4.props.openModal
           });
         } else {
           return null;
@@ -1803,10 +1811,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pins"
       }, wrappedPins, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
-        onEnter: this.handleFetchMoreFeed,
-        onLeave: function onLeave() {
-          return console.log('leave');
-        }
+        onEnter: this.handleFetchMoreFeed
       })));
     }
   }]);

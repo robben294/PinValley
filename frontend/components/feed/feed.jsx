@@ -18,13 +18,16 @@ class Feed extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchFeed().then(() => this.props.fetchOnlyBoards());
+        this.props.fetchOnlyBoards().then(() => this.props.fetchFeed())
+        .then((respond) => {
+            this.setState({ page: this.state.page + Object.values(respond.pins).length / 5 - 1});
+        });
     }
 
     handleFetchMoreFeed(e) {
-        console.log('enter');
-        this.setState({page: this.state.page + 1});
-        this.props.fetchMoreFeed(this.state.page);
+        this.props.fetchMoreFeed(this.state.page)
+            .then(() => this.setState({ page: this.state.page + 1 }));
+        console.log(this.state.page);
     }
 
     render() {
@@ -44,6 +47,7 @@ class Feed extends React.Component {
             )
         }
         const wrappedPins = Object.values(pinBoards).map((pinBoard, idx) => {
+            // console.log(idx >= Object.values(pinBoards).length - 10)
             if (pinBoard) {
             return (
                 <FeedItem pinBoard={pinBoard}
@@ -52,7 +56,9 @@ class Feed extends React.Component {
                     pin={pins[pinBoard.pin_id]}
                     key={idx}
                     push={this.props.history.push}
-                    openModal={this.props.openModal} />
+                    openModal={this.props.openModal}>
+
+                </FeedItem>
                 )
             } else {
                 return null;
@@ -65,8 +71,6 @@ class Feed extends React.Component {
                 <div>
                     <Waypoint
                         onEnter={this.handleFetchMoreFeed}
-                        
-                        onLeave={() => console.log('leave')}
                     >
                         {/* <div>
                             Loading...

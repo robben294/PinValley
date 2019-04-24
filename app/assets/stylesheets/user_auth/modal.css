@@ -13,7 +13,7 @@
 }
 
 .pin-show-modal-background {
-    background: linear-gradient(to bottom, rgb(240,240,240), white);
+    /* background: linear-gradient(to bottom, rgb(240,240,240), white); */
     cursor: zoom-out;
 }
 
