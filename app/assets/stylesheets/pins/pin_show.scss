@@ -16,8 +16,9 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background:linear-gradient(to bottom, rgb(240,240,240), white);
     z-index: 10;
+    background:linear-gradient(to bottom, rgb(240,240,240), white);
+    cursor: zoom-out;
 }
 
 .pin-show-back .fas {
@@ -52,6 +53,7 @@
     margin-top: 40px;
     margin-bottom: 30px;
     padding: 70px 24px;
+    cursor: default;
 }
 
 .pin-show-nav {

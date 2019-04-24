@@ -76,11 +76,11 @@ class PinShow extends React.Component {
         const board = boards[pinBoard.board_id];
         const user = users[board.creator_id];
         return (
-            <div className='pin-show-page'>
+            <div className='pin-show-page' onClick={this.handleBack}>
                 <div className='pin-show-back' onClick={this.handleBack}>
                     <i className="fas fa-chevron-left"></i>
                 </div>
-                <div className='pin-show-main'>
+                <div className='pin-show-main' onClick={e => e.stopPropagation()}>
                     <div className='pin-show-nav'>
                         <div className='pin-show-icons'> 
 

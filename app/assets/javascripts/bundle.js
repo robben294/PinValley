@@ -3841,14 +3841,18 @@ function (_React$Component) {
       var board = boards[pinBoard.board_id];
       var user = users[board.creator_id];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show-page"
+        className: "pin-show-page",
+        onClick: this.handleBack
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-back",
         onClick: this.handleBack
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-chevron-left"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show-main"
+        className: "pin-show-main",
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-nav"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
