@@ -2969,7 +2969,7 @@ function (_React$Component) {
         renderBoards: false
       });
       this.setState({
-        boardId: e._targetInst._currentElement.key
+        boardId: e.currentTarget.id
       });
     }
   }, {
@@ -2994,7 +2994,8 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "create-pin-board-title",
           onClick: _this6.hideBoards,
-          key: board.id
+          key: board.id,
+          id: board.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "create-pin-board-title-text"
         }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

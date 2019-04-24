@@ -101,7 +101,7 @@ class CreatePinForm extends React.Component {
 
     hideBoards(e) {
         this.setState({renderBoards: false});
-        this.setState({boardId: e._targetInst._currentElement.key});
+        this.setState({boardId: e.currentTarget.id});
     }
 
     handleClose(e) {
@@ -114,7 +114,7 @@ class CreatePinForm extends React.Component {
 
         const wrappedBoards = Object.values(boards).map(board => {
             return (
-                <div className='create-pin-board-title' onClick={this.hideBoards} key={board.id}>
+                <div className='create-pin-board-title' onClick={this.hideBoards} key={board.id} id={board.id}>
                     <span className='create-pin-board-title-text'>
                         {board.title}
                     </span>
