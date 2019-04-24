@@ -5002,15 +5002,11 @@ var boardsReducer = function boardsReducer() {
         return Object.assign({}, oldState, _defineProperty({}, action.board.id, action.board));
       }
 
-    case _action_board_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ONLY_BOARDS"]:
-      return Object.assign({}, oldState, action.boards);
-
     case _action_pin_board_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_PIN_BOARD"]:
       return Object.assign({}, oldState, action.board);
 
     case _action_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_FEED"]:
-      return Object.assign({}, action.boards);
-
+    case _action_board_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ONLY_BOARDS"]:
     case _action_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_MORE_FEED"]:
       return Object.assign({}, oldState, action.boards);
 

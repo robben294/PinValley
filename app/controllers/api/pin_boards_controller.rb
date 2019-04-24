@@ -1,5 +1,6 @@
 class Api::PinBoardsController < ApplicationController 
     def create
+        debugger
         @pin_board = PinBoard.new(pin_board_params)
         if @pin_board.save
             render :show

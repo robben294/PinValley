@@ -17,12 +17,10 @@ const boardsReducer = (state = {}, action) => {
         case RECEIVE_BOARD: {
             return Object.assign({}, oldState, { [action.board.id]: action.board });
         }
-        case RECEIVE_ONLY_BOARDS:
-            return Object.assign({}, oldState, action.boards);
         case RECEIVE_PIN_BOARD: 
             return Object.assign({}, oldState, action.board);
         case RECEIVE_FEED:
-            return Object.assign({}, action.boards);
+        case RECEIVE_ONLY_BOARDS:
         case RECEIVE_MORE_FEED:
             return Object.assign({}, oldState, action.boards);
         case REMOVE_BOARD: {
