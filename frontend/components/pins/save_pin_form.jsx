@@ -25,7 +25,7 @@ class SavePinForm extends React.Component {
         e.preventDefault();
         const { pin, pinBoard } = this.props;
         const newPinBoard = { 
-            board_id: e.target.id, 
+            board_id: e.currentTarget.id, 
             pin_id: pin.id,
             description: pinBoard.description,
         };
@@ -46,9 +46,9 @@ class SavePinForm extends React.Component {
         const wrappedBoards = UserBoards.map(board => {
             return (
                 <div className='save-pin-board-title' id={board.id} key={board.id} onClick={this.handleSubmit}>
-                    <span className='save-pin-board-title-text'>
+                    <div className='save-pin-board-title-text'>
                         {board.title}
-                    </span>
+                    </div>
                     <div className='save-pin-container'>
                         <div className='save-pin-board-title-select'>
                             <div className='pin-save-pin'>

@@ -4016,7 +4016,7 @@ function (_React$Component) {
           pin = _this$props.pin,
           pinBoard = _this$props.pinBoard;
       var newPinBoard = {
-        board_id: e.target.id,
+        board_id: e.currentTarget.id,
         pin_id: pin.id,
         description: pinBoard.description
       };
@@ -4043,7 +4043,7 @@ function (_React$Component) {
           id: board.id,
           key: board.id,
           onClick: _this2.handleSubmit
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "save-pin-board-title-text"
         }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "save-pin-container"
