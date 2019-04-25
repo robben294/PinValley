@@ -2466,11 +2466,14 @@ var Modal = function Modal(_ref) {
 
   var wrappedComponents = components.map(function (component, idx) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: backgroundClasses[idx],
       key: idx,
+      onClick: handleClick
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       onClick: function onClick(e) {
         return e.stopPropagation();
       }
-    }, component);
+    }, component));
   });
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, background, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: backgroundClass,

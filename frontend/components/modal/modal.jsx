@@ -75,11 +75,14 @@ const Modal = ({ modal, closeModal }) => {
 
     const wrappedComponents = components.map((component, idx) => {
         return (
-            <div key={idx} onClick={e => e.stopPropagation()}>
-                {component}
+            <div className={backgroundClasses[idx]} key={idx} onClick={handleClick}>
+                <div onClick={e => e.stopPropagation()}>
+                    {component}
+                </div>
             </div>
         )
     })
+
 
     return (
             <div>

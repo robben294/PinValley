@@ -1,7 +1,7 @@
 .navbar-main {
     display: flex;
     justify-content: space-between;
-    padding: 4px 12px;
+    padding: 8px 20px;
     height: 40px;
     align-items: center;
     padding-bottom: 20px;
@@ -9,9 +9,10 @@
     background: white;
     /* set the navbaer to fixed position */
     position: fixed;
+    left: 0;
     top: 0;
     width: 100%;
-    z-index: 20;
+    z-index: 10;
 }
 
 /* .navbar-main img {
