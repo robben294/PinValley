@@ -228,7 +228,6 @@ __webpack_require__.r(__webpack_exports__);
 var OPEN_MODAL = 'OPEN_MODAL';
 var CLOSE_MODAL = 'CLOSE_MODAL';
 var openModal = function openModal(modal) {
-  debugger;
   return {
     type: OPEN_MODAL,
     modal: modal
@@ -2391,8 +2390,6 @@ var Modal = function Modal(_ref) {
   var backgroundClasses = [];
 
   for (var i = 0; i < modal.length; i++) {
-    debugger;
-
     switch (modal[i].modalType) {
       case 'login':
         components.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
@@ -3793,6 +3790,7 @@ function (_React$Component) {
     _classCallCheck(this, PinShow);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PinShow).call(this, props));
+    _this.pinBoardId = _this.props.pinBoard.id;
     _this.handleBack = _this.handleBack.bind(_assertThisInitialized(_this));
     _this.handleEdit = _this.handleEdit.bind(_assertThisInitialized(_this));
     return _this;
@@ -3975,7 +3973,7 @@ function (_React$Component) {
 
 var msp = function msp(state, ownProps) {
   return {
-    // pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
+    pinBoard: state.entities.pinBoards[ownProps.pinBoard.id],
     // pinBoard: state.entities.pinBoards[ownProps.location.pathname.split('/')[ownProps.location.pathname.split('/').length - 1]],
     pins: state.entities.pins,
     boards: state.entities.boards,
@@ -5247,7 +5245,6 @@ var modalReducer = function modalReducer() {
   var oldState = Object.freeze(state);
   var newState = [];
   newState = newState.concat(oldState);
-  debugger;
 
   switch (action.type) {
     case _action_modal_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_MODAL"]:

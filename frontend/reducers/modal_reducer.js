@@ -6,7 +6,6 @@ const modalReducer = (state = _defaultState, action) => {
     const oldState = Object.freeze(state);
     let newState = [];
     newState = newState.concat(oldState);
-    debugger
     switch(action.type) {
         case OPEN_MODAL:
             newState.push(action.modal);

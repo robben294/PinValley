@@ -20,7 +20,6 @@ const Modal = ({ modal, closeModal }) => {
     let backgroundClasses = [];
 
     for (let i = 0; i < modal.length; i++) {
-        debugger
         switch (modal[i].modalType) {
             case 'login':
                 components.push(<LoginFormContainer />);

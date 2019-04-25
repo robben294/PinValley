@@ -9,6 +9,7 @@ import { openModal, closeModal } from '../../action/modal_actions';
 class PinShow extends React.Component {
     constructor(props) {
         super(props);
+        this.pinBoardId = this.props.pinBoard.id;
         this.handleBack = this.handleBack.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
     }
@@ -168,7 +169,7 @@ class PinShow extends React.Component {
 
 const msp = (state, ownProps) => {
     return { 
-        // pinBoard: state.entities.pinBoards[ownProps.match.params.pinBoardId],
+        pinBoard: state.entities.pinBoards[ownProps.pinBoard.id],
         // pinBoard: state.entities.pinBoards[ownProps.location.pathname.split('/')[ownProps.location.pathname.split('/').length - 1]],
         pins: state.entities.pins,
         boards: state.entities.boards,
