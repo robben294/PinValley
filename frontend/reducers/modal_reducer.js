@@ -4,12 +4,16 @@ const _defaultState = [];
 
 const modalReducer = (state = _defaultState, action) => {
     const oldState = Object.freeze(state);
+    let newState = [];
+    newState = newState.concat(oldState);
     switch(action.type) {
         case OPEN_MODAL:
-            return action.modal;
+            newState.push(action.modal);
+            return newState;
             
         case CLOSE_MODAL:
-            return _defaultState;
+            newState.pop();
+            return newState;
             
         default:
             return state;

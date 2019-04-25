@@ -2384,68 +2384,70 @@ var Modal = function Modal(_ref) {
     return null;
   }
 
-  var component;
+  var components = [];
   var background = null;
   var backgroundClass;
 
-  switch (modal.modalType) {
-    case 'login':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
-      background = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.background,
-        className: "login-background"
-      });
-      backgroundClass = "modal-background";
-      break;
+  for (var i = 0; i < modal.length; i++) {
+    switch (modal[i].modalType) {
+      case 'login':
+        components.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+        background = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.background,
+          className: "login-background"
+        });
+        backgroundClass = "modal-background";
+        break;
 
-    case 'signup':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
-      background = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.background,
-        className: "login-background"
-      });
-      backgroundClass = "modal-background";
-      break;
+      case 'signup':
+        components.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+        background = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.background,
+          className: "login-background"
+        });
+        backgroundClass = "modal-background";
+        break;
 
-    case 'createBoard':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_create_board_form__WEBPACK_IMPORTED_MODULE_5__["default"], null);
-      backgroundClass = "boards-modal-background";
-      break;
+      case 'createBoard':
+        components.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_create_board_form__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+        backgroundClass = "boards-modal-background";
+        break;
 
-    case 'editBoard':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_edit_board_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        board: modal.modalProps
-      });
-      backgroundClass = "boards-modal-background";
-      break;
+      case 'editBoard':
+        components.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_boards_edit_board_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          board: modal[i].modalProps
+        }));
+        backgroundClass = "boards-modal-background";
+        break;
 
-    case 'editPin':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_edit_pin_form__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        pin: modal.modalProps.pin,
-        board: modal.modalProps.board,
-        pinBoard: modal.modalProps.pinBoard
-      });
-      backgroundClass = "boards-modal-background";
-      break;
+      case 'editPin':
+        components.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_edit_pin_form__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          pin: modal[i].modalProps.pin,
+          board: modal[i].modalProps.board,
+          pinBoard: modal[i].modalProps.pinBoard
+        }));
+        backgroundClass = "boards-modal-background";
+        break;
 
-    case 'savePin':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_save_pin_form__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        pinBoard: modal.modalProps.pinBoard,
-        pin: modal.modalProps.pin,
-        boards: modal.modalProps.boards
-      });
-      backgroundClass = "boards-modal-background";
-      break;
+      case 'savePin':
+        components.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_save_pin_form__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          pinBoard: modal[i].modalProps.pinBoard,
+          pin: modal[i].modalProps.pin,
+          boards: modal[i].modalProps.boards
+        }));
+        backgroundClass = "boards-modal-background";
+        break;
 
-    case 'showPin':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_pin_show__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        pinBoard: modal.modalProps.pinBoard
-      });
-      backgroundClass = "pin-show-modal-background";
-      break;
+      case 'showPin':
+        components.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pins_pin_show__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          pinBoard: modal[i].modalProps.pinBoard
+        }));
+        backgroundClass = "pin-show-modal-background";
+        break;
 
-    default:
-      return null;
+      default:
+        return null;
+    }
   }
 
   var handleClick = function handleClick(e) {
@@ -2456,6 +2458,14 @@ var Modal = function Modal(_ref) {
     }
   };
 
+  var wrappedComponents = components.map(function (component, idx) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: idx,
+      onClick: function onClick(e) {
+        return e.stopPropagation();
+      }
+    }, component);
+  });
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, background, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: backgroundClass,
     onClick: handleClick
@@ -2464,7 +2474,7 @@ var Modal = function Modal(_ref) {
     onClick: function onClick(e) {
       return e.stopPropagation();
     }
-  }, component)));
+  }, wrappedComponents)));
 };
 
 var msp = function msp(state) {
@@ -5225,13 +5235,17 @@ var modalReducer = function modalReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _defaultState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
   var oldState = Object.freeze(state);
+  var newState = [];
+  newState = newState.concat(oldState);
 
   switch (action.type) {
     case _action_modal_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_MODAL"]:
-      return action.modal;
+      newState.push(action.modal);
+      return newState;
 
     case _action_modal_actions__WEBPACK_IMPORTED_MODULE_0__["CLOSE_MODAL"]:
-      return _defaultState;
+      newState.pop();
+      return newState;
 
     default:
       return state;

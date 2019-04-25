@@ -11,54 +11,55 @@ import PinShow from '../pins/pin_show';
 
 const Modal = ({ modal, closeModal }) => {
 
-    
     if (!modal) {
         return null;
     }
-    let component;
+    let components = [];
     let background = null;
     let backgroundClass;
 
-    switch (modal.modalType) {
-        case 'login':
-            component = <LoginFormContainer />;
-            background = <img src={window.background} className='login-background' />;
-            backgroundClass = "modal-background";
-            break;
-        case 'signup':
-            component = <SignupFormContainer />;
-            background = <img src={window.background} className='login-background' />;
-            backgroundClass = "modal-background";
-            break;
-        case 'createBoard':
-            component = <CreateBoardForm />;
-            backgroundClass = "boards-modal-background";
-            break;
-        case 'editBoard':
-            component = <EditBoardForm board={modal.modalProps} />;
-            backgroundClass = "boards-modal-background";
-            break;
-        case 'editPin':
-            component = <EditPinForm 
-                            pin={modal.modalProps.pin} 
-                            board={modal.modalProps.board} 
-                            pinBoard={modal.modalProps.pinBoard}/>;
-            backgroundClass = "boards-modal-background";
-            break;
-        case 'savePin':
-            component = <SavePinForm 
-                            pinBoard={modal.modalProps.pinBoard}
-                            pin={modal.modalProps.pin}
-                            boards={modal.modalProps.boards}/>
-            backgroundClass = "boards-modal-background";
-            break;
-        case 'showPin' :
-            component = <PinShow 
-                            pinBoard={modal.modalProps.pinBoard}/>
-            backgroundClass = "pin-show-modal-background";
-            break;
-        default:
-            return null;
+    for (let i = 0; i < modal.length; i++) {
+        switch (modal[i].modalType) {
+            case 'login':
+                components.push(<LoginFormContainer />);
+                background = <img src={window.background} className='login-background' />;
+                backgroundClass = "modal-background";
+                break;
+            case 'signup':
+                components.push(<SignupFormContainer />);
+                background = <img src={window.background} className='login-background' />;
+                backgroundClass = "modal-background";
+                break;
+            case 'createBoard':
+                components.push(<CreateBoardForm />);
+                backgroundClass = "boards-modal-background";
+                break;
+            case 'editBoard':
+                components.push(<EditBoardForm board={modal[i].modalProps} />);
+                backgroundClass = "boards-modal-background";
+                break;
+            case 'editPin':
+                components.push(<EditPinForm 
+                                pin={modal[i].modalProps.pin} 
+                                board={modal[i].modalProps.board} 
+                                pinBoard={modal[i].modalProps.pinBoard}/>);
+                backgroundClass = "boards-modal-background";
+                break;
+            case 'savePin':
+                components.push(<SavePinForm 
+                                pinBoard={modal[i].modalProps.pinBoard}
+                                pin={modal[i].modalProps.pin}
+                                boards={modal[i].modalProps.boards}/>);
+                backgroundClass = "boards-modal-background";
+                break;
+            case 'showPin' :
+                components.push(<PinShow 
+                                pinBoard={modal[i].modalProps.pinBoard}/>);
+                backgroundClass = "pin-show-modal-background";
+                break;
+            default:
+                return null;
+        }
     }
 
     const handleClick = (e) => {
@@ -69,6 +70,14 @@ const Modal = ({ modal, closeModal }) => {
         }
     };
 
+    const wrappedComponents = components.map((component, idx) => {
+        return (
+            <div key={idx} onClick={e => e.stopPropagation()}>
+                {component}
+            </div>
+        )
+    })
+
     return (
             <div>
                 {background}
@@ -76,7 +85,7 @@ const Modal = ({ modal, closeModal }) => {
                     className={backgroundClass} 
                     onClick={handleClick}>
                     <div className="modal-child" onClick={e => e.stopPropagation()}>
-                        {component}
+                        {wrappedComponents}
                     </div>
                 </div>
             </div>
