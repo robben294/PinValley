@@ -103,7 +103,11 @@ class PinShow extends React.Component {
                                 {/* { board ? board.title : null} */}
                                 <i className="fas fa-chevron-down"></i>
                             </div>
-                            <div className='pin-show-nav-save'>
+                            <div className='pin-show-nav-save' 
+                                onClick={() => this.props.openModal({
+                                    modalType: 'savePin',
+                                    modalProps: { pin, pinBoard, boards },
+                                })}>
                                 Save
                             </div>
                         </div>
