@@ -4132,7 +4132,7 @@ function (_React$Component) {
 
       if (this.state.createBoard) {
         boardForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "create-board-form-pin"
+          className: "save-pin-main"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "create-board-content-pin"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

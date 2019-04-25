@@ -101,7 +101,7 @@ class SavePinForm extends React.Component {
         let boardForm;
         if (this.state.createBoard) {
             boardForm = (
-                <div className="create-board-form-pin">
+                <div className="save-pin-main">
                     <div className='create-board-content-pin'>
                         <div className='create-board-name-pin'>
                             <div className='create-board-text-pin'>
