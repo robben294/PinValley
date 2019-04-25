@@ -17,8 +17,10 @@ const Modal = ({ modal, closeModal }) => {
     let components = [];
     let background = null;
     let backgroundClass;
+    let backgroundClasses = [];
 
     for (let i = 0; i < modal.length; i++) {
+        debugger
         switch (modal[i].modalType) {
             case 'login':
                 components.push(<LoginFormContainer />);
@@ -60,6 +62,7 @@ const Modal = ({ modal, closeModal }) => {
             default:
                 return null;
         }
+        backgroundClasses.push(backgroundClass);
     }
 
     const handleClick = (e) => {

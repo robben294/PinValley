@@ -4,6 +4,12 @@ import SessionForm from './session_form';
 import { signup, clearSessionErrors } from '../../action/session_actions';
 import { openModal, closeModal } from '../../action/modal_actions';
 
+const handleModal = (dispatch) => {
+    return () => {
+        dispatch(closeModal());
+        dispatch(openModal({ modalType: 'login' }));
+    };
+};
 
 const msp = state => ({
     errors: state.errors.session,
@@ -13,12 +19,12 @@ const msp = state => ({
 const mdp = dispatch => ({
     processForm: (user) => dispatch(signup(user)),
     otherForm: (
-        <a onClick={() => dispatch(openModal({modalType: 'login'}))}>
+        <a onClick={handleModal(dispatch)}>
             Already a member? Log in
         </a>
     ),
     otherFormTopLeft: (
-        <button onClick={() => dispatch(openModal({ modalType: 'login' }))}>Log in</button>
+        <button onClick={handleModal(dispatch)}>Log in</button>
     ),
     closeModal: () => dispatch(closeModal()),
     clearSessionErrors: () => dispatch(clearSessionErrors()),

@@ -228,6 +228,7 @@ __webpack_require__.r(__webpack_exports__);
 var OPEN_MODAL = 'OPEN_MODAL';
 var CLOSE_MODAL = 'CLOSE_MODAL';
 var openModal = function openModal(modal) {
+  debugger;
   return {
     type: OPEN_MODAL,
     modal: modal
@@ -2387,8 +2388,11 @@ var Modal = function Modal(_ref) {
   var components = [];
   var background = null;
   var backgroundClass;
+  var backgroundClasses = [];
 
   for (var i = 0; i < modal.length; i++) {
+    debugger;
+
     switch (modal[i].modalType) {
       case 'login':
         components.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
@@ -2448,6 +2452,8 @@ var Modal = function Modal(_ref) {
       default:
         return null;
     }
+
+    backgroundClasses.push(backgroundClass);
   }
 
   var handleClick = function handleClick(e) {
@@ -4718,6 +4724,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var handleModal = function handleModal(dispatch) {
+  return function () {
+    dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
+    dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])({
+      modalType: 'signup'
+    }));
+  };
+};
+
 var msp = function msp(state) {
   return {
     errors: state.errors.session,
@@ -4731,18 +4746,10 @@ var mdp = function mdp(dispatch) {
       return dispatch(Object(_action_session_actions__WEBPACK_IMPORTED_MODULE_3__["login"])(user));
     },
     otherForm: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      onClick: function onClick() {
-        return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])({
-          modalType: 'signup'
-        }));
-      }
+      onClick: handleModal(dispatch)
     }, "Not on Pinvalley yet? Sign up"),
     otherFormTopLeft: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      onClick: function onClick() {
-        return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])({
-          modalType: 'signup'
-        }));
-      }
+      onClick: handleModal(dispatch)
     }, "Sign up"),
     closeModal: function closeModal() {
       return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
@@ -5000,6 +5007,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var handleModal = function handleModal(dispatch) {
+  return function () {
+    dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
+    dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])({
+      modalType: 'login'
+    }));
+  };
+};
+
 var msp = function msp(state) {
   return {
     errors: state.errors.session,
@@ -5013,18 +5029,10 @@ var mdp = function mdp(dispatch) {
       return dispatch(Object(_action_session_actions__WEBPACK_IMPORTED_MODULE_3__["signup"])(user));
     },
     otherForm: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      onClick: function onClick() {
-        return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])({
-          modalType: 'login'
-        }));
-      }
+      onClick: handleModal(dispatch)
     }, "Already a member? Log in"),
     otherFormTopLeft: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      onClick: function onClick() {
-        return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])({
-          modalType: 'login'
-        }));
-      }
+      onClick: handleModal(dispatch)
     }, "Log in"),
     closeModal: function closeModal() {
       return dispatch(Object(_action_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
@@ -5084,8 +5092,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   } else {
     preloadedState = {
-      ui: {
-        modal: 'login'
+      ui: {// modal: 'login',
       }
     };
   }
@@ -5237,6 +5244,7 @@ var modalReducer = function modalReducer() {
   var oldState = Object.freeze(state);
   var newState = [];
   newState = newState.concat(oldState);
+  debugger;
 
   switch (action.type) {
     case _action_modal_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_MODAL"]:

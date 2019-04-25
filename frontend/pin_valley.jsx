@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         preloadedState = {
             ui: {
-                modal: 'login',
+                // modal: 'login',
             }
         };
     }
