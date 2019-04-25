@@ -32,7 +32,7 @@ class PinIndexItem extends React.Component {
     }
 
     render() {
-        const { pin, board, pinBoard } = this.props;
+        const { pin, board, pinBoard, boards } = this.props;
         return (
             <div className='pin-item' onClick={this.handleOpenPin}>
                 <div className='pin-cover'>
@@ -49,7 +49,11 @@ class PinIndexItem extends React.Component {
                     </div>
 
                     <div className='pin-save-container' onClick={e => e.stopPropagation()}>
-                        <div className='pin-save' >
+                        <div className='pin-save' 
+                            onClick={() => this.props.openModal({
+                                modalType: 'savePin',
+                                modalProps: { pin, pinBoard, boards },
+                            })}>
                             <div className='pin-save-pin'>
                                 <i className="fas fa-thumbtack"></i>
                             </div>

@@ -71,4 +71,4 @@ export const deleteBoard = (boardId) => dispatch => {
 
 export const fetchOnlyBoards = () => dispatch => {
     return BoardApiUtil.fetchOnlyBoards().then((boards) => dispatch(receiveOnlyBoards(boards)));
-}
+};

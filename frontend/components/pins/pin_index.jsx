@@ -3,16 +3,21 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import PinIndexItem from './pin_index_item';
+import { fetchOnlyBoards } from '../../action/board_actions';
 import { openModal } from '../../action/modal_actions';
 
 class PinIndex extends React.Component {
+
+    componentDidMount() {
+        this.props.fetchOnlyBoards();
+    }
 
     render() {  
         if (this.props.location.pathname === '/profile/edit') {
             return null;
         }
 
-        const { board, pinBoards, pins } = this.props;
+        const { board, boards, pinBoards, pins } = this.props;
         if (!pins || Object.keys(pinBoards).length === 0) {
             return null;
         }
@@ -34,6 +39,7 @@ class PinIndex extends React.Component {
                 return (
                     <PinIndexItem pinBoard={pinBoard} 
                         board={board} 
+                        boards={boards}
                         pin={pins[pinBoard.pin_id]}
                         key={idx} 
                         push={this.props.history.push}
@@ -57,13 +63,15 @@ const msp = (state, ownProps) => {
     return {
         pins: state.entities.pins,
         pinBoards: state.entities.pinBoards,
-        board: state.entities.boards[ownProps.match.params.boardId]
+        board: state.entities.boards[ownProps.match.params.boardId],
+        boards: state.entities.boards,
     };
 };
 
 const mdp = dispatch => {
     return {
         openModal: (modal) => dispatch(openModal(modal)),
+        fetchOnlyBoards: () => dispatch(fetchOnlyBoards()),
     };
 };
 

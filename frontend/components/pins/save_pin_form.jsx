@@ -73,7 +73,6 @@ class SavePinForm extends React.Component {
 
     render() {
         const { boards, pin, currentUserId } = this.props;
-
         const UserBoards = Object.values(boards).filter(board => {
             return board.creator_id === currentUserId;
         });
