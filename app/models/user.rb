@@ -36,20 +36,32 @@ class User < ApplicationRecord
         through: :created_boards,
         source: :pins
 
-    has_many :follower_relationships,
+    # User following
+
+    has_many :user_follower_relationships,
         class_name: :UserFollow,
         foreign_key: :following_id
 
-    has_many :following_relationships, 
+    has_many :user_following_relationships, 
         class_name: :UserFollow,
         foreign_key: :user_id
 
-    has_many :followers,
+    has_many :user_followers,
         through: :follower_relationships,
         source: :follower
 
-    has_many :followings,
+    has_many :user_followings,
         through: :following_relationships,
+        source: :following
+
+    # Board following
+
+    has_many :board_following_relationships,
+        class_name: :BoardFollow,
+        foreign_key: :following_id
+
+    has_many :board_followings, 
+        through: :board_following_relationships,
         source: :following
 
 
