@@ -36,6 +36,23 @@ class User < ApplicationRecord
         through: :created_boards,
         source: :pins
 
+    has_many :follower_relationships,
+        class_name: :UserFollow,
+        foreign_key: :following_id
+
+    has_many :following_relationships, 
+        class_name: :UserFollow,
+        foreign_key: :user_id
+
+    has_many :followers,
+        through: :follower_relationships,
+        source: :follower
+
+    has_many :followings,
+        through: :following_relationships,
+        source: :following
+
+
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)
         return user if user && user.is_password?(password)

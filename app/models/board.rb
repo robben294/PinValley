@@ -24,4 +24,8 @@ class Board < ApplicationRecord
     has_many :pin_photos,
         through: :pins,
         source: :photo
+
+    has_many :followers, -> { where(following_type: :board) },
+        class_name: :Follow,
+        foreign_key: :following_id
 end
