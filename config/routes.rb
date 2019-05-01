@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :pin_boards, only: [:create, :destroy, :show, :update]
     resources :feed, only: [:index]
     resources :more_feed, only: [:index]
+    resources :user_follow, only: [:create, :destroy]
   end
 
   root "static_pages#root"
