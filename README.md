@@ -1,6 +1,6 @@
 # PinValley
 
-PinValley is a faithful clone of Pinterest that allow users to share images and the corresponding website, create boards, and save other users' pins.
+PinValley is a faithful clone of Pinterest that allows users to share images with the access of the orginal websites, create boards, and save other users' pins.
 
 You can visit PinValley [here](https://pin-valley.herokuapp.com/)
 
